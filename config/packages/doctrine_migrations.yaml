@@ -1,0 +1,3 @@
+doctrine_migrations:
+  migrations_paths:
+    'Skeleton\Common\Migration': '%kernel.project_dir%/migrations'

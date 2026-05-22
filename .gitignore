@@ -1,0 +1,22 @@
+/.env.local
+/.env.local.php
+/.env.*.local
+/vendor/
+/var/
+/.phpunit.cache/
+/.deptrac.cache
+/.idea/
+/docs/ui/vendor-theme/
+
+/.phpunit.result.cache
+/phpunit.xml
+/config/secrets/prod/prod.decrypt.private.php
+
+# Symfony Flex default root paths are intentionally not used because runtime apps live under apps/*.
+# Runtime/public assets live under apps/* instead of root directories.
+/public/
+/assets/
+/apps/web/public/assets/
+/apps/web/public/build/
+/apps/web/public/bundles/
+/apps/web/assets/vendor/

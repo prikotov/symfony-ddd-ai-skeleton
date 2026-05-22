@@ -1,0 +1,20 @@
+parameters:
+  module.diagnostics.module_dir: '%kernel.project_dir%/src/Module/Diagnostics'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      string $timezone: '%timezone%'
+
+  Skeleton\Common\Module\Diagnostics\:
+    resource: '%module.diagnostics.module_dir%/'
+    exclude:
+      - '%module.diagnostics.module_dir%/Application/Dto/'
+      - '%module.diagnostics.module_dir%/Domain/ValueObject/'
+      - '%module.diagnostics.module_dir%/Resource/'
+      - '%module.diagnostics.module_dir%/DiagnosticsModule.php'
+
+  Skeleton\Common\Module\Diagnostics\Domain\Service\RuntimeContext\GetRuntimeContextServiceInterface:
+    alias: Skeleton\Common\Module\Diagnostics\Infrastructure\Service\RuntimeContext\GetRuntimeContextService

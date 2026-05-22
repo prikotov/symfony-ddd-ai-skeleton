@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Skeleton\Web\:
+    resource: '../src/'
+    exclude:
+      - '../src/Module/'

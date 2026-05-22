@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Skeleton\Common\Kernel;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Dotenv\Dotenv;
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+if (is_file(dirname(__DIR__) . '/.env')) {
+    (new Dotenv())->bootEnv(dirname(__DIR__) . '/.env');
+}
+
+$input = new ArgvInput();
+$appId = (string) $input->getParameterOption(['--id', '-i'], $_SERVER['APP_DEFAULT_ID'] ?? $_ENV['APP_DEFAULT_ID'] ?? 'console');
+
+$kernel = new Kernel(
+    $_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? 'dev',
+    (bool) ($_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? true),
+    $appId,
+);
+
+$application = new Application($kernel);
+$shortcut = $input->getParameterOption(['-i']) ? '-i' : null;
+$application->getDefinition()->addOption(new InputOption('--id', $shortcut, InputOption::VALUE_REQUIRED, 'The App ID'));
+
+$application->run($input);

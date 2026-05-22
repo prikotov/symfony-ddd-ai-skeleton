@@ -1,0 +1,13 @@
+parameters:
+  module.console_diagnostics.module_dir: '%kernel.project_dir%/apps/console/src/Module/Diagnostics'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Skeleton\Console\Module\Diagnostics\:
+    resource: '%module.console_diagnostics.module_dir%/'
+    exclude:
+      - '%module.console_diagnostics.module_dir%/Resource/'
+      - '%module.console_diagnostics.module_dir%/DiagnosticsModule.php'

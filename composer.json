@@ -1,0 +1,179 @@
+{
+    "name": "prikotov/symfony-ddd-ai-skeleton",
+    "type": "project",
+    "license": "proprietary",
+    "description": "Reusable Symfony 8 modular DDD/CQRS skeleton optimized for AI-assisted development",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "doctrine/dbal": "^4.4.3",
+        "doctrine/doctrine-bundle": "^3.2.2",
+        "doctrine/doctrine-migrations-bundle": "^3.7",
+        "doctrine/orm": "^3.6.6",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "php": ">=8.4",
+        "psr/clock": "^1.0",
+        "ramsey/uuid": "^4.9.2",
+        "symfony/asset": "8.0.*",
+        "symfony/asset-mapper": "8.0.*",
+        "symfony/console": "8.0.*",
+        "symfony/dotenv": "8.0.*",
+        "symfony/flex": "^2.10",
+        "symfony/form": "8.0.*",
+        "symfony/framework-bundle": "8.0.*",
+        "symfony/http-client": "8.0.*",
+        "symfony/messenger": "8.0.*",
+        "symfony/monolog-bundle": "^4.0.2",
+        "symfony/runtime": "8.0.*",
+        "symfony/scheduler": "8.0.*",
+        "symfony/security-bundle": "8.0.*",
+        "symfony/stimulus-bundle": "^2.35",
+        "symfony/translation": "8.0.*",
+        "symfony/twig-bundle": "8.0.*",
+        "symfony/uid": "8.0.*",
+        "symfony/ux-turbo": "^2.35",
+        "symfony/ux-twig-component": "^2.35.0",
+        "symfony/validator": "8.0.*",
+        "symfony/yaml": "8.0.*",
+        "twig/extra-bundle": "^3.24",
+        "twig/intl-extra": "^3.26"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "bump-after-update": true,
+        "sort-packages": true,
+        "process-timeout": 1800,
+        "github-protocols": [
+            "https"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "Skeleton\\Common\\": "src/",
+            "Skeleton\\Web\\": "apps/web/src/",
+            "Skeleton\\Console\\": "apps/console/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Skeleton\\Common\\Test\\": "tests/",
+            "Skeleton\\Web\\Test\\": "apps/web/tests/",
+            "Skeleton\\Console\\Test\\": "apps/console/tests/"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*",
+        "symfony/polyfill-php82": "*",
+        "symfony/polyfill-php83": "*",
+        "symfony/polyfill-php84": "*"
+    },
+    "scripts": {
+        "check": [
+            "@app:validate",
+            "@lint:php",
+            "@docs:validate",
+            "@todo:validate",
+            "@agents:validate",
+            "@analyse:architecture",
+            "@test"
+        ],
+        "app:validate": "composer validate --strict",
+        "lint:php": [
+            "@lint:syntax",
+            "@lint:codestyle"
+        ],
+        "lint:syntax": "parallel-lint --exclude vendor --exclude var .",
+        "lint:codestyle": "vendor/bin/phpcs --standard=phpcs.xml src apps tests",
+        "docs:validate": [
+            "vendor/bin/validate-md-links",
+            "php vendor/prikotov/coding-standard/bin/validate-docs.php docs/conventions"
+        ],
+        "todo:validate": "vendor/bin/todo-md-validate todo",
+        "agents:validate": "php vendor/prikotov/task-orchestrator/bin/validate-roles docs/agents/roles/team",
+        "analyse:architecture": "vendor/bin/deptrac analyse --config-file=depfile.yaml --no-progress",
+        "test": [
+            "@test:unit",
+            "@test:integration"
+        ],
+        "test:unit": "phpunit --testsuite Unit",
+        "test:integration": "phpunit --testsuite Integration",
+        "changelog": "conventional-changelog",
+        "release": "conventional-changelog --commit",
+        "release:patch": "conventional-changelog --commit --patch",
+        "release:minor": "conventional-changelog --commit --minor",
+        "release:major": "conventional-changelog --commit --major"
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "8.0.*"
+        }
+    },
+    "repositories": [
+        {
+            "name": "todo-md",
+            "type": "vcs",
+            "url": "https://github.com/prikotov/todo-md.git",
+            "no-api": true
+        },
+        {
+            "name": "git-workflow",
+            "type": "vcs",
+            "url": "https://github.com/prikotov/git-workflow.git",
+            "no-api": true
+        },
+        {
+            "name": "coding-standard",
+            "type": "vcs",
+            "url": "https://github.com/prikotov/coding-standard.git",
+            "no-api": true
+        },
+        {
+            "name": "task-orchestrator",
+            "type": "vcs",
+            "url": "https://github.com/prikotov/task-orchestrator.git",
+            "no-api": true
+        }
+    ],
+    "require-dev": {
+        "composer/composer": ">=2.9.8",
+        "dama/doctrine-test-bundle": "^8.4.1",
+        "deptrac/deptrac": "^2.0.7",
+        "dg/bypass-finals": "^1.9",
+        "doctrine/doctrine-fixtures-bundle": "^4.3.1",
+        "marcocesarato/php-conventional-changelog": "^1.17.3",
+        "php-parallel-lint/php-parallel-lint": "^1.4",
+        "phpmd/phpmd": "3.x-dev",
+        "phpunit/phpunit": "^10.5.63",
+        "prikotov/coding-standard": "^0.15.0",
+        "prikotov/git-workflow": "^0.1.0",
+        "prikotov/task-orchestrator": "^0.1.5",
+        "prikotov/todo-md": "^0.0.6",
+        "psalm/plugin-symfony": "^5.3",
+        "ramsey/conventional-commits": "^1.7",
+        "slevomat/coding-standard": "^8.29",
+        "squizlabs/php_codesniffer": ">=4.0.1",
+        "symfony/browser-kit": "8.0.*",
+        "symfony/css-selector": "8.0.*",
+        "symfony/maker-bundle": "^1.67",
+        "symfony/phpunit-bridge": "^8.0.8",
+        "symfony/stopwatch": "8.0.*",
+        "symfony/web-profiler-bundle": "8.0.*",
+        "vimeo/psalm": "^6.16.1"
+    }
+}

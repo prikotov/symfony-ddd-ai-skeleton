@@ -1,0 +1,2 @@
+# Common routes are registered here when shared HTTP entrypoints appear.
+# App-specific routes are imported from apps/<app>/config/routes.yaml.

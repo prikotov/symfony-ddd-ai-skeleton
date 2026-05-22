@@ -1,0 +1,13 @@
+parameters:
+  module.web_diagnostics.module_dir: '%kernel.project_dir%/apps/web/src/Module/Diagnostics'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Skeleton\Web\Module\Diagnostics\:
+    resource: '%module.web_diagnostics.module_dir%/'
+    exclude:
+      - '%module.web_diagnostics.module_dir%/Resource/'
+      - '%module.web_diagnostics.module_dir%/DiagnosticsModule.php'

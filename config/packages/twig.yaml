@@ -1,0 +1,5 @@
+twig:
+  file_name_pattern: '*.twig'
+  paths:
+    '%kernel.project_dir%/templates': ~
+    '%kernel.project_dir%/apps/web/templates': Web

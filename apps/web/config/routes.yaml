@@ -1,0 +1,5 @@
+web_module:
+  resource:
+    path: ../src/Module/
+    namespace: Skeleton\Web\Module
+  type: attribute

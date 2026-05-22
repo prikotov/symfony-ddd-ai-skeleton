@@ -1,0 +1,17 @@
+<div class="{{ this.alertClass() }}{% if this.showIcon or this.dismissible %} d-flex align-items-center{% endif %} my-4" role="alert">
+    {% if this.showIcon %}
+        <span class="fas fs-5 me-3 {{ this.iconClass(type) }}"></span>
+    {% endif %}
+
+    <div class="{{ this.showIcon or this.dismissible ? 'flex-1' : '' }}">
+        {% if this.message %}
+            {{ this.message }}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    {% if this.dismissible %}
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+    {% endif %}
+</div>

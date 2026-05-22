@@ -1,0 +1,21 @@
+{% if this.message %}
+<div id="important-alert" class="alert alert-warning border-0 rounded-0 text-center position-fixed top-0 start-0 w-100" style="z-index: 1080;">
+    {{ this.message }}
+</div>
+<script>
+    (function () {
+        var alert = document.getElementById('important-alert');
+        if (!alert) {
+            return;
+        }
+
+        function setPadding() {
+            document.body.style.paddingTop = alert.offsetHeight + 'px';
+        }
+
+        setPadding();
+        window.addEventListener('load', setPadding);
+        window.addEventListener('resize', setPadding);
+    })();
+</script>
+{% endif %}

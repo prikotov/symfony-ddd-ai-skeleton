@@ -1,0 +1,18 @@
+<a href="{{ path(this.route, this.filter|merge({
+    sort: this.nextSort,
+    page: this.page,
+    perPage: this.perPage
+})) }}">
+    <div class="d-inline-flex flex-center">
+        {% block label %}
+            {{ this.label }}
+        {% endblock %}
+        {% if this.isAsc %}
+            <span class="fas fa-sort-up text-primary ms-1"></span>
+        {% elseif this.isDesc %}
+            <span class="fas fa-sort-down text-primary ms-1"></span>
+        {% else %}
+            <span class="fas fa-sort text-muted ms-1"></span>
+        {% endif %}
+    </div>
+</a>

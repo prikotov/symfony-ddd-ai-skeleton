@@ -1,0 +1,9 @@
+<span
+    {% if id %}id="{{ id }}"{% endif %}
+    class="{{ this.badgeClass() }}{{ class ? ' ' ~ class : '' }}"
+    {% if title %}
+        data-bs-toggle="tooltip" title="{{ title }}"
+    {% endif %}
+>
+    {{ text }}
+</span>

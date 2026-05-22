@@ -1,0 +1,11 @@
+<li class="nav-item">
+    <a class="nav-link {{ this.isActive ? 'active' : '' }} d-flex align-items-center gap-2" href="{{ this.url }}" {% if this.description %}data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="{{ this.description }}"{% endif %}>
+        <span class="d-inline-flex align-items-center gap-1 text-truncate flex-grow-1">
+            {% if this.icon %}<span data-feather="{{ this.icon }}"></span>{% endif %}
+            <span class="text-truncate">{{ this.label }}</span>
+        </span>
+        {% if this.badge is defined and this.badge is not null %}
+            <span class="badge rounded-pill bg-body-secondary text-body-secondary fw-semibold ms-auto">{{ this.badge }}</span>
+        {% endif %}
+    </a>
+</li>

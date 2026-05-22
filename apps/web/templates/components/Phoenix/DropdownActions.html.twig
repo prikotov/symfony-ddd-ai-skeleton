@@ -1,0 +1,69 @@
+<div class="btn-reveal-trigger">
+    <button
+            class="{{ button }}"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+    >
+        <span class="{{ icon }}"></span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-end py-2">
+        {% for item in items %}
+            {% if item.visible is not defined or item.visible %}
+                {% if item.divider is defined and item.divider %}
+                    <div class="dropdown-divider"></div>
+                {% elseif item.method is defined and item.method == 'POST' %}
+                    <form action="{{ item.url }}" method="post" style="display:inline;"{% if item.turbo is defined and not item.turbo %} data-turbo="false"{% endif %}
+                        {% if item.confirm is defined %}
+                            onsubmit="return confirm('{{ item.confirm|e('js') }}')"
+                        {% endif %}
+                    >
+                        {% set hiddenFields = item.hiddenFields is defined and item.hiddenFields is iterable ? item.hiddenFields : {} %}
+                        {% for fieldName, fieldValue in hiddenFields %}
+                            {% if fieldValue is not same as(null) and fieldValue is not same as('') %}
+                                <input type="hidden" name="{{ fieldName }}" value="{{ fieldValue }}" />
+                            {% endif %}
+                        {% endfor %}
+                        <button type="submit" class="dropdown-item {{ item.class|default('') }}">
+                            {% if item.icon is defined %}
+                                <span class="{{ item.icon }}"></span>
+                            {% endif %}
+                            {{ item.label|default('') }}
+                        </button>
+                    </form>
+                {% elseif item.method is defined and item.method == 'DELETE' %}
+                    <form action="{{ item.url }}" method="post" style="display:inline;"{% if item.turbo is defined and not item.turbo %} data-turbo="false"{% endif %}
+                        {% if item.confirm is defined %}
+                            onsubmit="return confirm('{{ item.confirm|e('js') }}')"
+                        {% endif %}
+                    >
+                        <input type="hidden" name="_method" value="DELETE" />
+                        {% set hiddenFields = item.hiddenFields is defined and item.hiddenFields is iterable ? item.hiddenFields : {} %}
+                        {% for fieldName, fieldValue in hiddenFields %}
+                            {% if fieldValue is not same as(null) and fieldValue is not same as('') %}
+                                <input type="hidden" name="{{ fieldName }}" value="{{ fieldValue }}" />
+                            {% endif %}
+                        {% endfor %}
+                        <button type="submit" class="dropdown-item {{ item.class|default('') }}">
+                            {% if item.icon is defined %}
+                                <span class="{{ item.icon }}"></span>
+                            {% endif %}
+                            {{ item.label|default('') }}
+                        </button>
+                    </form>
+                {% else %}
+                    <a class="dropdown-item {{ item.class|default('') }}{% if item.url is not defined or item.url is empty %} text-muted{% endif %}"
+                       href="{{ item.url|default('#!') }}"{% if item.target is defined %} target="{{ item.target }}"{% endif %}{% if item.turbo is defined and not item.turbo %} data-turbo="false"{% endif %}>
+                        {% if item.icon is defined %}
+                            <span class="{{ item.icon }}"></span>
+                        {% endif %}
+                        {{ item.label|default('') }}
+                    </a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
