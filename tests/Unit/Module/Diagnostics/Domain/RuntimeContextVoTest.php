@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Common\Test\Unit\Module\Diagnostics\Domain\ValueObject;
+namespace Skeleton\Common\Test\Unit\Module\Diagnostics\Domain;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
