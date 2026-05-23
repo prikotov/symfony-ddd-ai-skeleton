@@ -177,7 +177,9 @@ make check
 
 ## AI agent workflow
 
-This skeleton is designed for AI-assisted development:
+This skeleton is built on the principles described in [**AI-Assisted Development Playbook**](https://github.com/prikotov/task-agents-playbook) — a public methodology for organizing AI-driven development with task-driven workflow, structured roles, conventions and quality gates.
+
+Core components:
 
 - **`AGENTS.md`** — rules, architecture summary, code style and safety constraints for AI agents.
 - **`docs/agents/roles/team/`** — structured role definitions (team lead, architects, developers, devops, analysts, writers) that guide AI agents through specialized responsibilities.
