@@ -196,10 +196,10 @@ This skeleton depends on several purpose-built open-source packages:
 
 | Package | Purpose |
 |---------|---------|
-| [prikotov/coding-standard](https://github.com/prikotov/coding-standard) | PHPCS ruleset, Deptrac layers, doc validators |
-| [prikotov/todo-md](https://github.com/prikotov/todo-md) | Structured task tracking in Markdown |
-| [prikotov/task-orchestrator](https://github.com/prikotov/task-orchestrator) | AI agent role validation and orchestration |
-| [prikotov/git-workflow](https://github.com/prikotov/git-workflow) | Git workflow and release tooling |
+| [prikotov/coding-standard](https://github.com/prikotov/coding-standard) | Conventions — coding standards, principles, patterns, layers and module structure for Symfony applications. Enforced via PHPCS, Deptrac, PHPStan |
+| [prikotov/todo-md](https://github.com/prikotov/todo-md) | Task management system: tasks as Markdown files with YAML front matter, status changes via folder moves, templates for AI agents |
+| [prikotov/git-workflow](https://github.com/prikotov/git-workflow) | Git workflow rules: branch naming, Conventional Commits, pull requests, code review, release and deploy |
+| [prikotov/task-orchestrator](https://github.com/prikotov/task-orchestrator) | Console agent orchestrator: behavioral role profiles, skills, sub-agents in isolated context, YAML step chains, role validation |
 
 ---
 
