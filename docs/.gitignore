@@ -1,1 +1,10 @@
 /vendor-theme/
+
+# Documentation copied from vendor packages by init scripts.
+# Run the corresponding init script to populate these directories:
+#   php vendor/bin/coding-standard-init
+#   php vendor/bin/git-workflow-init
+#   php vendor/bin/todo-md-init
+/conventions/
+/git-workflow/
+/todo-md/
