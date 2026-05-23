@@ -2,6 +2,15 @@
 
 `docs/ui/vendor-theme/` — локальная копия купленной UI-темы из проекта TasK.
 
+Рекомендуемый CSS-фреймворк: **Bootstrap 5**.
+
+Установка через AssetMapper (без Node.js):
+
+```bash
+cd apps/web
+php bin/console importmap:require bootstrap/css/bootstrap.min.css bootstrap/js/bootstrap.bundle.min.js
+```
+
 Правила использования:
 
 * директория `docs/ui/vendor-theme/` добавлена в `.gitignore` и не должна попадать в Git;

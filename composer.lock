@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad9092af8b64fdb540ded5a11f3611f3",
+    "content-hash": "c5bd11a6c6466f6be9a840221c2e4007",
     "packages": [
         {
             "name": "brick/math",
@@ -11029,16 +11029,16 @@
         },
         {
             "name": "prikotov/coding-standard",
-            "version": "v0.15.0",
+            "version": "v0.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/prikotov/coding-standard.git",
-                "reference": "606b3c9a756884c1ba9b0f8748aebcaccf204213"
+                "reference": "6d8b39a96b05b41ce53f7f81ff84b9084e923a52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prikotov/coding-standard/zipball/606b3c9a756884c1ba9b0f8748aebcaccf204213",
-                "reference": "606b3c9a756884c1ba9b0f8748aebcaccf204213",
+                "url": "https://api.github.com/repos/prikotov/coding-standard/zipball/6d8b39a96b05b41ce53f7f81ff84b9084e923a52",
+                "reference": "6d8b39a96b05b41ce53f7f81ff84b9084e923a52",
                 "shasum": ""
             },
             "require": {
@@ -11116,7 +11116,7 @@
                 "phpcs",
                 "sniffs"
             ],
-            "time": "2026-05-22T11:21:32+00:00"
+            "time": "2026-05-23T02:44:56+00:00"
         },
         {
             "name": "prikotov/git-workflow",
@@ -11169,16 +11169,16 @@
         },
         {
             "name": "prikotov/task-orchestrator",
-            "version": "v0.1.5",
+            "version": "v0.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/prikotov/task-orchestrator.git",
-                "reference": "4a55220307691df788c5b408968fa6dc34e4d6a7"
+                "reference": "b796d0a4c49bd776227deba98372a986f3121d6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prikotov/task-orchestrator/zipball/4a55220307691df788c5b408968fa6dc34e4d6a7",
-                "reference": "4a55220307691df788c5b408968fa6dc34e4d6a7",
+                "url": "https://api.github.com/repos/prikotov/task-orchestrator/zipball/b796d0a4c49bd776227deba98372a986f3121d6f",
+                "reference": "b796d0a4c49bd776227deba98372a986f3121d6f",
                 "shasum": ""
             },
             "require": {
@@ -11198,7 +11198,7 @@
                 "phpmd/phpmd": "^3.0",
                 "phpstan/phpstan": "^2.1",
                 "phpunit/phpunit": "^10.5",
-                "prikotov/coding-standard": "^0.14.0",
+                "prikotov/coding-standard": "^0.17.0",
                 "prikotov/git-workflow": "^0.1.0",
                 "prikotov/todo-md": "^0.0",
                 "psalm/plugin-symfony": "^5.3",
@@ -11244,7 +11244,7 @@
                 "MIT"
             ],
             "description": "TasK Agent Orchestrator — chain-based AI agent orchestration with retry, circuit breaker, quality gates, dynamic loops",
-            "time": "2026-05-22T11:53:53+00:00"
+            "time": "2026-05-23T02:03:37+00:00"
         },
         {
             "name": "prikotov/todo-md",
@@ -14213,9 +14213,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
+        "php": ">=8.4",
         "ext-ctype": "*",
-        "ext-iconv": "*",
-        "php": ">=8.4"
+        "ext-iconv": "*"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
