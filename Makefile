@@ -1,7 +1,12 @@
-.PHONY: install validate lint docs todo agents architecture test tests-unit tests-integration tests-integration-path tests-integration-filter check console-about web-routes
+.PHONY: install setup validate lint docs todo agents architecture test tests-unit tests-integration tests-integration-path tests-integration-filter check console-about web-routes
 
 install:
 	composer install
+
+setup: install
+	php vendor/bin/coding-standard-init .
+	php vendor/bin/git-workflow-init .
+	php vendor/bin/todo-md-init .
 
 validate:
 	composer validate --strict

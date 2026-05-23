@@ -30,8 +30,8 @@ jobs:
           coverage: none
           tools: composer
 
-      - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist
+      - name: Install and setup
+        run: make setup
 
       - name: Run checks
         run: make check
