@@ -160,7 +160,7 @@
         "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpmd/phpmd": "3.x-dev",
         "phpunit/phpunit": "^10.5.63",
-        "prikotov/coding-standard": "^0.17.0",
+        "prikotov/coding-standard": "^0.17.1",
         "prikotov/git-workflow": "^0.1.0",
         "prikotov/task-orchestrator": "^0.1.7",
         "prikotov/todo-md": "^0.0.6",
