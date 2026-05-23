@@ -1,6 +1,6 @@
 # UI components
 
-Компоненты `apps/web` строятся на Phoenix theme patterns из TasK и локальной reference-темы.
+Компоненты `apps/web` строятся на **Bootstrap 5** и Phoenix theme patterns из TasK.
 
 Перенесённые базовые Twig components:
 
