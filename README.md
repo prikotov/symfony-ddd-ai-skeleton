@@ -42,8 +42,10 @@ This skeleton provides all of that out of the box so you can focus on domain log
 ```bash
 git clone https://github.com/prikotov/symfony-ddd-ai-skeleton.git my-project
 cd my-project
-composer install
+make setup
 ```
+
+`make setup` runs `composer install` followed by init scripts that populate `docs/conventions/`, `docs/git-workflow/`, `docs/todo-md/` and `todo/AGENTS.md` from vendor packages.
 
 ### Verify
 
