@@ -1,7 +1,7 @@
 {
     "name": "prikotov/symfony-ddd-ai-skeleton",
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "description": "Reusable Symfony 8 modular DDD/CQRS skeleton optimized for AI-assisted development",
     "minimum-stability": "dev",
     "prefer-stable": true,
