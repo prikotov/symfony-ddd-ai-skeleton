@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Левша (codex-cli)
 branch: task/skeleton-integration-bridge-example
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/17
-status: review
+status: done
 ---
 
 # TASK-skeleton-integration-bridge-example: Consumer-owned integration bridge example
@@ -80,8 +80,8 @@ make check
 - Риск циклических dependencies — проверять deptrac.
 
 ## 8. Sources (Источники)
-- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [User module task](done/TASK-skeleton-user-module-ddd-example.todo.md)
+- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [User module task](TASK-skeleton-user-module-ddd-example.todo.md)
 
 
 ## 9. Comments (Комментарии)
@@ -95,7 +95,7 @@ make check
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-integration-bridge-example`: `git checkout task/skeleton-integration-bridge-example`.
 2. Реализуй задачу согласно описанию, epic boundaries и User/Diagnostics examples.
-3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
 4. Покажи consumer-owned integration interface в `Domain/Service/Integration`, implementation — в `Integration/Service`.
 5. Implementation должна вызывать Application query/DTO другого module, а не его Domain model/repository/infrastructure.
 6. Не используй термины `Port`/`Adapter` в class/path names.
@@ -114,3 +114,7 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #17 для реализации |
 | 2026-06-02 | Бэкендер Левша (codex-cli) | Реализован User → Diagnostics integration bridge, статус переведён в `review` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Закрыто неблокирующее замечание external review: добавлен negative test на unexpected QueryBus result |
+| 2026-06-02 | Бэкендер Левша (codex-cli) | Финальный self-review после commit `ba1f914`: Approval |
+| 2026-06-02 | Архитектор Локи (codex-cli) | Финальный external re-check PR #17: Approval |
+| 2026-06-02 | Архитектор Гэндальф (codex-cli) | External architecture review PR #17: Approval |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача переведена в `done`, подготовлена к merge в epic branch |
