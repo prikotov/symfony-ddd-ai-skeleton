@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Skeleton\Console\Test\Integration\Module\Diagnostics\Command\Runtime;
 
+use DateTimeImmutable;
 use JsonException;
 use Override;
 use Skeleton\Common\Kernel;
@@ -39,7 +40,12 @@ final class CheckCommandTest extends KernelTestCase
         self::assertSame('test', $payload['environment']);
         self::assertTrue($payload['debug']);
         self::assertSame('Asia/Novosibirsk', $payload['timezone']);
-        self::assertNotSame('', $payload['checkedAt']);
+
+        $checkedAt = DateTimeImmutable::createFromFormat(DATE_ATOM, $payload['checkedAt']);
+
+        self::assertInstanceOf(DateTimeImmutable::class, $checkedAt);
+        self::assertFalse(DateTimeImmutable::getLastErrors());
+        self::assertSame($payload['checkedAt'], $checkedAt->format(DATE_ATOM));
     }
 
     #[Override]

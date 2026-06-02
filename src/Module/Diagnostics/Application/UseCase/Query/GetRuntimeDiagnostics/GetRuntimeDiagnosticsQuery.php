@@ -8,6 +8,8 @@ use Skeleton\Common\Application\Query\QueryInterface;
 use Skeleton\Common\Module\Diagnostics\Application\Dto\RuntimeDiagnosticsDto;
 
 /**
+ * Requests dependency-light runtime diagnostics for a Presentation entrypoint.
+ *
  * @implements QueryInterface<RuntimeDiagnosticsDto>
  */
 final readonly class GetRuntimeDiagnosticsQuery implements QueryInterface
