@@ -9,10 +9,10 @@ cost_fact:
 depends_on: TASK-skeleton-module-extension-points, TASK-skeleton-repository-criteria-pagination-sort, TASK-skeleton-health-query-example, TASK-skeleton-user-module-ddd-example, TASK-skeleton-presentation-security-pattern, TASK-skeleton-integration-bridge-example
 epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
-assignee:
-branch:
+assignee: Техпис Гермиона (codex-cli)
+branch: task/skeleton-module-scaffold-docs
 pr:
-status: todo
+status: in_progress
 ---
 
 # TASK-skeleton-module-scaffold-docs: Module scaffold documentation and checklist
@@ -86,7 +86,27 @@ make check
 ## 9. Comments (Комментарии)
 Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: in_progress`.
 
+## Инструкции для сабагента
+
+**Ветка:** `task/skeleton-module-scaffold-docs` (уже создана и активна)
+**PR:** будет создан как draft из `task/skeleton-module-scaffold-docs` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид впишет ссылку.
+
+### Порядок действий
+1. Переключись в ветку `task/skeleton-module-scaffold-docs`: `git checkout task/skeleton-module-scaffold-docs`.
+2. Реализуй задачу согласно описанию и outputs всех завершённых tasks эпика.
+3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+4. Напиши practical guide/checklist для создания нового module в skeleton.
+5. Обязательно покрой: layer responsibilities, resource paths, module extension points, repository criteria/sort/pagination, Health Query example, User DDD example, Presentation security pattern, Integration bridge.
+6. Явно отдели generic skeleton patterns от project-specific domain; запрети перенос `Portfolio`/`TInvest`/broker/trading examples.
+7. Добавь links from README или existing docs, если это помогает найти guide.
+8. Не редактируй generated `docs/conventions/` как source of truth.
+9. После реализации запусти `make check`.
+10. Сделай `git push`.
+11. Переведи PR из draft в ready: `gh pr ready <PR_NUMBER>`.
+12. Не трогай untracked `phpstan.neon.dist`.
+
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
