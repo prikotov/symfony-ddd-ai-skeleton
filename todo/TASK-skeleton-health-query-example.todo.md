@@ -108,4 +108,4 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #14 для реализации |
-| 2026-06-03 | Бэкендер Тони (codex-cli) | Добавлен reference для Diagnostics Query flow, контрактные PHPDoc и точечные assertions |
+| 2026-06-02 | Бэкендер Тони (codex-cli) | Добавлен reference для Diagnostics Query flow, контрактные PHPDoc и точечные assertions |
