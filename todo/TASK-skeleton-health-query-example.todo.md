@@ -11,7 +11,7 @@ epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Тони (codex-cli)
 branch: task/skeleton-health-query-example
-pr:
+pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/14
 status: in_progress
 ---
 
@@ -88,7 +88,7 @@ make check
 ## Инструкции для сабагента
 
 **Ветка:** `task/skeleton-health-query-example` (уже создана и активна)
-**PR:** будет создан как draft из `task/skeleton-health-query-example` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид впишет ссылку.
+**PR:** draft из `task/skeleton-health-query-example` в `epic/skeleton-module-ddd-scaffold` — [PR #14](https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/14).
 
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-health-query-example`: `git checkout task/skeleton-health-query-example`.
@@ -107,3 +107,4 @@ make check
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #14 для реализации |
