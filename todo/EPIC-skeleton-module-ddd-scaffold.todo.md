@@ -105,16 +105,14 @@ flowchart LR
 - Из `stocks2` переносить только generic approach (подход), не class names с бизнесовым смыслом; `Portfolio`, `TInvest`, broker/trading/market-data vocabulary запрещены в runtime skeleton examples.
 
 ## 5. Implementation Plan (План реализации)
-Плановые задачи будут заведены отдельными файлами перед стартом соответствующего slice; после создания заменить plain ID на Markdown-ссылки.
-
-- [ ] `TASK-skeleton-patterns-inventory` — сделать список `берём / не берём` из `stocks2`, отделить framework-level code от business-domain code.
-- [ ] `TASK-skeleton-module-extension-points` — добавить module extension points для Doctrine/Twig/translations, `TwigCompilerPass`, Doctrine mapping registration и docs по путям `Resource/*`.
-- [ ] `TASK-skeleton-repository-criteria-pagination-sort` — перенести reusable criteria interfaces/traits, sort mapper, pagination DTO/request mapper, whitelist allowed sort fields и tests.
-- [ ] `TASK-skeleton-health-query-example` — сохранить Health/Diagnostics маленьким canonical read-only Application Query example со слоями и tests.
-- [ ] `TASK-skeleton-user-module-ddd-example` — добавить/усилить нейтральный User module example: Domain model, enum, criteria, repository contract, Infrastructure repository, Application query; без production-auth/default credentials.
-- [ ] `TASK-skeleton-presentation-security-pattern` — добавить нейтральный `Route/Role/Action/Permission/Grant/Rule/Voter` pattern на примере User или demo module.
-- [ ] `TASK-skeleton-integration-bridge-example` — добавить пример межмодульного bridge через consumer-owned integration interface.
-- [ ] `TASK-skeleton-module-scaffold-docs` — описать checklist создания нового module и границы “generic skeleton vs project-specific domain”.
+- [ ] [TASK-skeleton-patterns-inventory](TASK-skeleton-patterns-inventory.todo.md) — сделать список `берём / не берём` из `stocks2`, отделить framework-level code от business-domain code.
+- [ ] [TASK-skeleton-module-extension-points](TASK-skeleton-module-extension-points.todo.md) — добавить module extension points для Doctrine/Twig/translations, `TwigCompilerPass`, Doctrine mapping registration и docs по путям `Resource/*`.
+- [ ] [TASK-skeleton-repository-criteria-pagination-sort](TASK-skeleton-repository-criteria-pagination-sort.todo.md) — перенести reusable criteria interfaces/traits, sort mapper, pagination DTO/request mapper, whitelist allowed sort fields и tests.
+- [ ] [TASK-skeleton-health-query-example](TASK-skeleton-health-query-example.todo.md) — сохранить Health/Diagnostics маленьким canonical read-only Application Query example со слоями и tests.
+- [ ] [TASK-skeleton-user-module-ddd-example](TASK-skeleton-user-module-ddd-example.todo.md) — добавить/усилить нейтральный User module example: Domain model, enum, criteria, repository contract, Infrastructure repository, Application query; без production-auth/default credentials.
+- [ ] [TASK-skeleton-presentation-security-pattern](TASK-skeleton-presentation-security-pattern.todo.md) — добавить нейтральный `Route/Role/Action/Permission/Grant/Rule/Voter` pattern на примере User или demo module.
+- [ ] [TASK-skeleton-integration-bridge-example](TASK-skeleton-integration-bridge-example.todo.md) — добавить пример межмодульного bridge через consumer-owned integration interface.
+- [ ] [TASK-skeleton-module-scaffold-docs](TASK-skeleton-module-scaffold-docs.todo.md) — описать checklist создания нового module и границы “generic skeleton vs project-specific domain”.
 
 ## 6. Definition of Done (Критерии приёмки эпика)
 - [ ] Все Must Have требования выполнены и протестированы.
@@ -161,3 +159,4 @@ flowchart LR
 | 2026-06-02 | Лид Арагорн (codex-cli) | Уточнён scope по итогам командного read-only review: inventory, extension points, sort whitelist, neutral User и generator как future backlog |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Эпик переведён на workflow `epic-via-subagents`, зафиксирована epic-ветка |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан PR на approval постановки эпика: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10 |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Заведены todo-md задачи эпика и связаны в Implementation Plan |
