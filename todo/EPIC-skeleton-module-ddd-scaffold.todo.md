@@ -107,7 +107,7 @@ flowchart LR
 ## 5. Implementation Plan (План реализации)
 - [x] [TASK-skeleton-patterns-inventory](done/TASK-skeleton-patterns-inventory.todo.md) — сделать список `берём / не берём` из `stocks2`, отделить framework-level code от business-domain code.
 - [x] [TASK-skeleton-module-extension-points](done/TASK-skeleton-module-extension-points.todo.md) — добавить module extension points для Doctrine/Twig/translations, `TwigCompilerPass`, Doctrine mapping registration и docs по путям `Resource/*`.
-- [ ] [TASK-skeleton-repository-criteria-pagination-sort](TASK-skeleton-repository-criteria-pagination-sort.todo.md) — перенести reusable criteria interfaces/traits, sort mapper, pagination DTO/request mapper, whitelist allowed sort fields и tests.
+- [x] [TASK-skeleton-repository-criteria-pagination-sort](done/TASK-skeleton-repository-criteria-pagination-sort.todo.md) — перенести reusable criteria interfaces/traits, sort mapper, pagination DTO/request mapper, whitelist allowed sort fields и tests.
 - [ ] [TASK-skeleton-health-query-example](TASK-skeleton-health-query-example.todo.md) — сохранить Health/Diagnostics маленьким canonical read-only Application Query example со слоями и tests.
 - [ ] [TASK-skeleton-user-module-ddd-example](TASK-skeleton-user-module-ddd-example.todo.md) — добавить/усилить нейтральный User module example: Domain model, enum, criteria, repository contract, Infrastructure repository, Application query; без production-auth/default credentials.
 - [ ] [TASK-skeleton-presentation-security-pattern](TASK-skeleton-presentation-security-pattern.todo.md) — добавить нейтральный `Route/Role/Action/Permission/Grant/Rule/Voter` pattern на примере User или demo module.
@@ -162,3 +162,4 @@ flowchart LR
 | 2026-06-02 | Лид Арагорн (codex-cli) | Заведены todo-md задачи эпика и связаны в Implementation Plan |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена первая задача `TASK-skeleton-patterns-inventory`, PR #11 |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-module-extension-points`, PR #12 |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-repository-criteria-pagination-sort`, PR #13 подготовлен к merge в epic branch |

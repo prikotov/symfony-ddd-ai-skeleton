@@ -81,7 +81,7 @@ make check
 
 ## 8. Sources (Источники)
 - [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [Repository primitives task](TASK-skeleton-repository-criteria-pagination-sort.todo.md)
+- [x] [Repository primitives task](done/TASK-skeleton-repository-criteria-pagination-sort.todo.md)
 - [x] [Extension points task](done/TASK-skeleton-module-extension-points.todo.md)
 
 

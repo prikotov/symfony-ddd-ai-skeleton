@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Левша (codex-cli)
 branch: task/skeleton-repository-criteria-pagination-sort
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/13
-status: in_progress
+status: done
 ---
 
 # TASK-skeleton-repository-criteria-pagination-sort: Repository criteria, pagination and sort primitives
@@ -79,8 +79,8 @@ make check
 - Риск overengineering abstract base classes — держать primitives маленькими и composable.
 
 ## 8. Sources (Источники)
-- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [Inventory task](done/TASK-skeleton-patterns-inventory.todo.md)
+- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Inventory task](TASK-skeleton-patterns-inventory.todo.md)
 
 
 ## 9. Comments (Комментарии)
@@ -94,7 +94,7 @@ make check
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-repository-criteria-pagination-sort`: `git checkout task/skeleton-repository-criteria-pagination-sort`.
 2. Реализуй задачу согласно описанию, epic boundaries и inventory.
-3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
 4. Делай промежуточные commits после логического этапа.
 5. После реализации запусти `make check`.
 6. Сделай `git push`.
@@ -123,3 +123,6 @@ $doctrineCriteria = $this->limitOffsetSortMapper->map($criteria, self::SORT_WHIT
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #13 для реализации |
 | 2026-06-02 | Бэкендер Левша (codex-cli) | Self-review CR: conventions generated docs не попадают в PR; tracked example зафиксирован в PHPDoc, добавлен `@todo` на vendor package; stable ordering test усилен |
+| 2026-06-02 | Бэкендер Левша (codex-cli) | Повторный self-review после commit `3106526`: Approval |
+| 2026-06-02 | Архитектор Локи (codex-cli) | External review PR #13: Approval |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача переведена в `done`, подготовлена к merge в epic branch |
