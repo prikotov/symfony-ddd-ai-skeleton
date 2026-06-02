@@ -20,12 +20,11 @@ final class TwigCompilerPassTest extends TestCase
     {
         $this->container = new ContainerBuilder();
 
-        // Register the twig.loader.native_filesystem definition required by the compiler pass
         $loaderDefinition = new Definition(\Twig\Loader\FilesystemLoader::class);
         $this->container->setDefinition('twig.loader.native_filesystem', $loaderDefinition);
     }
 
-    public function testRegistersDefaultPath(): void
+    public function testRegistersDefaultPathViaAddPath(): void
     {
         $pass = new TwigCompilerPass(
             defaultTemplatePath: '/module/templates',
@@ -34,34 +33,15 @@ final class TwigCompilerPassTest extends TestCase
 
         $pass->process($this->container);
 
-        $twigConfig = $this->container->getExtensionConfig('twig');
-        self::assertNotEmpty($twigConfig);
+        $definition = $this->container->getDefinition('twig.loader.native_filesystem');
+        $methodCalls = $definition->getMethodCalls();
 
-        $paths = $twigConfig[0]['paths'] ?? [];
-        self::assertArrayHasKey('/module/templates', $paths);
-        self::assertSame('TestModule', $paths['/module/templates']);
+        self::assertCount(1, $methodCalls);
+        self::assertSame('addPath', $methodCalls[0][0]);
+        self::assertSame(['/module/templates', 'TestModule'], $methodCalls[0][1]);
     }
 
-    public function testRegistersAdditionalPaths(): void
-    {
-        $pass = new TwigCompilerPass(
-            defaultTemplatePath: '/module/templates',
-            defaultTwigNamespace: 'TestModule',
-            additionalPathMap: ['/module/extra' => 'TestModuleExtra'],
-        );
-
-        $pass->process($this->container);
-
-        $twigConfig = $this->container->getExtensionConfig('twig');
-        $paths = $twigConfig[0]['paths'] ?? [];
-
-        self::assertArrayHasKey('/module/templates', $paths);
-        self::assertArrayHasKey('/module/extra', $paths);
-        self::assertSame('TestModule', $paths['/module/templates']);
-        self::assertSame('TestModuleExtra', $paths['/module/extra']);
-    }
-
-    public function testAddsMethodCallsToFilesystemLoader(): void
+    public function testRegistersDefaultAndAdditionalPathsViaAddPath(): void
     {
         $pass = new TwigCompilerPass(
             defaultTemplatePath: '/module/templates',

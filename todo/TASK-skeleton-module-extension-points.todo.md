@@ -43,31 +43,31 @@ status: in_progress
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Обязательно)
-- [ ] Описать/реализовать module-local resource path contract.
-- [ ] Подключить Doctrine mappings явно per module, без `auto_mapping: true`.
-- [ ] Показать Twig templates и translations paths для web modules.
-- [ ] Покрыть extension behavior unit/integration tests или документированной проверкой, если код не меняется.
+- [x] Описать/реализовать module-local resource path contract.
+- [x] Подключить Doctrine mappings явно per module, без `auto_mapping: true`.
+- [x] Показать Twig templates и translations paths для web modules.
+- [x] Покрыть extension behavior unit/integration tests или документированной проверкой, если код не меняется.
 
 ### 🟡 Should Have (Желательно)
-- [ ] Добавить маленький checklist для нового module resource layout.
+- [x] Добавить маленький checklist для нового module resource layout.
 
 ### 🟢 Could Have (Опционально)
 - [ ] Оставить notes для будущего `make module NAME=... --dry-run`.
 
 ### ⚫ Won't Have (Не будем делать)
-- [ ] Не переносить контейнеризацию или project-specific service config из `stocks2`.
+- [x] Не переносить контейнеризацию или project-specific service config из `stocks2`.
 
 ## 4. Implementation Plan (План реализации)
-1. [ ] Сверить skeleton conventions и inventory по module resource paths.
-2. [ ] Внести минимальные extension points или docs contract.
-3. [ ] Добавить tests/fixtures, если меняется код регистрации ресурсов.
-4. [ ] Запустить `make check`.
+1. [x] Сверить skeleton conventions и inventory по module resource paths.
+2. [x] Внести минимальные extension points или docs contract.
+3. [x] Добавить tests/fixtures, если меняется код регистрации ресурсов.
+4. [x] Запустить `make check`.
 
 ## 5. Definition of Done (Критерии приёмки)
-- [ ] Новый module может объявить config/mapping/templates/translations по документированному пути.
-- [ ] Doctrine mapping registration явная и не ломает существующие modules.
-- [ ] Docs описывают структуру `Resource/*`.
-- [ ] `make check` проходит.
+- [x] Новый module может объявить config/mapping/templates/translations по документированному пути.
+- [x] Doctrine mapping registration явная и не ломает существующие modules.
+- [x] Docs описывают структуру `Resource/*`.
+- [x] `make check` проходит.
 
 ## 6. Verification (Самопроверка)
 ```bash
@@ -101,9 +101,21 @@ make check
 7. Переведи PR из draft в ready: `gh pr ready <PR_NUMBER>`.
 8. Не трогай untracked `phpstan.neon.dist`; не переноси `Portfolio`/`TInvest`/broker/trading vocabulary в runtime skeleton.
 
+## Known Divergences
+
+### Конвенции (vendor-copied) vs ModuleKernelTrait
+
+Документация `docs/conventions/modules/configuration.md` — vendor-copied из `prikotov/coding-standard` и gitignored. Актуальная локальная копия **синхронизирована** (правки применены через init-скрипт), но они не попадают в PR.
+
+Расхождение в vendor-исходнике (пакет `coding-standard`):
+- В п.2 раздела «Особенности модулей web-приложения» сказано: «Имена, которые будут подключаться как `@web.<module>/...`, формируются автоматически из пространств имён» — это не соответствует реализации. `ModuleKernelTrait` использует **явно объявляемый** неймспейс через `TwigInterface::getBaseTwigNamespace()`.
+
+@todo 2026-06-02 Обновить vendor-пакет `prikotov/coding-standard` — заменить «формируются автоматически» на описание контракта `getBaseTwigNamespace()` / `getAdditionalTemplatesPaths()`.
+
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #12 для реализации |
+| 2026-06-02 | Бэкендер Левша (codex-cli) | Self-review: CR1 убран мёртвый prependExtensionConfig, CR2 добавлены тесты ModuleKernelTrait, CR3 зафиксировано расхождение конвенций, CR4 обновлены чекбоксы |

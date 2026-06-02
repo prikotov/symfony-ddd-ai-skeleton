@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * Compiler pass that registers module Twig template paths.
  *
  * Validates uniqueness of paths and namespaces, then wires them into
- * the Twig filesystem loader and the `twig.paths` extension config.
+ * the Twig filesystem loader via `addPath` method calls.
  */
 final readonly class TwigCompilerPass implements CompilerPassInterface
 {
@@ -45,8 +45,6 @@ final readonly class TwigCompilerPass implements CompilerPassInterface
             ...$this->additionalPathMap,
             $this->defaultTemplatePath => $this->defaultTwigNamespace,
         ];
-
-        $container->prependExtensionConfig('twig', ['paths' => $templatePathMap]);
 
         $twigFilesystemLoaderDefinition = $container->getDefinition('twig.loader.native_filesystem');
         foreach ($templatePathMap as $templatePath => $namespace) {
