@@ -11,7 +11,7 @@ epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
 assignee: Техпис Гермиона (codex-cli)
 branch: task/skeleton-module-scaffold-docs
-pr:
+pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/18
 status: in_progress
 ---
 
@@ -89,7 +89,7 @@ make check
 ## Инструкции для сабагента
 
 **Ветка:** `task/skeleton-module-scaffold-docs` (уже создана и активна)
-**PR:** будет создан как draft из `task/skeleton-module-scaffold-docs` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид впишет ссылку.
+**PR:** draft из `task/skeleton-module-scaffold-docs` в `epic/skeleton-module-ddd-scaffold` — [PR #18](https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/18).
 
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-module-scaffold-docs`: `git checkout task/skeleton-module-scaffold-docs`.
@@ -110,3 +110,4 @@ make check
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #18 для реализации |
