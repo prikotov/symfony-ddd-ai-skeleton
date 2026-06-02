@@ -79,7 +79,7 @@ make check
 
 ## 8. Sources (Источники)
 - [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [Extension points task](TASK-skeleton-module-extension-points.todo.md)
+- [x] [Extension points task](done/TASK-skeleton-module-extension-points.todo.md)
 
 
 ## 9. Comments (Комментарии)

@@ -6,10 +6,8 @@ namespace Skeleton\Common;
 
 use LogicException;
 use RuntimeException;
-use Skeleton\Common\Component\ModuleSystem\DependencyInjection\ModuleCompilerPass;
-use Skeleton\Common\Component\ModuleSystem\ModuleInterface;
+use Skeleton\Common\Component\ModuleSystem\ModuleKernelTrait;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
@@ -19,6 +17,7 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 final class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
+    use ModuleKernelTrait;
 
     public function __construct(
         string $environment,
@@ -92,26 +91,7 @@ final class Kernel extends BaseKernel
 
     protected function build(ContainerBuilder $container): void
     {
-        foreach ($this->getModules() as $class => $envs) {
-            if (!$this->isEnvironmentIncluded($envs)) {
-                continue;
-            }
-
-            if (!class_exists($class)) {
-                throw new RuntimeException(sprintf('Class %s does not exist.', $class));
-            }
-
-            $module = new $class();
-            if (!$module instanceof ModuleInterface) {
-                throw new RuntimeException(sprintf('Module must implement %s interface.', ModuleInterface::class));
-            }
-
-            $container->addCompilerPass(
-                new ModuleCompilerPass($module->getModuleConfigPath(), $this->environment),
-                PassConfig::TYPE_BEFORE_OPTIMIZATION,
-                10000,
-            );
-        }
+        $this->registerModules($container, $this->getModules());
     }
 
     protected function configureRoutes(RoutingConfigurator $routes): void
