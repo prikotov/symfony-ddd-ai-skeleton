@@ -11,7 +11,7 @@ epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
 assignee: Аналитик Шерлок (codex-cli)
 branch: task/skeleton-patterns-inventory
-pr:
+pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/11
 status: in_progress
 ---
 
@@ -90,7 +90,7 @@ composer docs:validate
 ## Инструкции для сабагента
 
 **Ветка:** `task/skeleton-patterns-inventory` (уже создана и активна)
-**PR:** будет создан как draft из `task/skeleton-patterns-inventory` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид обновит ссылку.
+**PR:** draft из `task/skeleton-patterns-inventory` в `epic/skeleton-module-ddd-scaffold` — [PR #11](https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/11).
 
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-patterns-inventory`.
@@ -104,3 +104,4 @@ composer docs:validate
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, создан draft PR #11 |
