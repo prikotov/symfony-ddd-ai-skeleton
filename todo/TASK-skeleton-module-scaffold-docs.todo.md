@@ -9,7 +9,7 @@ cost_fact:
 depends_on: TASK-skeleton-module-extension-points, TASK-skeleton-repository-criteria-pagination-sort, TASK-skeleton-health-query-example, TASK-skeleton-user-module-ddd-example, TASK-skeleton-presentation-security-pattern, TASK-skeleton-integration-bridge-example
 epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
-assignee: Техпис Гермиона (codex-cli)
+assignee: Hermione (codex-cli)
 branch: task/skeleton-module-scaffold-docs
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/18
 status: in_progress
