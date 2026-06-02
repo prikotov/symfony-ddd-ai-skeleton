@@ -10,7 +10,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Лид Арагорн (codex-cli)
 branch: epic/skeleton-module-ddd-scaffold
 status: in_progress
-pr:
+pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10
 ---
 
 # EPIC-skeleton-module-ddd-scaffold: Каркасные DDD/CQRS паттерны модулей
@@ -160,3 +160,4 @@ flowchart LR
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание эпика |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Уточнён scope по итогам командного read-only review: inventory, extension points, sort whitelist, neutral User и generator как future backlog |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Эпик переведён на workflow `epic-via-subagents`, зафиксирована epic-ветка |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Создан PR на approval постановки эпика: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10 |
