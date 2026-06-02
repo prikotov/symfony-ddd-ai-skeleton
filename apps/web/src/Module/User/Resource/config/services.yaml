@@ -1,0 +1,13 @@
+parameters:
+  module.web_user.module_dir: '%kernel.project_dir%/apps/web/src/Module/User'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Skeleton\Web\Module\User\:
+    resource: '%module.web_user.module_dir%/'
+    exclude:
+      - '%module.web_user.module_dir%/Resource/'
+      - '%module.web_user.module_dir%/UserModule.php'
