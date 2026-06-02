@@ -9,10 +9,10 @@ cost_fact:
 depends_on: TASK-skeleton-module-extension-points
 epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
-assignee:
-branch:
+assignee: Бэкендер Тони (codex-cli)
+branch: task/skeleton-health-query-example
 pr:
-status: todo
+status: in_progress
 ---
 
 # TASK-skeleton-health-query-example: Health/Diagnostics read-only query example
@@ -85,7 +85,25 @@ make check
 ## 9. Comments (Комментарии)
 Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: in_progress`.
 
+## Инструкции для сабагента
+
+**Ветка:** `task/skeleton-health-query-example` (уже создана и активна)
+**PR:** будет создан как draft из `task/skeleton-health-query-example` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид впишет ссылку.
+
+### Порядок действий
+1. Переключись в ветку `task/skeleton-health-query-example`: `git checkout task/skeleton-health-query-example`.
+2. Реализуй задачу согласно описанию, epic boundaries и уже выполненным tasks.
+3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+4. Health/Diagnostics должен остаться read-only, dependency-light, без auth, external probes, DB writes и production secrets.
+5. Entry points (`Controller`, console `Command`) должны обращаться в Application Query через QueryBus, не в Domain/Infrastructure напрямую.
+6. Если текущая реализация уже соответствует требованиям, сделай минимальные улучшения: документационный reference, тестовые assertions или small cleanup без overengineering.
+7. После реализации запусти `make check`.
+8. Сделай `git push`.
+9. Переведи PR из draft в ready: `gh pr ready <PR_NUMBER>`.
+10. Не трогай untracked `phpstan.neon.dist`; не переноси `Portfolio`/`TInvest`/broker/trading vocabulary в runtime skeleton.
+
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
