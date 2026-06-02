@@ -73,9 +73,14 @@ final class LimitOffsetSortCriteriaMapperTest extends TestCase
         $result = $this->mapper->map($criteria, $whitelist);
 
         $orderings = $result->orderings();
-        self::assertCount(2, $orderings);
-        self::assertSame(Order::Ascending, $orderings['e.name']);
-        self::assertSame(Order::Descending, $orderings['e.id']);
+
+        // Verify exact ordering: fields appear in iteration order, ensuring
+        // "unique field last" stable ordering is preserved.
+        $expectedOrderings = [
+            'e.name' => Order::Ascending,
+            'e.id'   => Order::Descending,
+        ];
+        self::assertSame($expectedOrderings, $orderings);
     }
 
     public function testMapThrowsOnUnknownSortField(): void
