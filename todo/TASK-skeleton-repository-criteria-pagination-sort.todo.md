@@ -80,7 +80,7 @@ make check
 
 ## 8. Sources (Источники)
 - [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [Inventory task](TASK-skeleton-patterns-inventory.todo.md)
+- [x] [Inventory task](done/TASK-skeleton-patterns-inventory.todo.md)
 
 
 ## 9. Comments (Комментарии)
