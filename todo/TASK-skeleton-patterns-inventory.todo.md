@@ -9,10 +9,10 @@ cost_fact:
 depends_on: 
 epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
-assignee:
-branch:
+assignee: Аналитик Шерлок (codex-cli)
+branch: task/skeleton-patterns-inventory
 pr:
-status: todo
+status: in_progress
 ---
 
 # TASK-skeleton-patterns-inventory: Inventory reusable module patterns from stocks2
@@ -86,6 +86,19 @@ composer docs:validate
 
 ## 9. Comments (Комментарии)
 Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: in_progress`.
+
+## Инструкции для сабагента
+
+**Ветка:** `task/skeleton-patterns-inventory` (уже создана и активна)
+**PR:** будет создан как draft из `task/skeleton-patterns-inventory` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид обновит ссылку.
+
+### Порядок действий
+1. Переключись в ветку `task/skeleton-patterns-inventory`.
+2. Выполни задачу согласно описанию и границам эпика.
+3. Следуй [Конвенциям](../docs/conventions/index.md) и [`todo/AGENTS.md`](AGENTS.md).
+4. Не переноси `Portfolio`/`TInvest`/broker/trading vocabulary в runtime skeleton.
+5. Для docs-only изменений запусти `composer todo:validate` и `composer docs:validate`; если меняешь код/config — запусти `make check`.
+6. Не делай commit/push — тимлид проверит и выполнит git-операции.
 
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
