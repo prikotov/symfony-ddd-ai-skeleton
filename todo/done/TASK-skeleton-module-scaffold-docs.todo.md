@@ -79,7 +79,7 @@ make check
 - Риск воды в документации — держать checklist practical and short.
 
 ## 8. Sources (Источники)
-- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] `../docs/conventions/index.md`
 
 

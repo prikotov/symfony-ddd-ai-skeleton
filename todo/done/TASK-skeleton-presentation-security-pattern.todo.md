@@ -79,7 +79,7 @@ make check
 - Риск добавить слишком сложный RBAC — ограничить route/action permission example.
 
 ## 8. Sources (Источники)
-- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] [User module task](TASK-skeleton-user-module-ddd-example.todo.md)
 
 

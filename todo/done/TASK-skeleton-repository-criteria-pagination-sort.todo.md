@@ -79,7 +79,7 @@ make check
 - Риск overengineering abstract base classes — держать primitives маленькими и composable.
 
 ## 8. Sources (Источники)
-- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] [Inventory task](TASK-skeleton-patterns-inventory.todo.md)
 
 

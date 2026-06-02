@@ -9,7 +9,7 @@ cost_fact:
 author: Лид Арагорн (codex-cli)
 assignee: Лид Арагорн (codex-cli)
 branch: epic/skeleton-module-ddd-scaffold
-status: in_progress
+status: done
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10
 ---
 
@@ -57,23 +57,23 @@ pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Блокирующие требования)
-- [ ] Проведён inventory reusable patterns из `stocks2`: что переносим как framework-level code, что оставляем project-specific domain.
-- [ ] Skeleton поддерживает module-local paths для config, Doctrine mappings/entities, Twig templates и translations.
-- [ ] Есть нейтральный пример Presentation security pattern: route constants/generator, action, permission, rule, voter, grant.
-- [ ] Есть canonical Application query handler example в `UseCase/Query`, покрытый тестами.
-- [ ] Есть canonical Domain model/repository/criteria example без бизнес-домена `Portfolio`/`TInvest`.
-- [ ] Есть Infrastructure repository example с pagination/sorting criteria и tests.
-- [ ] Есть Integration bridge example, показывающий межмодульное взаимодействие через consumer-owned interface, без терминов `Port`/`Adapter`.
-- [ ] Pagination/sorting components вынесены как reusable skeleton primitives, sort из request проходит через whitelist allowed fields.
-- [ ] Документация описывает, что переносится как каркасный паттерн, а что должно оставаться domain-specific в проекте-потомке.
-- [ ] `make check` проходит.
+- [x] Проведён inventory reusable patterns из `stocks2`: что переносим как framework-level code, что оставляем project-specific domain.
+- [x] Skeleton поддерживает module-local paths для config, Doctrine mappings/entities, Twig templates и translations.
+- [x] Есть нейтральный пример Presentation security pattern: route constants/generator, action, permission, rule, voter, grant.
+- [x] Есть canonical Application query handler example в `UseCase/Query`, покрытый тестами.
+- [x] Есть canonical Domain model/repository/criteria example без бизнес-домена `Portfolio`/`TInvest`.
+- [x] Есть Infrastructure repository example с pagination/sorting criteria и tests.
+- [x] Есть Integration bridge example, показывающий межмодульное взаимодействие через consumer-owned interface, без терминов `Port`/`Adapter`.
+- [x] Pagination/sorting components вынесены как reusable skeleton primitives, sort из request проходит через whitelist allowed fields.
+- [x] Документация описывает, что переносится как каркасный паттерн, а что должно оставаться domain-specific в проекте-потомке.
+- [x] `make check` проходит.
 
 ### 🟡 Should Have (Важные требования)
-- [ ] Health/Diagnostics пример сохранить максимально маленьким и read-only.
-- [ ] User example сделать нейтральным: auth/security/repository patterns без production credentials, default users и domain-specific roles; `/health` не должен зависеть от auth.
-- [ ] Добавить Mermaid-схему module flow: Presentation → Application → Domain/Infrastructure → Integration.
-- [ ] Добавить checklist “как создать новый module”.
-- [ ] Обновить docs/conventions, если фактический skeleton pattern отличается от текущих правил.
+- [x] Health/Diagnostics пример сохранить максимально маленьким и read-only.
+- [x] User example сделать нейтральным: auth/security/repository patterns без production credentials, default users и domain-specific roles; `/health` не должен зависеть от auth.
+- [x] Добавить Mermaid-схему module flow: Presentation → Application → Domain/Infrastructure → Integration.
+- [x] Добавить checklist “как создать новый module”.
+- [x] Обновить docs/conventions, если фактический skeleton pattern отличается от текущих правил.
 
 ### 🟢 Could Have (Желательно)
 - [ ] Добавить skeleton tests fixture module или demo module, который можно копировать при старте нового проекта.
@@ -81,10 +81,10 @@ pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10
 - [ ] Подготовить backlog-задачу на будущий generator (`make module NAME=...`) с `--dry-run` и no-overwrite, но не реализовывать его в этом эпике.
 
 ### ⚫ Won't Have (Не в этот раз)
-- [ ] Не переносим брокерские интеграции, portfolio screens, trading controls, market data и shared DB read models.
-- [ ] Не делаем миграции под реальные production таблицы.
-- [ ] Не вводим generic `BrokerClientInterface`.
-- [ ] Не используем термины `Port`/`Adapter` в путях и именах классов.
+- [x] Не переносим брокерские интеграции, portfolio screens, trading controls, market data и shared DB read models.
+- [x] Не делаем миграции под реальные production таблицы.
+- [x] Не вводим generic `BrokerClientInterface`.
+- [x] Не используем термины `Port`/`Adapter` в путях и именах классов.
 
 ## 4. Solution Design (Техническое решение)
 ```mermaid
@@ -105,27 +105,27 @@ flowchart LR
 - Из `stocks2` переносить только generic approach (подход), не class names с бизнесовым смыслом; `Portfolio`, `TInvest`, broker/trading/market-data vocabulary запрещены в runtime skeleton examples.
 
 ## 5. Implementation Plan (План реализации)
-- [x] [TASK-skeleton-patterns-inventory](done/TASK-skeleton-patterns-inventory.todo.md) — сделать список `берём / не берём` из `stocks2`, отделить framework-level code от business-domain code.
-- [x] [TASK-skeleton-module-extension-points](done/TASK-skeleton-module-extension-points.todo.md) — добавить module extension points для Doctrine/Twig/translations, `TwigCompilerPass`, Doctrine mapping registration и docs по путям `Resource/*`.
-- [x] [TASK-skeleton-repository-criteria-pagination-sort](done/TASK-skeleton-repository-criteria-pagination-sort.todo.md) — перенести reusable criteria interfaces/traits, sort mapper, pagination DTO/request mapper, whitelist allowed sort fields и tests.
-- [x] [TASK-skeleton-health-query-example](done/TASK-skeleton-health-query-example.todo.md) — сохранить Health/Diagnostics маленьким canonical read-only Application Query example со слоями и tests.
-- [x] [TASK-skeleton-user-module-ddd-example](done/TASK-skeleton-user-module-ddd-example.todo.md) — добавить/усилить нейтральный User module example: Domain model, enum, criteria, repository contract, Infrastructure repository, Application query; без production-auth/default credentials.
-- [x] [TASK-skeleton-presentation-security-pattern](done/TASK-skeleton-presentation-security-pattern.todo.md) — добавить нейтральный `Route/Role/Action/Permission/Grant/Rule/Voter` pattern на примере User или demo module.
-- [x] [TASK-skeleton-integration-bridge-example](done/TASK-skeleton-integration-bridge-example.todo.md) — добавить пример межмодульного bridge через consumer-owned integration interface.
-- [x] [TASK-skeleton-module-scaffold-docs](done/TASK-skeleton-module-scaffold-docs.todo.md) — описать checklist создания нового module и границы “generic skeleton vs project-specific domain”.
+- [x] [TASK-skeleton-patterns-inventory](TASK-skeleton-patterns-inventory.todo.md) — сделать список `берём / не берём` из `stocks2`, отделить framework-level code от business-domain code.
+- [x] [TASK-skeleton-module-extension-points](TASK-skeleton-module-extension-points.todo.md) — добавить module extension points для Doctrine/Twig/translations, `TwigCompilerPass`, Doctrine mapping registration и docs по путям `Resource/*`.
+- [x] [TASK-skeleton-repository-criteria-pagination-sort](TASK-skeleton-repository-criteria-pagination-sort.todo.md) — перенести reusable criteria interfaces/traits, sort mapper, pagination DTO/request mapper, whitelist allowed sort fields и tests.
+- [x] [TASK-skeleton-health-query-example](TASK-skeleton-health-query-example.todo.md) — сохранить Health/Diagnostics маленьким canonical read-only Application Query example со слоями и tests.
+- [x] [TASK-skeleton-user-module-ddd-example](TASK-skeleton-user-module-ddd-example.todo.md) — добавить/усилить нейтральный User module example: Domain model, enum, criteria, repository contract, Infrastructure repository, Application query; без production-auth/default credentials.
+- [x] [TASK-skeleton-presentation-security-pattern](TASK-skeleton-presentation-security-pattern.todo.md) — добавить нейтральный `Route/Role/Action/Permission/Grant/Rule/Voter` pattern на примере User или demo module.
+- [x] [TASK-skeleton-integration-bridge-example](TASK-skeleton-integration-bridge-example.todo.md) — добавить пример межмодульного bridge через consumer-owned integration interface.
+- [x] [TASK-skeleton-module-scaffold-docs](TASK-skeleton-module-scaffold-docs.todo.md) — описать checklist создания нового module и границы “generic skeleton vs project-specific domain”.
 
 ## 6. Definition of Done (Критерии приёмки эпика)
-- [ ] Все Must Have требования выполнены и протестированы.
-- [ ] Все задачи эпика созданы, выполнены и актуально связаны в плане.
-- [ ] В skeleton нет перенесённого `Portfolio`/`TInvest`/broker/trading vocabulary.
-- [ ] Нет production secrets, real external API calls, destructive commands или production endpoints.
-- [ ] `make check` проходит на итоговой ветке.
-- [ ] Документация объясняет, как создать новый module и какие слои/папки использовать.
+- [x] Все Must Have требования выполнены и протестированы.
+- [x] Все задачи эпика созданы, выполнены и актуально связаны в плане.
+- [x] В skeleton нет перенесённого `Portfolio`/`TInvest`/broker/trading vocabulary.
+- [x] Нет production secrets, real external API calls, destructive commands или production endpoints.
+- [x] `make check` проходит на итоговой ветке.
+- [x] Документация объясняет, как создать новый module и какие слои/папки использовать.
 
 ## 7. Release Notes and Deployment (Инструкция по релизу)
-- [ ] Миграции для production БД не требуются.
-- [ ] Новые secrets не требуются.
-- [ ] Для проектов-потомков отметить, что skeleton examples нужно адаптировать под их домен.
+- [x] Миграции для production БД не требуются.
+- [x] Новые secrets не требуются.
+- [x] Для проектов-потомков отметить, что skeleton examples нужно адаптировать под их домен.
 
 ## 8. Risks and Dependencies (Риски и зависимости)
 - Риск перетащить business domain из `stocks2` — снижать переименованием в Health/User/Demo concepts и review по vocabulary.
@@ -137,9 +137,9 @@ flowchart LR
 - Риск сделать generator раньше контракта — generator только backlog/future после стабилизации templates.
 
 ## 9. Sources (Источники)
-- [x] [Project AGENTS.md](../AGENTS.md)
-- [x] [todo-md регламент](AGENTS.md)
-- [x] [Conventions index](../docs/conventions/index.md)
+- [x] [Project AGENTS.md](../../AGENTS.md)
+- [x] [todo-md регламент](../AGENTS.md)
+- [x] [Conventions index](../../docs/conventions/index.md)
 - [x] `src/Module/Diagnostics`
 - [x] `apps/web/src/Module/Diagnostics`
 - [x] `/home/dp/MyProjects/stocks2/src/Component/ModuleSystem`
@@ -151,6 +151,8 @@ flowchart LR
 Эпик фиксирует направление: переносим каркасные паттерны и минимальные Health/User examples, но не переносим инвестиционный домен `stocks2`.
 
 2026-06-02: Reverse briefing — план ясен. Первый рабочий slice: `TASK-skeleton-patterns-inventory`, затем `TASK-skeleton-module-extension-points`. До создания PR эпик остаётся в текущей ветке `epic/skeleton-module-ddd-scaffold`.
+
+2026-06-02: Все task PR #11–#18 выполнены, прошли self-review/external review и merged в epic branch. Финальная ветка готовится к review в PR #10; merge в `master` остаётся отдельным пользовательским решением.
 
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
@@ -168,3 +170,4 @@ flowchart LR
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-presentation-security-pattern`, PR #16 подготовлен к merge в epic branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-integration-bridge-example`, PR #17 подготовлен к merge в epic branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-module-scaffold-docs`, PR #18 подготовлен к merge в epic branch |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Все задачи эпика merged в epic branch, эпик переведён в `done` перед финальным review PR #10 |

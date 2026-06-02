@@ -79,7 +79,7 @@ composer docs:validate
 - Риск принять бизнесовый naming за generic pattern — снижать через отдельную колонку `do not move`.
 
 ## 8. Sources (Источники)
-- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] `../../AGENTS.md`
 - [x] `/home/dp/MyProjects/stocks2`
 

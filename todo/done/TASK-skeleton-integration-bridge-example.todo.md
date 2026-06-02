@@ -80,7 +80,7 @@ make check
 - Риск циклических dependencies — проверять deptrac.
 
 ## 8. Sources (Источники)
-- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] [User module task](TASK-skeleton-user-module-ddd-example.todo.md)
 
 

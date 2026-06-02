@@ -78,7 +78,7 @@ make check
 - Риск сломать boot kernel или web container — проверять console/web integration tests.
 
 ## 8. Sources (Источники)
-- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] [Inventory task](TASK-skeleton-patterns-inventory.todo.md)
 - [x] `../../docs/conventions/index.md`
 

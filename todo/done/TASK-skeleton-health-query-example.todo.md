@@ -78,7 +78,7 @@ make check
 - Риск превратить Health в мониторинг всех подсистем — оставить advanced checks out of scope.
 
 ## 8. Sources (Источники)
-- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] [Extension points task](TASK-skeleton-module-extension-points.todo.md)
 
 

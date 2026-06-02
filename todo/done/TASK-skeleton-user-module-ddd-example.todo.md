@@ -80,7 +80,7 @@ make check
 - Риск спутать example User с готовой auth subsystem — явно подписать ограничения в docs.
 
 ## 8. Sources (Источники)
-- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] [Repository primitives task](TASK-skeleton-repository-criteria-pagination-sort.todo.md)
 - [x] [Extension points task](TASK-skeleton-module-extension-points.todo.md)
 
