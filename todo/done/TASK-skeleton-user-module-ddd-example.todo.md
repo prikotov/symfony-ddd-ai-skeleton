@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Левша (codex-cli)
 branch: task/skeleton-user-module-ddd-example
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/15
-status: review
+status: done
 ---
 
 # TASK-skeleton-user-module-ddd-example: Neutral User module DDD example
@@ -80,9 +80,9 @@ make check
 - Риск спутать example User с готовой auth subsystem — явно подписать ограничения в docs.
 
 ## 8. Sources (Источники)
-- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [Repository primitives task](done/TASK-skeleton-repository-criteria-pagination-sort.todo.md)
-- [x] [Extension points task](done/TASK-skeleton-module-extension-points.todo.md)
+- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Repository primitives task](TASK-skeleton-repository-criteria-pagination-sort.todo.md)
+- [x] [Extension points task](TASK-skeleton-module-extension-points.todo.md)
 
 
 ## 9. Comments (Комментарии)
@@ -96,7 +96,7 @@ make check
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-user-module-ddd-example`: `git checkout task/skeleton-user-module-ddd-example`.
 2. Реализуй задачу согласно описанию, epic boundaries и уже выполненным tasks.
-3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
 4. Создай minimal neutral `User` module example, а не production auth subsystem.
 5. Обязательные границы: без default users/passwords, login/registration/RBAC, migrations для real DB, secrets, external services.
 6. Repository contract должен жить в `Domain`, implementation — в `Infrastructure`; Application query возвращает DTO и не содержит business rules.
@@ -115,3 +115,7 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #15 для реализации |
 | 2026-06-02 | Бэкендер Левша (codex-cli) | Реализован neutral `UserProfile` module example, добавлены tests/docs, задача переведена в review |
 | 2026-06-02 | Бэкендер Левша (codex-cli) | Закрыт change request external review: invalid sort direction теперь fail-fast через `SortableCriteriaTrait` |
+| 2026-06-02 | Бэкендер Левша (codex-cli) | Повторный self-review после commit `4cecd93`: Approval |
+| 2026-06-02 | Архитектор Локи (codex-cli) | Повторный adversarial external review PR #15: Approval |
+| 2026-06-02 | Архитектор Гэндальф (codex-cli) | Повторный architecture external review PR #15: Approval |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача переведена в `done`, подготовлена к merge в epic branch |
