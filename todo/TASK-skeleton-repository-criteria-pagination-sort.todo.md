@@ -43,13 +43,13 @@ status: in_progress
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Обязательно)
-- [ ] Добавить generic pagination DTO/request mapper или equivalent primitive.
-- [ ] Добавить sort mapper с whitelist allowed fields.
-- [ ] Добавить criteria interfaces/value objects без business vocabulary.
-- [ ] Покрыть edge cases: unknown sort field, default page/limit policy, stable ordering.
+- [x] Добавить generic pagination DTO/request mapper или equivalent primitive.
+- [x] Добавить sort mapper с whitelist allowed fields.
+- [x] Добавить criteria interfaces/value objects без business vocabulary.
+- [x] Покрыть edge cases: unknown sort field, default page/limit policy, stable ordering.
 
 ### 🟡 Should Have (Желательно)
-- [ ] Документировать пример использования в repository implementation.
+- [x] Документировать пример использования в repository implementation.
 
 ### 🟢 Could Have (Опционально)
 - [ ] Добавить small fixture/demo repository для тестов.
@@ -58,17 +58,17 @@ status: in_progress
 - [ ] Не добавлять GraphQL/API Platform-specific pagination в этот slice.
 
 ## 4. Implementation Plan (План реализации)
-1. [ ] Проверить inventory и существующие skeleton components.
-2. [ ] Спроектировать минимальный набор classes/interfaces.
-3. [ ] Реализовать primitives и tests.
-4. [ ] Связать с Health/User examples только если это не утяжеляет slice.
-5. [ ] Запустить `make check`.
+1. [x] Проверить inventory и существующие skeleton components.
+2. [x] Спроектировать минимальный набор classes/interfaces.
+3. [x] Реализовать primitives и tests.
+4. [x] Связать с Health/User examples только если это не утяжеляет slice.
+5. [x] Запустить `make check`.
 
 ## 5. Definition of Done (Критерии приёмки)
-- [ ] Sort whitelist обязателен перед применением к Doctrine/query builder.
-- [ ] Primitives имеют нейтральные names и строгую типизацию.
-- [ ] Unit tests покрывают основные edge cases.
-- [ ] `make check` проходит.
+- [x] Sort whitelist обязателен перед применением к Doctrine/query builder.
+- [x] Primitives имеют нейтральные names и строгую типизацию.
+- [x] Unit tests покрывают основные edge cases.
+- [x] `make check` проходит.
 
 ## 6. Verification (Самопроверка)
 ```bash
