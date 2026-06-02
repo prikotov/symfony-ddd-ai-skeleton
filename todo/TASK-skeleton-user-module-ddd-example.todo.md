@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Левша (codex-cli)
 branch: task/skeleton-user-module-ddd-example
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/15
-status: in_progress
+status: review
 ---
 
 # TASK-skeleton-user-module-ddd-example: Neutral User module DDD example
@@ -43,11 +43,11 @@ status: in_progress
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Обязательно)
-- [ ] Domain model/value objects/enums нейтральны и не содержат secrets/default credentials.
-- [ ] Repository contract живёт в Domain, implementation — в Infrastructure.
-- [ ] Criteria and pagination/sorting primitives используются безопасно.
-- [ ] Application query возвращает DTO, а entrypoint не лезет напрямую в repository implementation.
-- [ ] Unit/integration tests покрывают query/repository behavior с test doubles или test env.
+- [x] Domain model/value objects/enums нейтральны и не содержат secrets/default credentials.
+- [x] Repository contract живёт в Domain, implementation — в Infrastructure.
+- [x] Criteria and pagination/sorting primitives используются безопасно.
+- [x] Application query возвращает DTO, а entrypoint не лезет напрямую в repository implementation.
+- [x] Unit/integration tests покрывают query/repository behavior с test doubles или test env.
 
 ### 🟡 Should Have (Желательно)
 - [ ] Показать mapping и module resources через extension points.
@@ -59,17 +59,17 @@ status: in_progress
 - [ ] Не делать полноценный RBAC/login/registration flow.
 
 ## 4. Implementation Plan (План реализации)
-1. [ ] Проверить current User/module availability.
-2. [ ] Спроектировать minimal neutral model and criteria.
-3. [ ] Реализовать Domain/Application/Infrastructure slices.
-4. [ ] Добавить tests and docs.
-5. [ ] Запустить `make check`.
+1. [x] Проверить current User/module availability.
+2. [x] Спроектировать minimal neutral model and criteria.
+3. [x] Реализовать Domain/Application/Infrastructure slices.
+4. [x] Добавить tests and docs.
+5. [x] Запустить `make check`.
 
 ## 5. Definition of Done (Критерии приёмки)
-- [ ] User module можно использовать как reference для нового bounded context.
-- [ ] Нет production credentials/default users.
-- [ ] Repository/criteria/pagination pattern применён и протестирован.
-- [ ] `make check` проходит.
+- [x] User module можно использовать как reference для нового bounded context.
+- [x] Нет production credentials/default users.
+- [x] Repository/criteria/pagination pattern применён и протестирован.
+- [x] `make check` проходит.
 
 ## 6. Verification (Самопроверка)
 ```bash
@@ -113,3 +113,4 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #15 для реализации |
+| 2026-06-03 | Бэкендер Левша (codex-cli) | Реализован neutral `UserProfile` module example, добавлены tests/docs, задача переведена в review |
