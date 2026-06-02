@@ -113,4 +113,5 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #15 для реализации |
-| 2026-06-03 | Бэкендер Левша (codex-cli) | Реализован neutral `UserProfile` module example, добавлены tests/docs, задача переведена в review |
+| 2026-06-02 | Бэкендер Левша (codex-cli) | Реализован neutral `UserProfile` module example, добавлены tests/docs, задача переведена в review |
+| 2026-06-02 | Бэкендер Левша (codex-cli) | Закрыт change request external review: invalid sort direction теперь fail-fast через `SortableCriteriaTrait` |
