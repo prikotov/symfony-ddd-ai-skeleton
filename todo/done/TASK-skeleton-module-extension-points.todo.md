@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Левша (codex-cli)
 branch: task/skeleton-module-extension-points
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/12
-status: in_progress
+status: done
 ---
 
 # TASK-skeleton-module-extension-points: Module resource extension points
@@ -78,13 +78,13 @@ make check
 - Риск сломать boot kernel или web container — проверять console/web integration tests.
 
 ## 8. Sources (Источники)
-- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [Inventory task](done/TASK-skeleton-patterns-inventory.todo.md)
-- [x] `../docs/conventions/index.md`
+- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Inventory task](TASK-skeleton-patterns-inventory.todo.md)
+- [x] `../../docs/conventions/index.md`
 
 
 ## 9. Comments (Комментарии)
-Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: in_progress`.
+Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: done`.
 
 ## Инструкции для сабагента
 
@@ -94,7 +94,7 @@ make check
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-module-extension-points`: `git checkout task/skeleton-module-extension-points`.
 2. Реализуй задачу согласно описанию, epic boundaries и inventory.
-3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
 4. Делай промежуточные commits после логического этапа.
 5. После реализации запусти `make check`.
 6. Сделай `git push`.
@@ -119,3 +119,6 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #12 для реализации |
 | 2026-06-02 | Бэкендер Левша (codex-cli) | Self-review: CR1 убран мёртвый prependExtensionConfig, CR2 добавлены тесты ModuleKernelTrait, CR3 зафиксировано расхождение конвенций, CR4 обновлены чекбоксы |
+| 2026-06-02 | Архитектор Локи (codex-cli) | External review approval PR #12; замечания non-blocking |
+| 2026-06-02 | Бэкендер Левша (codex-cli) | Повторный self-review approval после CR1–CR4 |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача переведена в done перед merge PR #12 |
