@@ -38,10 +38,12 @@ final class CheckControllerTest extends KernelTestCase
         self::assertSame('test', $payload['environment']);
         self::assertTrue($payload['debug']);
         self::assertSame('Asia/Novosibirsk', $payload['timezone']);
-        self::assertInstanceOf(
-            DateTimeImmutable::class,
-            DateTimeImmutable::createFromFormat(DATE_ATOM, $payload['checkedAt']),
-        );
+
+        $checkedAt = DateTimeImmutable::createFromFormat(DATE_ATOM, $payload['checkedAt']);
+
+        self::assertInstanceOf(DateTimeImmutable::class, $checkedAt);
+        self::assertFalse(DateTimeImmutable::getLastErrors());
+        self::assertSame($payload['checkedAt'], $checkedAt->format(DATE_ATOM));
     }
 
     #[Override]
