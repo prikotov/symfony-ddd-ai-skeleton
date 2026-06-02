@@ -62,13 +62,13 @@ status: review
 2. [x] Выбрать neutral example module.
 3. [x] Реализовать минимальные classes и tests.
 4. [x] Обновить docs/checklist.
-5. [ ] Запустить `make check`.
+5. [x] Запустить `make check`.
 
 ## 5. Definition of Done (Критерии приёмки)
 - [x] Security pattern виден как example, не как обязательная production auth subsystem.
 - [x] Controllers не содержат business permission logic.
 - [x] Tests зелёные.
-- [ ] `make check` проходит.
+- [x] `make check` проходит.
 
 ## 6. Verification (Самопроверка)
 ```bash
@@ -112,3 +112,4 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #16 для реализации |
 | 2026-06-02 | Фронтендер Амели (codex-cli) | Реализован neutral Presentation security pattern, задача переведена в review |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Закрыт self-review CR: синхронизирован checklist `make check` после успешной проверки |
