@@ -9,10 +9,10 @@ cost_fact:
 depends_on: TASK-skeleton-patterns-inventory
 epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
-assignee:
-branch:
+assignee: Бэкендер Левша (codex-cli)
+branch: task/skeleton-module-extension-points
 pr:
-status: todo
+status: in_progress
 ---
 
 # TASK-skeleton-module-extension-points: Module resource extension points
@@ -86,7 +86,23 @@ make check
 ## 9. Comments (Комментарии)
 Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: in_progress`.
 
+## Инструкции для сабагента
+
+**Ветка:** `task/skeleton-module-extension-points` (уже создана и активна)
+**PR:** будет создан как draft из `task/skeleton-module-extension-points` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид обновит ссылку.
+
+### Порядок действий
+1. Переключись в ветку `task/skeleton-module-extension-points`: `git checkout task/skeleton-module-extension-points`.
+2. Реализуй задачу согласно описанию, epic boundaries и inventory.
+3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+4. Делай промежуточные commits после логического этапа.
+5. После реализации запусти `make check`.
+6. Сделай `git push`.
+7. Переведи PR из draft в ready: `gh pr ready <PR_NUMBER>`.
+8. Не трогай untracked `phpstan.neon.dist`; не переноси `Portfolio`/`TInvest`/broker/trading vocabulary в runtime skeleton.
+
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
