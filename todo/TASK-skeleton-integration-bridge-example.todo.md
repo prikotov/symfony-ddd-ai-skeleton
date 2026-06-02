@@ -81,7 +81,7 @@ make check
 
 ## 8. Sources (Источники)
 - [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [User module task](TASK-skeleton-user-module-ddd-example.todo.md)
+- [x] [User module task](done/TASK-skeleton-user-module-ddd-example.todo.md)
 
 
 ## 9. Comments (Комментарии)

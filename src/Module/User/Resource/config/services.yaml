@@ -1,0 +1,22 @@
+parameters:
+  module.user.module_dir: '%kernel.project_dir%/src/Module/User'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Skeleton\Common\Module\User\:
+    resource: '%module.user.module_dir%/'
+    exclude:
+      - '%module.user.module_dir%/Application/Dto/'
+      - '%module.user.module_dir%/Domain/Entity/'
+      - '%module.user.module_dir%/Domain/Enum/'
+      - '%module.user.module_dir%/Domain/ValueObject/'
+      - '%module.user.module_dir%/Resource/'
+      - '%module.user.module_dir%/UserModule.php'
+
+  # Skeleton example only: in-memory/non-persistent repository.
+  # Concrete projects should replace this alias with their own Infrastructure persistence.
+  Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileRepositoryInterface:
+    alias: Skeleton\Common\Module\User\Infrastructure\Repository\UserProfile\InMemoryUserProfileRepository

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Skeleton\Common\Component\Repository\Trait;
 
+use InvalidArgumentException;
 use Skeleton\Common\Component\Repository\Enum\SortEnum;
 
 /**
@@ -23,6 +24,15 @@ trait SortableCriteriaTrait
      */
     public function setSort(array $order): void
     {
+        foreach ($order as $field => $direction) {
+            if (!$direction instanceof SortEnum) {
+                throw new InvalidArgumentException(sprintf(
+                    'Sort direction for field "%s" must be an instance of SortEnum.',
+                    $field,
+                ));
+            }
+        }
+
         $this->order = $order;
     }
 
