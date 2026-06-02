@@ -9,10 +9,10 @@ cost_fact:
 depends_on: TASK-skeleton-user-module-ddd-example
 epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
-assignee:
-branch:
+assignee: Фронтендер Амели (codex-cli)
+branch: task/skeleton-presentation-security-pattern
 pr:
-status: todo
+status: in_progress
 ---
 
 # TASK-skeleton-presentation-security-pattern: Presentation security pattern example
@@ -86,7 +86,27 @@ make check
 ## 9. Comments (Комментарии)
 Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: in_progress`.
 
+## Инструкции для сабагента
+
+**Ветка:** `task/skeleton-presentation-security-pattern` (уже создана и активна)
+**PR:** будет создан как draft из `task/skeleton-presentation-security-pattern` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид впишет ссылку.
+
+### Порядок действий
+1. Переключись в ветку `task/skeleton-presentation-security-pattern`: `git checkout task/skeleton-presentation-security-pattern`.
+2. Реализуй задачу согласно описанию, epic boundaries и User module example.
+3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+4. Добавь маленький neutral web Presentation security pattern, а не production RBAC/auth subsystem.
+5. Обязательные классы/понятия: route constants/generator, action/permission enum, grant/rule/voter или минимальные equivalents.
+6. Не добавляй login/registration/password/default roles/users, object-level ACL, real security firewall changes, secrets или external services.
+7. Controllers/entrypoints не должны содержать permission decision logic; decision logic должна быть вынесена в rule/voter layer.
+8. Tests должны покрывать allow/deny behavior без реального auth subsystem.
+9. После реализации запусти `make check`.
+10. Сделай `git push`.
+11. Переведи PR из draft в ready: `gh pr ready <PR_NUMBER>`.
+12. Не трогай untracked `phpstan.neon.dist`; не переноси `Portfolio`/`TInvest`/broker/trading vocabulary.
+
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
