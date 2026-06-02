@@ -9,10 +9,10 @@ cost_fact:
 depends_on: TASK-skeleton-repository-criteria-pagination-sort, TASK-skeleton-module-extension-points
 epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
-assignee:
-branch:
+assignee: Бэкендер Левша (codex-cli)
+branch: task/skeleton-user-module-ddd-example
 pr:
-status: todo
+status: in_progress
 ---
 
 # TASK-skeleton-user-module-ddd-example: Neutral User module DDD example
@@ -88,7 +88,27 @@ make check
 ## 9. Comments (Комментарии)
 Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: in_progress`.
 
+## Инструкции для сабагента
+
+**Ветка:** `task/skeleton-user-module-ddd-example` (уже создана и активна)
+**PR:** будет создан как draft из `task/skeleton-user-module-ddd-example` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид впишет ссылку.
+
+### Порядок действий
+1. Переключись в ветку `task/skeleton-user-module-ddd-example`: `git checkout task/skeleton-user-module-ddd-example`.
+2. Реализуй задачу согласно описанию, epic boundaries и уже выполненным tasks.
+3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+4. Создай minimal neutral `User` module example, а не production auth subsystem.
+5. Обязательные границы: без default users/passwords, login/registration/RBAC, migrations для real DB, secrets, external services.
+6. Repository contract должен жить в `Domain`, implementation — в `Infrastructure`; Application query возвращает DTO и не содержит business rules.
+7. Используй уже добавленные repository primitives (`criteria`, `limit/offset`, safe sort whitelist`) только если это не раздувает slice.
+8. Если нужна persistence demo, используй Doctrine mapping/resources безопасно и покрывай test env; не выполняй migrations.
+9. После реализации запусти `make check`.
+10. Сделай `git push`.
+11. Переведи PR из draft в ready: `gh pr ready <PR_NUMBER>`.
+12. Не трогай untracked `phpstan.neon.dist`; не переноси `Portfolio`/`TInvest`/broker/trading vocabulary в runtime skeleton.
+
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
