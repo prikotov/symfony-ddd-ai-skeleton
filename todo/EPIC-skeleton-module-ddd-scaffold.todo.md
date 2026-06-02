@@ -110,7 +110,7 @@ flowchart LR
 - [x] [TASK-skeleton-repository-criteria-pagination-sort](done/TASK-skeleton-repository-criteria-pagination-sort.todo.md) — перенести reusable criteria interfaces/traits, sort mapper, pagination DTO/request mapper, whitelist allowed sort fields и tests.
 - [x] [TASK-skeleton-health-query-example](done/TASK-skeleton-health-query-example.todo.md) — сохранить Health/Diagnostics маленьким canonical read-only Application Query example со слоями и tests.
 - [x] [TASK-skeleton-user-module-ddd-example](done/TASK-skeleton-user-module-ddd-example.todo.md) — добавить/усилить нейтральный User module example: Domain model, enum, criteria, repository contract, Infrastructure repository, Application query; без production-auth/default credentials.
-- [ ] [TASK-skeleton-presentation-security-pattern](TASK-skeleton-presentation-security-pattern.todo.md) — добавить нейтральный `Route/Role/Action/Permission/Grant/Rule/Voter` pattern на примере User или demo module.
+- [x] [TASK-skeleton-presentation-security-pattern](done/TASK-skeleton-presentation-security-pattern.todo.md) — добавить нейтральный `Route/Role/Action/Permission/Grant/Rule/Voter` pattern на примере User или demo module.
 - [ ] [TASK-skeleton-integration-bridge-example](TASK-skeleton-integration-bridge-example.todo.md) — добавить пример межмодульного bridge через consumer-owned integration interface.
 - [ ] [TASK-skeleton-module-scaffold-docs](TASK-skeleton-module-scaffold-docs.todo.md) — описать checklist создания нового module и границы “generic skeleton vs project-specific domain”.
 
@@ -165,3 +165,4 @@ flowchart LR
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-repository-criteria-pagination-sort`, PR #13 подготовлен к merge в epic branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-health-query-example`, PR #14 подготовлен к merge в epic branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-user-module-ddd-example`, PR #15 подготовлен к merge в epic branch |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-presentation-security-pattern`, PR #16 подготовлен к merge в epic branch |

@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Фронтендер Амели (codex-cli)
 branch: task/skeleton-presentation-security-pattern
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/16
-status: review
+status: done
 ---
 
 # TASK-skeleton-presentation-security-pattern: Presentation security pattern example
@@ -79,8 +79,8 @@ make check
 - Риск добавить слишком сложный RBAC — ограничить route/action permission example.
 
 ## 8. Sources (Источники)
-- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [User module task](done/TASK-skeleton-user-module-ddd-example.todo.md)
+- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [User module task](TASK-skeleton-user-module-ddd-example.todo.md)
 
 
 ## 9. Comments (Комментарии)
@@ -94,7 +94,7 @@ make check
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-presentation-security-pattern`: `git checkout task/skeleton-presentation-security-pattern`.
 2. Реализуй задачу согласно описанию, epic boundaries и User module example.
-3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
 4. Добавь маленький neutral web Presentation security pattern, а не production RBAC/auth subsystem.
 5. Обязательные классы/понятия: route constants/generator, action/permission enum, grant/rule/voter или минимальные equivalents.
 6. Не добавляй login/registration/password/default roles/users, object-level ACL, real security firewall changes, secrets или external services.
@@ -114,3 +114,7 @@ make check
 | 2026-06-02 | Фронтендер Амели (codex-cli) | Реализован neutral Presentation security pattern, задача переведена в review |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Закрыт self-review CR: синхронизирован checklist `make check` после успешной проверки |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Закрыто неблокирующее замечание external review: добавлен regression test на `ListController` `#[IsGranted]` action |
+| 2026-06-02 | Фронтендер Амели (codex-cli) | Финальный self-review после commit `7c387da`: Approval |
+| 2026-06-02 | Архитектор Локи (codex-cli) | Финальный external re-check PR #16: Approval |
+| 2026-06-02 | Архитектор Гэндальф (codex-cli) | External architecture review PR #16: Approval |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача переведена в `done`, подготовлена к merge в epic branch |
