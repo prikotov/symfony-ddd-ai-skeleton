@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Hermione (codex-cli)
 branch: task/skeleton-module-scaffold-docs
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/18
-status: in_progress
+status: review
 ---
 
 # TASK-skeleton-module-scaffold-docs: Module scaffold documentation and checklist
@@ -43,32 +43,32 @@ status: in_progress
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Обязательно)
-- [ ] Добавить checklist создания нового module.
-- [ ] Описать layer responsibilities and forbidden shortcuts.
-- [ ] Описать resource paths, repository criteria/pagination/sort, Presentation security, Integration bridge.
-- [ ] Явно объяснить `generic skeleton` vs `project-specific domain` boundaries.
-- [ ] Добавить links to Health/User examples.
+- [x] Добавить checklist создания нового module.
+- [x] Описать layer responsibilities and forbidden shortcuts.
+- [x] Описать resource paths, repository criteria/pagination/sort, Presentation security, Integration bridge.
+- [x] Явно объяснить `generic skeleton` vs `project-specific domain` boundaries.
+- [x] Добавить links to Health/User examples.
 
 ### 🟡 Should Have (Желательно)
-- [ ] Добавить Mermaid flow diagram.
+- [x] Добавить Mermaid flow diagram.
 
 ### 🟢 Could Have (Опционально)
-- [ ] Добавить backlog note на future generator.
+- [x] Добавить backlog note на future generator.
 
 ### ⚫ Won't Have (Не будем делать)
-- [ ] Не писать domain migration guide for stocks/stocks2.
+- [x] Не писать domain migration guide for stocks/stocks2.
 
 ## 4. Implementation Plan (План реализации)
-1. [ ] Собрать outputs предыдущих задач.
-2. [ ] Написать concise guide and checklist.
-3. [ ] Добавить links from README/conventions where appropriate.
-4. [ ] Запустить docs and full checks.
+1. [x] Собрать outputs предыдущих задач.
+2. [x] Написать concise guide and checklist.
+3. [x] Добавить links from README/conventions where appropriate.
+4. [x] Запустить docs and full checks.
 
 ## 5. Definition of Done (Критерии приёмки)
-- [ ] Docs помогают создать module без чтения `stocks2`.
-- [ ] Boundaries against Portfolio/TInvest are explicit.
-- [ ] Markdown links валидны.
-- [ ] `make check` проходит.
+- [x] Docs помогают создать module без чтения `stocks2`.
+- [x] Boundaries against Portfolio/TInvest are explicit.
+- [x] Markdown links валидны.
+- [x] `make check` проходит.
 
 ## 6. Verification (Самопроверка)
 ```bash
@@ -111,3 +111,4 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #18 для реализации |
+| 2026-06-03 | Техпис Гермиона (codex-cli) | Добавлен module scaffold guide, README-link, задача переведена в `review` |
