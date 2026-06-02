@@ -9,10 +9,10 @@ cost_fact:
 depends_on: TASK-skeleton-module-extension-points, TASK-skeleton-repository-criteria-pagination-sort, TASK-skeleton-health-query-example, TASK-skeleton-user-module-ddd-example, TASK-skeleton-presentation-security-pattern, TASK-skeleton-integration-bridge-example
 epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
-assignee:
-branch:
-pr:
-status: todo
+assignee: Hermione (codex-cli)
+branch: task/skeleton-module-scaffold-docs
+pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/18
+status: done
 ---
 
 # TASK-skeleton-module-scaffold-docs: Module scaffold documentation and checklist
@@ -43,32 +43,32 @@ status: todo
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Обязательно)
-- [ ] Добавить checklist создания нового module.
-- [ ] Описать layer responsibilities and forbidden shortcuts.
-- [ ] Описать resource paths, repository criteria/pagination/sort, Presentation security, Integration bridge.
-- [ ] Явно объяснить `generic skeleton` vs `project-specific domain` boundaries.
-- [ ] Добавить links to Health/User examples.
+- [x] Добавить checklist создания нового module.
+- [x] Описать layer responsibilities and forbidden shortcuts.
+- [x] Описать resource paths, repository criteria/pagination/sort, Presentation security, Integration bridge.
+- [x] Явно объяснить `generic skeleton` vs `project-specific domain` boundaries.
+- [x] Добавить links to Health/User examples.
 
 ### 🟡 Should Have (Желательно)
-- [ ] Добавить Mermaid flow diagram.
+- [x] Добавить Mermaid flow diagram.
 
 ### 🟢 Could Have (Опционально)
-- [ ] Добавить backlog note на future generator.
+- [x] Добавить backlog note на future generator.
 
 ### ⚫ Won't Have (Не будем делать)
-- [ ] Не писать domain migration guide for stocks/stocks2.
+- [x] Не писать domain migration guide for stocks/stocks2.
 
 ## 4. Implementation Plan (План реализации)
-1. [ ] Собрать outputs предыдущих задач.
-2. [ ] Написать concise guide and checklist.
-3. [ ] Добавить links from README/conventions where appropriate.
-4. [ ] Запустить docs and full checks.
+1. [x] Собрать outputs предыдущих задач.
+2. [x] Написать concise guide and checklist.
+3. [x] Добавить links from README/conventions where appropriate.
+4. [x] Запустить docs and full checks.
 
 ## 5. Definition of Done (Критерии приёмки)
-- [ ] Docs помогают создать module без чтения `stocks2`.
-- [ ] Boundaries against Portfolio/TInvest are explicit.
-- [ ] Markdown links валидны.
-- [ ] `make check` проходит.
+- [x] Docs помогают создать module без чтения `stocks2`.
+- [x] Boundaries against Portfolio/TInvest are explicit.
+- [x] Markdown links валидны.
+- [x] `make check` проходит.
 
 ## 6. Verification (Самопроверка)
 ```bash
@@ -79,14 +79,40 @@ make check
 - Риск воды в документации — держать checklist practical and short.
 
 ## 8. Sources (Источники)
-- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] `../docs/conventions/index.md`
 
 
 ## 9. Comments (Комментарии)
 Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: in_progress`.
 
+## Инструкции для сабагента
+
+**Ветка:** `task/skeleton-module-scaffold-docs` (уже создана и активна)
+**PR:** draft из `task/skeleton-module-scaffold-docs` в `epic/skeleton-module-ddd-scaffold` — [PR #18](https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/18).
+
+### Порядок действий
+1. Переключись в ветку `task/skeleton-module-scaffold-docs`: `git checkout task/skeleton-module-scaffold-docs`.
+2. Реализуй задачу согласно описанию и outputs всех завершённых tasks эпика.
+3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
+4. Напиши practical guide/checklist для создания нового module в skeleton.
+5. Обязательно покрой: layer responsibilities, resource paths, module extension points, repository criteria/sort/pagination, Health Query example, User DDD example, Presentation security pattern, Integration bridge.
+6. Явно отдели generic skeleton patterns от project-specific domain; запрети перенос `Portfolio`/`TInvest`/broker/trading examples.
+7. Добавь links from README или existing docs, если это помогает найти guide.
+8. Не редактируй generated `docs/conventions/` как source of truth.
+9. После реализации запусти `make check`.
+10. Сделай `git push`.
+11. Переведи PR из draft в ready: `gh pr ready <PR_NUMBER>`.
+12. Не трогай untracked `phpstan.neon.dist`.
+
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #18 для реализации |
+| 2026-06-02 | Техпис Гермиона (codex-cli) | Добавлен module scaffold guide, README-link, задача переведена в `review` |
+| 2026-06-02 | Техпис Гермиона (codex-cli) | Self-review PR #18: Approval |
+| 2026-06-02 | Техпис Остап (codex-cli) | External docs review PR #18: Approval |
+| 2026-06-02 | Архитектор Гэндальф (codex-cli) | External architecture/docs review PR #18: Approval |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача переведена в `done`, подготовлена к merge в epic branch |
