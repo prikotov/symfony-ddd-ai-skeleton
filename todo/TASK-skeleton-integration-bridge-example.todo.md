@@ -9,10 +9,10 @@ cost_fact:
 depends_on: TASK-skeleton-user-module-ddd-example
 epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
-assignee:
-branch:
+assignee: Бэкендер Левша (codex-cli)
+branch: task/skeleton-integration-bridge-example
 pr:
-status: todo
+status: in_progress
 ---
 
 # TASK-skeleton-integration-bridge-example: Consumer-owned integration bridge example
@@ -87,7 +87,27 @@ make check
 ## 9. Comments (Комментарии)
 Задача заведена как часть epic approval PR. Перед передачей исполнителю тимлид должен создать task subbranch от epic branch и заполнить `assignee`, `branch`, `status: in_progress`.
 
+## Инструкции для сабагента
+
+**Ветка:** `task/skeleton-integration-bridge-example` (уже создана и активна)
+**PR:** будет создан как draft из `task/skeleton-integration-bridge-example` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид впишет ссылку.
+
+### Порядок действий
+1. Переключись в ветку `task/skeleton-integration-bridge-example`: `git checkout task/skeleton-integration-bridge-example`.
+2. Реализуй задачу согласно описанию, epic boundaries и User/Diagnostics examples.
+3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+4. Покажи consumer-owned integration interface в `Domain/Service/Integration`, implementation — в `Integration/Service`.
+5. Implementation должна вызывать Application query/DTO другого module, а не его Domain model/repository/infrastructure.
+6. Не используй термины `Port`/`Adapter` в class/path names.
+7. Не добавляй external API clients, broker integrations, shared DB writes, migrations, secrets.
+8. Tests должны ловить dependency direction и bridge behavior через fake/application double.
+9. После реализации запусти `make check`.
+10. Сделай `git push`.
+11. Переведи PR из draft в ready: `gh pr ready <PR_NUMBER>`.
+12. Не трогай untracked `phpstan.neon.dist`; не переноси `Portfolio`/`TInvest`/broker/trading vocabulary.
+
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
