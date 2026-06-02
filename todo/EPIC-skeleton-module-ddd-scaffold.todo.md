@@ -112,7 +112,7 @@ flowchart LR
 - [x] [TASK-skeleton-user-module-ddd-example](done/TASK-skeleton-user-module-ddd-example.todo.md) — добавить/усилить нейтральный User module example: Domain model, enum, criteria, repository contract, Infrastructure repository, Application query; без production-auth/default credentials.
 - [x] [TASK-skeleton-presentation-security-pattern](done/TASK-skeleton-presentation-security-pattern.todo.md) — добавить нейтральный `Route/Role/Action/Permission/Grant/Rule/Voter` pattern на примере User или demo module.
 - [x] [TASK-skeleton-integration-bridge-example](done/TASK-skeleton-integration-bridge-example.todo.md) — добавить пример межмодульного bridge через consumer-owned integration interface.
-- [ ] [TASK-skeleton-module-scaffold-docs](TASK-skeleton-module-scaffold-docs.todo.md) — описать checklist создания нового module и границы “generic skeleton vs project-specific domain”.
+- [x] [TASK-skeleton-module-scaffold-docs](done/TASK-skeleton-module-scaffold-docs.todo.md) — описать checklist создания нового module и границы “generic skeleton vs project-specific domain”.
 
 ## 6. Definition of Done (Критерии приёмки эпика)
 - [ ] Все Must Have требования выполнены и протестированы.
@@ -167,3 +167,4 @@ flowchart LR
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-user-module-ddd-example`, PR #15 подготовлен к merge в epic branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-presentation-security-pattern`, PR #16 подготовлен к merge в epic branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-integration-bridge-example`, PR #17 подготовлен к merge в epic branch |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Выполнена задача `TASK-skeleton-module-scaffold-docs`, PR #18 подготовлен к merge в epic branch |

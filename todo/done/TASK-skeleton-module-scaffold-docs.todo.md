@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Hermione (codex-cli)
 branch: task/skeleton-module-scaffold-docs
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/18
-status: review
+status: done
 ---
 
 # TASK-skeleton-module-scaffold-docs: Module scaffold documentation and checklist
@@ -79,7 +79,7 @@ make check
 - Риск воды в документации — держать checklist practical and short.
 
 ## 8. Sources (Источники)
-- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
 - [x] `../docs/conventions/index.md`
 
 
@@ -94,7 +94,7 @@ make check
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-module-scaffold-docs`: `git checkout task/skeleton-module-scaffold-docs`.
 2. Реализуй задачу согласно описанию и outputs всех завершённых tasks эпика.
-3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
 4. Напиши practical guide/checklist для создания нового module в skeleton.
 5. Обязательно покрой: layer responsibilities, resource paths, module extension points, repository criteria/sort/pagination, Health Query example, User DDD example, Presentation security pattern, Integration bridge.
 6. Явно отдели generic skeleton patterns от project-specific domain; запрети перенос `Portfolio`/`TInvest`/broker/trading examples.
@@ -112,3 +112,7 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #18 для реализации |
 | 2026-06-02 | Техпис Гермиона (codex-cli) | Добавлен module scaffold guide, README-link, задача переведена в `review` |
+| 2026-06-02 | Техпис Гермиона (codex-cli) | Self-review PR #18: Approval |
+| 2026-06-02 | Техпис Остап (codex-cli) | External docs review PR #18: Approval |
+| 2026-06-02 | Архитектор Гэндальф (codex-cli) | External architecture/docs review PR #18: Approval |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача переведена в `done`, подготовлена к merge в epic branch |
