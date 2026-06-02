@@ -28,9 +28,33 @@ It is not a production authentication subsystem.
 - Module resource wiring:
   [`services.yaml`](../src/Module/User/Resource/config/services.yaml) and
   [`config/modules.php`](../config/modules.php).
+- Web Presentation security reference:
+  [`UserProfileRoute`](../apps/web/src/Module/User/Route/UserProfileRoute.php),
+  [`ActionEnum`](../apps/web/src/Module/User/Security/UserProfile/ActionEnum.php),
+  [`PermissionEnum`](../apps/web/src/Module/User/Security/UserProfile/PermissionEnum.php),
+  [`Rule`](../apps/web/src/Module/User/Security/UserProfile/Rule.php),
+  [`Voter`](../apps/web/src/Module/User/Security/UserProfile/Voter.php),
+  [`Grant`](../apps/web/src/Module/User/Security/UserProfile/Grant.php) and
+  [`ListController`](../apps/web/src/Module/User/Controller/UserProfile/ListController.php).
 
 ## Persistence note
 
 Projects generated from the skeleton may replace the in-memory repository alias with a Doctrine or other persistence
 implementation. That replacement must stay in `Infrastructure`, keep the Domain repository contract unchanged, use an
 explicit sort whitelist, and add migrations/tests in the concrete project branch.
+
+## Presentation security boundary
+
+The web User module shows a small route/action/permission/grant/rule/voter pattern for Presentation access checks only.
+It is not a production authentication or RBAC subsystem:
+
+- `ActionEnum` is the controller-level operation (`user.user_profile.list`).
+- `PermissionEnum` is the permission checked by the Presentation `Rule`.
+- `Voter` delegates the decision to `Rule`; controllers use `#[IsGranted]` and do not contain permission decision logic.
+- `Grant` is a convenience wrapper for templates or other Presentation services that need to show or hide UI actions.
+- The skeleton does not add login, registration, passwords, default users, `access_control`, object-level ACL or real
+  firewall changes for this example.
+
+Domain rules stay in `src/Module/User/Domain`: they protect model invariants such as profile data and lifecycle state.
+Presentation security only decides whether the current request may reach a route/action. Projects built from the
+skeleton should map `PermissionEnum` values to their own roles and users in project-specific security configuration.

@@ -1,0 +1,72 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Skeleton\Web\Module\User\Controller\UserProfile;
+
+use LogicException;
+use Skeleton\Common\Application\Component\QueryBus\QueryBusComponentInterface;
+use Skeleton\Common\Module\User\Application\Dto\UserProfileDto;
+use Skeleton\Common\Module\User\Application\Dto\UserProfileListDto;
+use Skeleton\Common\Module\User\Application\UseCase\Query\UserProfile\ListUserProfiles\ListUserProfilesQuery;
+use Skeleton\Web\Module\User\Route\UserProfileRoute;
+use Skeleton\Web\Module\User\Security\UserProfile\ActionEnum as UserProfileActionEnum;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
+#[Route(path: UserProfileRoute::LIST_PATH, name: UserProfileRoute::LIST, methods: [Request::METHOD_GET])]
+#[IsGranted(UserProfileActionEnum::listProfiles->value)]
+#[AsController]
+final readonly class ListController
+{
+    public function __construct(
+        private QueryBusComponentInterface $queryBus,
+    ) {
+    }
+
+    public function __invoke(): JsonResponse
+    {
+        $userProfiles = $this->queryBus->query(new ListUserProfilesQuery(
+            pagination: null,
+            sort: [],
+        ));
+        if (!$userProfiles instanceof UserProfileListDto) {
+            throw new LogicException(sprintf('Expected %s user profile list result.', UserProfileListDto::class));
+        }
+
+        return new JsonResponse($this->normalize($userProfiles));
+    }
+
+    /**
+     * @return array{items: list<array{uuid: string, displayName: string, contactEmail: string, status: string, createdAt: string}>, total: int}
+     */
+    private function normalize(UserProfileListDto $userProfileList): array
+    {
+        $items = [];
+        foreach ($userProfileList->items as $userProfile) {
+            $items[] = $this->normalizeUserProfile($userProfile);
+        }
+
+        return [
+            'items' => $items,
+            'total' => $userProfileList->total,
+        ];
+    }
+
+    /**
+     * @return array{uuid: string, displayName: string, contactEmail: string, status: string, createdAt: string}
+     */
+    private function normalizeUserProfile(UserProfileDto $userProfile): array
+    {
+        return [
+            'uuid' => $userProfile->uuid,
+            'displayName' => $userProfile->displayName,
+            'contactEmail' => $userProfile->contactEmail,
+            'status' => $userProfile->status,
+            'createdAt' => $userProfile->createdAt->format(DATE_ATOM),
+        ];
+    }
+}

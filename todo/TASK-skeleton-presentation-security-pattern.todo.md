@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Фронтендер Амели (codex-cli)
 branch: task/skeleton-presentation-security-pattern
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/16
-status: in_progress
+status: review
 ---
 
 # TASK-skeleton-presentation-security-pattern: Presentation security pattern example
@@ -43,31 +43,31 @@ status: in_progress
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Обязательно)
-- [ ] Route constants/generator pattern нейтрален и documented.
-- [ ] Action/Permission enums не используют investment vocabulary.
-- [ ] Grant/Rule/Voter отделены от controller logic.
-- [ ] Tests покрывают allow/deny behavior на минимальном сценарии.
+- [x] Route constants/generator pattern нейтрален и documented.
+- [x] Action/Permission enums не используют investment vocabulary.
+- [x] Grant/Rule/Voter отделены от controller logic.
+- [x] Tests покрывают allow/deny behavior на минимальном сценарии.
 
 ### 🟡 Should Have (Желательно)
-- [ ] Документировать где проходит граница Presentation security vs Domain rules.
+- [x] Документировать где проходит граница Presentation security vs Domain rules.
 
 ### 🟢 Could Have (Опционально)
-- [ ] Добавить future note для object-level access.
+- [x] Добавить future note для object-level access.
 
 ### ⚫ Won't Have (Не будем делать)
 - [ ] Не переносить `Portfolio` security classes или permissions.
 
 ## 4. Implementation Plan (План реализации)
-1. [ ] Проверить inventory security findings.
-2. [ ] Выбрать neutral example module.
-3. [ ] Реализовать минимальные classes и tests.
-4. [ ] Обновить docs/checklist.
+1. [x] Проверить inventory security findings.
+2. [x] Выбрать neutral example module.
+3. [x] Реализовать минимальные classes и tests.
+4. [x] Обновить docs/checklist.
 5. [ ] Запустить `make check`.
 
 ## 5. Definition of Done (Критерии приёмки)
-- [ ] Security pattern виден как example, не как обязательная production auth subsystem.
-- [ ] Controllers не содержат business permission logic.
-- [ ] Tests зелёные.
+- [x] Security pattern виден как example, не как обязательная production auth subsystem.
+- [x] Controllers не содержат business permission logic.
+- [x] Tests зелёные.
 - [ ] `make check` проходит.
 
 ## 6. Verification (Самопроверка)
@@ -111,3 +111,4 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #16 для реализации |
+| 2026-06-02 | Фронтендер Амели (codex-cli) | Реализован neutral Presentation security pattern, задача переведена в review |
