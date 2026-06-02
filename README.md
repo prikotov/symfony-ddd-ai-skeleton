@@ -140,6 +140,9 @@ Controller / Console Command
         → Infrastructure implementations
 ```
 
+The bundled `Diagnostics` module documents the minimal read-only Query example:
+[`docs/diagnostics-query-flow.md`](docs/diagnostics-query-flow.md).
+
 ---
 
 ## Module system

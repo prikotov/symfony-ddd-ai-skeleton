@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Тони (codex-cli)
 branch: task/skeleton-health-query-example
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/14
-status: in_progress
+status: review
 ---
 
 # TASK-skeleton-health-query-example: Health/Diagnostics read-only query example
@@ -43,13 +43,13 @@ status: in_progress
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Обязательно)
-- [ ] Сохранить `/health` или equivalent endpoint read-only и dependency-light.
-- [ ] Показать Query, QueryHandler, DTO/result pattern.
-- [ ] Проверить route/controller entrypoint обращается к Application, не к Domain/Infrastructure напрямую.
-- [ ] Добавить/обновить tests.
+- [x] Сохранить `/health` или equivalent endpoint read-only и dependency-light.
+- [x] Показать Query, QueryHandler, DTO/result pattern.
+- [x] Проверить route/controller entrypoint обращается к Application, не к Domain/Infrastructure напрямую.
+- [x] Добавить/обновить tests.
 
 ### 🟡 Should Have (Желательно)
-- [ ] Документировать Health as simplest module example.
+- [x] Документировать Health as simplest module example.
 
 ### 🟢 Could Have (Опционально)
 - [ ] Добавить Diagnostics page/template только если уже есть web baseline и это не расширяет scope.
@@ -58,16 +58,16 @@ status: in_progress
 - [ ] Не делать readiness checks реальных внешних сервисов.
 
 ## 4. Implementation Plan (План реализации)
-1. [ ] Проверить текущий Diagnostics code path.
-2. [ ] Привести к minimal Query use case при необходимости.
-3. [ ] Добавить tests и docs comments.
-4. [ ] Запустить `make check`.
+1. [x] Проверить текущий Diagnostics code path.
+2. [x] Привести к minimal Query use case при необходимости.
+3. [x] Добавить tests и docs comments.
+4. [x] Запустить `make check`.
 
 ## 5. Definition of Done (Критерии приёмки)
-- [ ] Health/Diagnostics flow является canonical minimal Query example.
-- [ ] Endpoint не требует auth и не выполняет side effects.
-- [ ] Tests покрывают happy path.
-- [ ] `make check` проходит.
+- [x] Health/Diagnostics flow является canonical minimal Query example.
+- [x] Endpoint не требует auth и не выполняет side effects.
+- [x] Tests покрывают happy path.
+- [x] `make check` проходит.
 
 ## 6. Verification (Самопроверка)
 ```bash
@@ -108,3 +108,4 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #14 для реализации |
+| 2026-06-03 | Бэкендер Тони (codex-cli) | Добавлен reference для Diagnostics Query flow, контрактные PHPDoc и точечные assertions |
