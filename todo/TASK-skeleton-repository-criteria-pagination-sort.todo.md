@@ -102,9 +102,24 @@ make check
 8. Не трогай untracked `phpstan.neon.dist`; не переноси `Portfolio`/`TInvest`/broker/trading vocabulary в runtime skeleton.
 9. Sort whitelist должен быть обязательным перед применением sort к Doctrine criteria/query builder.
 
+## Known Divergences
+
+### Generated conventions vs tracked PR artifacts
+
+`docs/conventions/` is copied from `prikotov/coding-standard` by init scripts and is ignored by `docs/.gitignore`; changes inside that directory do not become PR artifacts in this repository.
+
+The tracked usage example for this slice lives in `src/Component/Repository/Criteria/Mapper/LimitOffsetSortCriteriaMapper.php` PHPDoc and demonstrates mandatory `SORT_WHITELIST` usage:
+
+```php
+$doctrineCriteria = $this->limitOffsetSortMapper->map($criteria, self::SORT_WHITELIST);
+```
+
+@todo 2026-06-02 Update vendor package `prikotov/coding-standard`: examples in `docs/conventions/layers/infrastructure/criteria-mapper.md` must pass explicit allowed sort fields to `LimitOffsetSortCriteriaMapper::map($criteria, self::SORT_WHITELIST)`.
+
 ## Change History (История изменений)
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #13 для реализации |
+| 2026-06-02 | Бэкендер Левша (codex-cli) | Self-review CR: conventions generated docs не попадают в PR; tracked example зафиксирован в PHPDoc, добавлен `@todo` на vendor package; stable ordering test усилен |
