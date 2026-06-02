@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Левша (codex-cli)
 branch: task/skeleton-integration-bridge-example
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/17
-status: in_progress
+status: review
 ---
 
 # TASK-skeleton-integration-bridge-example: Consumer-owned integration bridge example
@@ -43,33 +43,33 @@ status: in_progress
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Обязательно)
-- [ ] Consumer module owns integration interface in Domain service namespace.
-- [ ] Implementation lives in Integration layer and calls other module Application query/DTO.
-- [ ] Нет прямой зависимости на Domain model другого module.
-- [ ] Не используются names `Port`/`Adapter`.
-- [ ] Tests показывают bridge behavior через fake/application double.
+- [x] Consumer module owns integration interface in Domain service namespace.
+- [x] Implementation lives in Integration layer and calls other module Application query/DTO.
+- [x] Нет прямой зависимости на Domain model другого module.
+- [x] Не используются names `Port`/`Adapter`.
+- [x] Tests показывают bridge behavior через fake/application double.
 
 ### 🟡 Should Have (Желательно)
-- [ ] Добавить диаграмму или docs snippet с dependency direction.
+- [x] Добавить диаграмму или docs snippet с dependency direction.
 
 ### 🟢 Could Have (Опционально)
-- [ ] Использовать Diagnostics/User examples as neutral modules.
+- [x] Использовать Diagnostics/User examples as neutral modules.
 
 ### ⚫ Won't Have (Не будем делать)
 - [ ] Не переносить MOEX/T-Invest integration examples.
 
 ## 4. Implementation Plan (План реализации)
-1. [ ] Выбрать два нейтральных modules для example.
-2. [ ] Описать consumer-owned contract.
-3. [ ] Реализовать Integration service and tests.
-4. [ ] Обновить docs.
-5. [ ] Запустить `make check`.
+1. [x] Выбрать два нейтральных modules для example.
+2. [x] Описать consumer-owned contract.
+3. [x] Реализовать Integration service and tests.
+4. [x] Обновить docs.
+5. [x] Запустить `make check`.
 
 ## 5. Definition of Done (Критерии приёмки)
-- [ ] Example соблюдает layer/module isolation.
-- [ ] Contract naming не содержит Port/Adapter.
-- [ ] Tests зелёные.
-- [ ] `make check` проходит.
+- [x] Example соблюдает layer/module isolation.
+- [x] Contract naming не содержит Port/Adapter.
+- [x] Tests зелёные.
+- [x] `make check` проходит.
 
 ## 6. Verification (Самопроверка)
 ```bash
@@ -112,3 +112,4 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #17 для реализации |
+| 2026-06-03 | Бэкендер Левша (codex-cli) | Реализован User → Diagnostics integration bridge, статус переведён в `review` |

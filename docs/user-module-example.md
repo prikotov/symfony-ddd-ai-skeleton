@@ -43,6 +43,26 @@ Projects generated from the skeleton may replace the in-memory repository alias 
 implementation. That replacement must stay in `Infrastructure`, keep the Domain repository contract unchanged, use an
 explicit sort whitelist, and add migrations/tests in the concrete project branch.
 
+## Integration bridge example
+
+The User module also contains a small consumer-owned bridge to the Diagnostics module:
+
+- User owns the Domain contract
+  [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/Integration/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php)
+  and scalar snapshot
+  [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php).
+- The Integration implementation
+  [`QueryBusGetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/Diagnostics/QueryBusGetRuntimeDiagnosticsSnapshotService.php)
+  calls the Diagnostics Application query
+  [`GetRuntimeDiagnosticsQuery`](../src/Module/Diagnostics/Application/UseCase/Query/GetRuntimeDiagnostics/GetRuntimeDiagnosticsQuery.php)
+  through `QueryBusComponentInterface` and maps
+  [`RuntimeDiagnosticsDto`](../src/Module/Diagnostics/Application/Dto/RuntimeDiagnosticsDto.php)
+  into the User-owned snapshot.
+- Dependency direction stays one-way: `User Domain contract <- User Integration service -> Diagnostics Application`.
+  The bridge does not depend on Diagnostics Domain or Infrastructure models.
+- The DI alias is declared in
+  [`services.yaml`](../src/Module/User/Resource/config/services.yaml), so consumers depend on the User-owned interface.
+
 ## Presentation security boundary
 
 The web User module shows a small route/action/permission/grant/rule/voter pattern for Presentation access checks only.

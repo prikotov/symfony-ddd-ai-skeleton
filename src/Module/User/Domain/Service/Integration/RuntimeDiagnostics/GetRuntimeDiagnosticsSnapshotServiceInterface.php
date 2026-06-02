@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Skeleton\Common\Module\User\Domain\Service\Integration\RuntimeDiagnostics;
+
+use Skeleton\Common\Module\User\Domain\Dto\RuntimeDiagnosticsSnapshotDto;
+
+/**
+ * Consumer-owned contract for reading runtime diagnostics from another module.
+ */
+interface GetRuntimeDiagnosticsSnapshotServiceInterface
+{
+    public function get(): RuntimeDiagnosticsSnapshotDto;
+}
