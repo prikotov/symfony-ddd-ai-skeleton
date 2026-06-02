@@ -11,7 +11,7 @@ epic: EPIC-skeleton-module-ddd-scaffold
 author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Левша (codex-cli)
 branch: task/skeleton-repository-criteria-pagination-sort
-pr:
+pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/13
 status: in_progress
 ---
 
@@ -89,7 +89,7 @@ make check
 ## Инструкции для сабагента
 
 **Ветка:** `task/skeleton-repository-criteria-pagination-sort` (уже создана и активна)
-**PR:** будет создан как draft из `task/skeleton-repository-criteria-pagination-sort` в `epic/skeleton-module-ddd-scaffold`; после создания тимлид обновит ссылку.
+**PR:** draft из `task/skeleton-repository-criteria-pagination-sort` в `epic/skeleton-module-ddd-scaffold` — [PR #13](https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/13).
 
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-repository-criteria-pagination-sort`: `git checkout task/skeleton-repository-criteria-pagination-sort`.
@@ -107,3 +107,4 @@ make check
 | :--- | :--- | :--- |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создание задачи в рамках эпика `EPIC-skeleton-module-ddd-scaffold` |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Задача запущена по `epic-via-subagents`, подготовлена task branch |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #13 для реализации |
