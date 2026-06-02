@@ -113,3 +113,4 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #16 для реализации |
 | 2026-06-02 | Фронтендер Амели (codex-cli) | Реализован neutral Presentation security pattern, задача переведена в review |
 | 2026-06-02 | Лид Арагорн (codex-cli) | Закрыт self-review CR: синхронизирован checklist `make check` после успешной проверки |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Закрыто неблокирующее замечание external review: добавлен regression test на `ListController` `#[IsGranted]` action |
