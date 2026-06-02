@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Бэкендер Тони (codex-cli)
 branch: task/skeleton-health-query-example
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/14
-status: review
+status: done
 ---
 
 # TASK-skeleton-health-query-example: Health/Diagnostics read-only query example
@@ -78,8 +78,8 @@ make check
 - Риск превратить Health в мониторинг всех подсистем — оставить advanced checks out of scope.
 
 ## 8. Sources (Источники)
-- [x] [Epic](EPIC-skeleton-module-ddd-scaffold.todo.md)
-- [x] [Extension points task](done/TASK-skeleton-module-extension-points.todo.md)
+- [x] [Epic](../EPIC-skeleton-module-ddd-scaffold.todo.md)
+- [x] [Extension points task](TASK-skeleton-module-extension-points.todo.md)
 
 
 ## 9. Comments (Комментарии)
@@ -93,7 +93,7 @@ make check
 ### Порядок действий
 1. Переключись в ветку `task/skeleton-health-query-example`: `git checkout task/skeleton-health-query-example`.
 2. Реализуй задачу согласно описанию, epic boundaries и уже выполненным tasks.
-3. Следуй [Конвенциям](../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](AGENTS.md).
+3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
 4. Health/Diagnostics должен остаться read-only, dependency-light, без auth, external probes, DB writes и production secrets.
 5. Entry points (`Controller`, console `Command`) должны обращаться в Application Query через QueryBus, не в Domain/Infrastructure напрямую.
 6. Если текущая реализация уже соответствует требованиям, сделай минимальные улучшения: документационный reference, тестовые assertions или small cleanup без overengineering.
@@ -110,3 +110,6 @@ make check
 | 2026-06-02 | Лид Арагорн (codex-cli) | Создан draft PR #14 для реализации |
 | 2026-06-02 | Бэкендер Тони (codex-cli) | Добавлен reference для Diagnostics Query flow, контрактные PHPDoc и точечные assertions |
 | 2026-06-02 | Бэкендер Тони (codex-cli) | Закрыт change request external review: усилена проверка `checkedAt` parse errors и round-trip |
+| 2026-06-02 | Бэкендер Тони (codex-cli) | Повторный self-review после commit `624bbde`: Approval |
+| 2026-06-02 | Архитектор Локи (codex-cli) | Повторный external review PR #14: Approval |
+| 2026-06-02 | Лид Арагорн (codex-cli) | Задача переведена в `done`, подготовлена к merge в epic branch |
