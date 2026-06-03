@@ -201,14 +201,14 @@ composer docs:validate
 | :--- | :--- | :--- | :--- |
 | `ActionEnum` | `Security/Portfolio/ActionEnum.php` | 🔧 **ADAPT** | Enum действий: `case view = 'portfolio.portfolio.view'`. **Pattern** generic, но значения — portfolio domain. **Адаптация:** создать нейтральный example (например `user.view`, `user.list`). |
 | `PermissionEnum` | `Security/Portfolio/PermissionEnum.php` | 🔧 **ADAPT** | Enum разрешений: `case viewAll = 'portfolio.portfolio.viewAll'`. **Pattern** generic. **Адаптация:** нейтральные значения. |
-| `Grant` source pattern → `Access` skeleton helper | `Security/Portfolio/Grant.php` | ✅ **TAKE/RENAME** | Проверка `isGranted(ActionEnum::*->value)` через `AuthorizationCheckerInterface`. Структура generic; in skeleton renamed to `Access` for clearer UI-helper meaning. |
+| `Grant` | `Security/Portfolio/Grant.php` | ✅ **TAKE** | Проверка `isGranted(ActionEnum::*->value)` через `AuthorizationCheckerInterface`. Структура generic; в skeleton сохраняем имя `Grant` по Presentation conventions. |
 | `Rule` | `Security/Portfolio/Rule.php` | ✅ **TAKE** | Проверка permissions через `RoleHierarchyInterface`. Структура generic. |
 | `Voter` | `Security/Portfolio/Voter.php` | ✅ **TAKE** | `supports()` проверяет `ActionEnum::tryFrom()` + subject null. `voteOnAttribute()` делегирует в `Rule`. Структура generic. |
 | `RoleEnum` | `apps/web/src/Module/User/Security/User/RoleEnum.php` | 🔧 **ADAPT** | Web/Presentation-specific enum; `case portfolioViewer = 'ROLE_PORTFOLIO_VIEWER'`. **Pattern** generic, значение — portfolio. **Адаптация:** нейтральные роли. |
 
-**Ключевой observation:** Вся цепочка `ActionEnum → PermissionEnum → RoleEnum → Rule → Voter → Access` — это **generic pattern**. Бизнес-значения (portfolio, viewer) заменяются на нейтральные. Сама структура wiring — reusable.
+**Ключевой observation:** Вся цепочка `ActionEnum → PermissionEnum → RoleEnum → Rule → Voter → Grant` — это **generic pattern**. Бизнес-значения (portfolio, viewer) заменяются на нейтральные. Сама структура wiring — reusable.
 
-**Рекомендация:** Задача `TASK-skeleton-presentation-security-pattern` — создать нейтральный security example (User module) с полной цепочкой `ActionEnum → PermissionEnum → RoleEnum → Rule → Voter → Access`.
+**Рекомендация:** Задача `TASK-skeleton-presentation-security-pattern` — создать нейтральный security example (User module) с полной цепочкой `ActionEnum → PermissionEnum → RoleEnum → Rule → Voter → Grant`.
 
 ---
 
@@ -312,7 +312,7 @@ composer docs:validate
 | 14 | `PaginationDto` | `Application/Dto/` | Уже в skeleton |
 | 15 | `QueryInterface` / `CommandInterface` / `*BusComponentInterface` | `Application/` | Уже в skeleton |
 | 16 | `EventInterface` / `EventBusInterface` | `Component/Event/` | Уже в skeleton |
-| 17 | Security `Access` / `Rule` / `Voter` (структура) | `apps/web/Module/Portfolio/Security/Portfolio/` | `TASK-skeleton-presentation-security-pattern` |
+| 17 | Security `Grant` / `Rule` / `Voter` (структура) | `apps/web/Module/Portfolio/Security/Portfolio/` | `TASK-skeleton-presentation-security-pattern` |
 
 ### 🔧 ADAPT — Переносим структуру/подход с нейтральной номенклатурой
 
@@ -383,7 +383,7 @@ composer docs:validate
 - [ ] Нет `Port`/`Adapter` в путях и именах классов?
 - [ ] Entity/Enum/Criteria не содержат инвестиционной номенклатуры (figi, ticker, isin, instrument, position, security)?
 - [ ] Controller/Route не содержат `/portfolio`, `/position`, `/account` путей?
-- [ ] Voter/Access/Rule/Permission не ссылаются на portfolio viewer/manager роли?
+- [ ] Voter/Grant/Rule/Permission не ссылаются на portfolio viewer/manager роли?
 - [ ] Integration bridge не ссылается на конкретный внешний API (T-Invest, broker)?
 - [ ] Нет предположений о shared DB ownership или specific schema?
 
@@ -415,7 +415,7 @@ composer docs:validate
 | `TASK-skeleton-repository-criteria-pagination-sort` | Все `Component/Repository/*` + `LimitOffsetSortCriteriaMapper` + pattern из `TiPortfolioFindCriteriaMapper` | Перенести generic components. Добавить **новый** sort whitelist. Показать usage example. |
 | `TASK-skeleton-health-query-example` | Текущий skeleton Diagnostics (уже перенесён) | Убедиться что minimal и read-only. Опционально добавить DB diagnostics. |
 | `TASK-skeleton-user-module-ddd-example` | `Module/User` Domain + Application + Infrastructure | Перенести с нейтральным namespace: entity, enum, criteria, repository interface, infrastructure repository, query handler. |
-| `TASK-skeleton-presentation-security-pattern` | Security chain из `Portfolio/Security/` + `UserRoute` | Создать нейтральный example: `ActionEnum → PermissionEnum → RoleEnum → Rule → Voter → Access` + Route + Controller с `#[IsGranted]`. |
+| `TASK-skeleton-presentation-security-pattern` | Security chain из `Portfolio/Security/` + `UserRoute` | Создать нейтральный example: `ActionEnum → PermissionEnum → RoleEnum → Rule → Voter → Grant` + Route + Controller с `#[IsGranted]`. |
 | `TASK-skeleton-integration-bridge-example` | `Portfolio/Domain/Service/PositionSnapshot/GetPositionSnapshotServiceInterface` + `Portfolio/Integration/Service/TInvest/GetPositionSnapshotService` | Создать нейтральный example: ModuleA consumer-owned interface + ModuleB bridge через QueryBus. |
 | `TASK-skeleton-module-scaffold-docs` | Все findings из этого inventory | Описать checklist создания нового module + границы generic vs domain-specific. |
 
@@ -424,7 +424,7 @@ composer docs:validate
 
 ## 15.1. Authorization vs Authentication Scope Note
 
-Для `TASK-skeleton-presentation-security-pattern` Must Have должен быть именно Authorization pattern: `ActionEnum → PermissionEnum → RoleEnum → Rule → Voter → Access`. Authentication flow (`LoginController`, `LogoutController`, `LoginFormModel`, `LoginFormType`, firewall/session/templates) — отдельный concern; в текущем эпике его стоит держать как Could Have или вынести в отдельную future task, чтобы не расширять scope security slice.
+Для `TASK-skeleton-presentation-security-pattern` Must Have должен быть именно Authorization pattern: `ActionEnum → PermissionEnum → RoleEnum → Rule → Voter → Grant`. Authentication flow (`LoginController`, `LogoutController`, `LoginFormModel`, `LoginFormType`, firewall/session/templates) — отдельный concern; в текущем эпике его стоит держать как Could Have или вынести в отдельную future task, чтобы не расширять scope security slice.
 
 ## 16. Backlog Idea: Module Generator
 

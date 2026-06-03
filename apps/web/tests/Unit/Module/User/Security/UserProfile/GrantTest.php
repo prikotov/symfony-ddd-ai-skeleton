@@ -6,19 +6,19 @@ namespace Skeleton\Web\Test\Unit\Module\User\Security\UserProfile;
 
 use Override;
 use PHPUnit\Framework\TestCase;
-use Skeleton\Web\Module\User\Security\UserProfile\Access;
 use Skeleton\Web\Module\User\Security\UserProfile\ActionEnum;
+use Skeleton\Web\Module\User\Security\UserProfile\Grant;
 use Symfony\Component\Security\Core\Authorization\AccessDecision;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
-final class AccessTest extends TestCase
+final class GrantTest extends TestCase
 {
     public function testCanListReturnsAuthorizationCheckerDecision(): void
     {
         $authorizationChecker = new AuthorizationCheckerStub(granted: true);
-        $access = new Access($authorizationChecker);
+        $grant = new Grant($authorizationChecker);
 
-        self::assertTrue($access->canList());
+        self::assertTrue($grant->canList());
         self::assertSame(ActionEnum::listProfiles->value, $authorizationChecker->lastAttribute);
         self::assertNull($authorizationChecker->lastSubject);
     }
@@ -26,9 +26,9 @@ final class AccessTest extends TestCase
     public function testCanListReturnsFalseWhenAuthorizationCheckerDeniesAccess(): void
     {
         $authorizationChecker = new AuthorizationCheckerStub(granted: false);
-        $access = new Access($authorizationChecker);
+        $grant = new Grant($authorizationChecker);
 
-        self::assertFalse($access->canList());
+        self::assertFalse($grant->canList());
         self::assertSame(ActionEnum::listProfiles->value, $authorizationChecker->lastAttribute);
         self::assertNull($authorizationChecker->lastSubject);
     }

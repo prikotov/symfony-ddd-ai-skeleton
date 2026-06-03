@@ -34,7 +34,7 @@ It is not a production authentication subsystem.
   [`PermissionEnum`](../apps/web/src/Module/User/Security/UserProfile/PermissionEnum.php),
   [`Rule`](../apps/web/src/Module/User/Security/UserProfile/Rule.php),
   [`Voter`](../apps/web/src/Module/User/Security/UserProfile/Voter.php),
-  [`Access`](../apps/web/src/Module/User/Security/UserProfile/Access.php) and
+  [`Grant`](../apps/web/src/Module/User/Security/UserProfile/Grant.php) and
   [`ListController`](../apps/web/src/Module/User/Controller/UserProfile/ListController.php).
 
 ## Persistence note
@@ -65,13 +65,13 @@ The User module also contains a small consumer-owned bridge to the Diagnostics m
 
 ## Presentation security boundary
 
-The web User module shows a small route/action/permission/access/rule/voter pattern for Presentation access checks only.
+The web User module shows a small route/action/permission/grant/rule/voter pattern for Presentation access checks only.
 It is not a production authentication or RBAC subsystem:
 
 - `ActionEnum` is the controller-level operation (`user.user_profile.list`).
 - `PermissionEnum` is the permission checked by the Presentation `Rule`.
 - `Voter` delegates the decision to `Rule`; controllers use `#[IsGranted]` and do not contain permission decision logic.
-- `Access` is a convenience wrapper for templates or other Presentation services that need to show or hide UI actions.
+- `Grant` is a convenience wrapper for templates or other Presentation services that need to show or hide UI actions.
 - The skeleton does not add login, registration, passwords, default users, `access_control`, object-level ACL or real
   firewall changes for this example.
 

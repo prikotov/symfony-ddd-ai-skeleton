@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
  * It is intentionally a thin facade over Symfony authorization: actual decisions stay in {@see Rule},
  * and controllers still use {@see Voter} through #[IsGranted].
  */
-final readonly class Access
+final readonly class Grant
 {
     public function __construct(
         private AuthorizationCheckerInterface $authorizationChecker,
