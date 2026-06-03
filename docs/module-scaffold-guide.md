@@ -198,20 +198,27 @@ Use the User → Diagnostics bridge as the copy point:
 5. Bridge maps provider DTO into consumer-owned DTO.
 6. Tests must prove dependency direction and fail fast on unexpected bus results.
 
+The diagram separates runtime calls from DI bindings: Domain owns contracts; one or more Infrastructure/Integration implementations can be bound to those contracts by the container. Dotted implementation links are intentionally non-directional.
+
 ```mermaid
 flowchart LR
     Presentation[Presentation entrypoint]
     Bus[CommandBus / QueryBus]
     Application[Application handler]
-    Domain[Domain contracts and invariants]
     Infrastructure[Infrastructure implementation]
     Integration[Integration bridge]
     OtherApplication[Other module Application]
 
+    subgraph Domain[Domain]
+        DomainModel[Model and invariants]
+        DomainContracts[Contracts: repositories and services]
+    end
+
     Presentation --> Bus --> Application
-    Application --> Domain
-    Infrastructure -. depends on contracts .-> Domain
-    Integration -. depends on contracts .-> Domain
+    Application --> DomainModel
+    Application --> DomainContracts
+    DomainContracts -. implemented by DI .- Infrastructure
+    DomainContracts -. implemented by DI .- Integration
     Integration --> OtherApplication
 ```
 
