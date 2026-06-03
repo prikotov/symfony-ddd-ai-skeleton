@@ -56,6 +56,8 @@ Start from these working examples before adding new code:
   [`DoctrineInterface`](../src/Component/ModuleSystem/Extension/DoctrineInterface.php),
   [`TwigInterface`](../src/Component/ModuleSystem/Extension/TwigInterface.php),
   [`TranslationInterface`](../src/Component/ModuleSystem/Extension/TranslationInterface.php).
+  The web [`UserModule`](../apps/web/src/Module/User/UserModule.php) is the minimal `TwigInterface` example
+  with namespace `WebUser` and templates under `Resource/templates`.
 - Repository criteria, pagination and sort primitives under `src/Component/Repository/*`:
   [`CriteriaWithLimitInterface`](../src/Component/Repository/CriteriaWithLimitInterface.php),
   [`CriteriaWithOffsetInterface`](../src/Component/Repository/CriteriaWithOffsetInterface.php),
