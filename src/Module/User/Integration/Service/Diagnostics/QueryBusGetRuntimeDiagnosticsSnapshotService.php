@@ -10,7 +10,7 @@ use Skeleton\Common\Application\Component\QueryBus\QueryBusComponentInterface;
 use Skeleton\Common\Module\Diagnostics\Application\Dto\RuntimeDiagnosticsDto;
 use Skeleton\Common\Module\Diagnostics\Application\UseCase\Query\GetRuntimeDiagnostics\GetRuntimeDiagnosticsQuery;
 use Skeleton\Common\Module\User\Domain\Dto\RuntimeDiagnosticsSnapshotDto;
-use Skeleton\Common\Module\User\Domain\Service\Integration\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface;
+use Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface;
 
 /**
  * Calls the Diagnostics Application query and maps its DTO to the User-owned snapshot.

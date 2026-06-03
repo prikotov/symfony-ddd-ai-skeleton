@@ -46,7 +46,7 @@ pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10
     *   Application pattern: `UseCase/Query/*`, `UseCase/Command/*` при необходимости, handler, DTO, mapper.
     *   Domain pattern: model/entity/value object, repository interfaces, criteria, domain service.
     *   Infrastructure pattern: Doctrine/read repository implementation, criteria mapper.
-    *   Integration pattern: consumer-owned `Domain\Service\Integration\*Interface` + `Integration\Service\*` bridge to another module Application query.
+    *   Integration pattern: consumer-owned `Domain\Service\{Context}\*Interface` + `Integration\Service\*` bridge to another module Application query.
     *   Pagination/sorting reusable components and traits, включая whitelist allowed sort fields перед Doctrine criteria.
     *   Documentation and examples showing how to create a new module from scratch.
 *   **Out of Scope (Чего НЕ делаем):**
@@ -92,7 +92,7 @@ flowchart LR
     Web[Presentation module] --> App[Application UseCase]
     App --> Domain[Domain model/service/contracts]
     App --> Infra[Infrastructure repository]
-    Domain --> IntegrationContract[Domain Service Integration Interface]
+    Domain --> IntegrationContract[Domain Service Interface]
     Integration[Integration service] -. implements .-> IntegrationContract
     Integration --> OtherApp[Other module Application UseCase]
 ```

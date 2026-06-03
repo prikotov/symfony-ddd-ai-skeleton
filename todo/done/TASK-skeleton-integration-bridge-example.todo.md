@@ -27,7 +27,7 @@ status: done
 - Следовать границам эпика: переносить только generic skeleton patterns, не бизнес-домен.
 
 ### Ожидаемый результат (Expected Result)
-- Есть маленький example, где один module зависит от своего `Domain\Service\Integration\*Interface`, а реализация в `Integration` вызывает Application use case другого module.
+- Есть маленький example, где один module зависит от своего `Domain\Service\{Context}\*Interface`, а реализация в `Integration` вызывает Application use case другого module.
 
 ## 1. Concept and Goal (Концепция и Цель)
 ### Story (Job Story)
@@ -37,7 +37,7 @@ status: done
 Добавить нейтральный Integration bridge example и docs для межмодульного взаимодействия.
 
 ## 2. Context and Scope (Контекст и Границы)
-*   **Где делаем:** `src/Module/*/Domain/Service/Integration`, `src/Module/*/Integration/Service`, tests/docs.
+*   **Где делаем:** `src/Module/*/Domain/Service/{Context}`, `src/Module/*/Integration/Service`, tests/docs.
 *   **Текущее поведение:** Правило описано в conventions, но skeleton не даёт короткого runnable/reference example.
 *   **Границы (Out of Scope):** Не добавлять external API clients, broker integrations или shared DB writes.
 
@@ -96,7 +96,7 @@ make check
 1. Переключись в ветку `task/skeleton-integration-bridge-example`: `git checkout task/skeleton-integration-bridge-example`.
 2. Реализуй задачу согласно описанию, epic boundaries и User/Diagnostics examples.
 3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
-4. Покажи consumer-owned integration interface в `Domain/Service/Integration`, implementation — в `Integration/Service`.
+4. Покажи consumer-owned integration interface в `Domain/Service/{Context}`, implementation — в `Integration/Service`.
 5. Implementation должна вызывать Application query/DTO другого module, а не его Domain model/repository/infrastructure.
 6. Не используй термины `Port`/`Adapter` в class/path names.
 7. Не добавляй external API clients, broker integrations, shared DB writes, migrations, secrets.

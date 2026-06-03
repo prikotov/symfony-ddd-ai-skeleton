@@ -239,7 +239,7 @@ composer docs:validate
 > Пояснение: для `GetPositionSnapshotService` классификация двойная намеренно. **ADAPT/example-only** относится к структуре bridge (consumer-owned interface → Integration service → QueryBus другого module), а **REJECT** — к конкретному файлу с T-Invest/Portfolio vocabulary.
 
 **Ключевой observation:** Вся Integration bridge строится на принципе:
-1. Consumer module объявляет interface в `Domain/Service/Integration/`
+1. Consumer module объявляет interface в `Domain/Service/{Context}/`
 2. Consumer module реализует в `Integration/Service/`
 3. Реализация дергает `QueryBusComponentInterface` другого модуля
 4. Между DTO модулей нет shared dependency — маппинг в Integration слое

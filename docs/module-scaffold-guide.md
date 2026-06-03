@@ -38,7 +38,7 @@ Keep the module small, neutral and layered; move project-specific business rules
    - Keep permission decisions out of controllers.
    - Do not add production login, registration, default users, passwords or RBAC by default.
 8. **Bridge modules through consumer-owned contracts**
-   - The consuming module owns the interface under `Domain/Service/Integration`.
+   - The consuming module owns the interface under `Domain/Service/{Context}`.
    - The implementation lives in the consuming module's `Integration` layer.
    - The implementation calls another module's Application query/DTO, not its Domain model.
 9. **Validate**
@@ -75,7 +75,7 @@ Start from these working examples before adding new code:
   [`Voter`](../apps/web/src/Module/User/Security/UserProfile/Voter.php),
   [`Grant`](../apps/web/src/Module/User/Security/UserProfile/Grant.php).
 - User integration bridge classes:
-  [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/Integration/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php),
+  [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php),
   [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php),
   [`QueryBusGetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/Diagnostics/QueryBusGetRuntimeDiagnosticsSnapshotService.php),
   [`GetRuntimeDiagnosticsQuery`](../src/Module/Diagnostics/Application/UseCase/Query/GetRuntimeDiagnostics/GetRuntimeDiagnosticsQuery.php),
@@ -95,7 +95,7 @@ src/Module/Example/
 │   ├── Enum/
 │   ├── Repository/
 │   ├── Service/
-│   │   └── Integration/
+│   │   └── {Context}/
 │   └── ValueObject/
 ├── Infrastructure/
 │   ├── Repository/
@@ -188,7 +188,7 @@ Use the User web module security files as the copy point:
 Use the User → Diagnostics bridge as the copy point:
 
 1. Consumer module owns the contract:
-   [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/Integration/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php).
+   [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php).
 2. Consumer module owns the scalar/value DTO:
    [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php).
 3. Consumer module implements the bridge in Integration:

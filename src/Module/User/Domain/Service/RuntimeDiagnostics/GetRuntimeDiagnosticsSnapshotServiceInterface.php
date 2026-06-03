@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Common\Module\User\Domain\Service\Integration\RuntimeDiagnostics;
+namespace Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics;
 
 use Skeleton\Common\Module\User\Domain\Dto\RuntimeDiagnosticsSnapshotDto;
 

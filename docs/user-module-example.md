@@ -52,7 +52,7 @@ explicit sort whitelist, and add migrations/tests in the concrete project branch
 The User module also contains a small consumer-owned bridge to the Diagnostics module:
 
 - User owns the Domain contract
-  [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/Integration/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php)
+  [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php)
   and scalar snapshot
   [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php).
 - The Integration implementation

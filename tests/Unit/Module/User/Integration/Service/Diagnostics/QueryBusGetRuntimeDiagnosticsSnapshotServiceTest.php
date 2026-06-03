@@ -13,7 +13,7 @@ use Skeleton\Common\Application\Component\QueryBus\QueryBusComponentInterface;
 use Skeleton\Common\Application\Query\QueryInterface;
 use Skeleton\Common\Module\Diagnostics\Application\Dto\RuntimeDiagnosticsDto;
 use Skeleton\Common\Module\Diagnostics\Application\UseCase\Query\GetRuntimeDiagnostics\GetRuntimeDiagnosticsQuery;
-use Skeleton\Common\Module\User\Domain\Service\Integration\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface;
+use Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface;
 use Skeleton\Common\Module\User\Integration\Service\Diagnostics\QueryBusGetRuntimeDiagnosticsSnapshotService;
 
 final class QueryBusGetRuntimeDiagnosticsSnapshotServiceTest extends TestCase
