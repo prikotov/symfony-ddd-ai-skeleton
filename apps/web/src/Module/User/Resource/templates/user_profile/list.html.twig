@@ -1,0 +1,21 @@
+{% trans_default_domain 'user' %}
+
+<section class="user-profile-list">
+    <h1>{{ 'user_profile.list.title'|trans }}</h1>
+    <p>{{ 'user_profile.list.total'|trans({'%count%': userProfiles.total}) }}</p>
+
+    {% if userProfiles.items is empty %}
+        <p>{{ 'user_profile.list.empty'|trans }}</p>
+    {% else %}
+        <ul>
+            {% for userProfile in userProfiles.items %}
+                <li data-user-profile-uuid="{{ userProfile.uuid }}">
+                    <strong>{{ userProfile.displayName }}</strong>
+                    <span>{{ userProfile.contactEmail }}</span>
+                    <span>{{ userProfile.status }}</span>
+                    <time datetime="{{ userProfile.createdAt }}">{{ userProfile.createdAt }}</time>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>

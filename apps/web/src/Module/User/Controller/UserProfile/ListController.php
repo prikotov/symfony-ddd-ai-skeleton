@@ -11,11 +11,12 @@ use Skeleton\Common\Module\User\Application\Dto\UserProfileListDto;
 use Skeleton\Common\Module\User\Application\UseCase\Query\UserProfile\ListUserProfiles\ListUserProfilesQuery;
 use Skeleton\Web\Module\User\Route\UserProfileRoute;
 use Skeleton\Web\Module\User\Security\UserProfile\ActionEnum as UserProfileActionEnum;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Twig\Environment;
 
 #[Route(path: UserProfileRoute::LIST_PATH, name: UserProfileRoute::LIST, methods: [Request::METHOD_GET])]
 #[IsGranted(UserProfileActionEnum::listProfiles->value)]
@@ -24,10 +25,11 @@ final readonly class ListController
 {
     public function __construct(
         private QueryBusComponentInterface $queryBus,
+        private Environment $twig,
     ) {
     }
 
-    public function __invoke(): JsonResponse
+    public function __invoke(): Response
     {
         $userProfiles = $this->queryBus->query(new ListUserProfilesQuery(
             pagination: null,
@@ -37,7 +39,9 @@ final readonly class ListController
             throw new LogicException(sprintf('Expected %s user profile list result.', UserProfileListDto::class));
         }
 
-        return new JsonResponse($this->normalize($userProfiles));
+        return new Response($this->twig->render('@WebUser/user_profile/list.html.twig', [
+            'userProfiles' => $this->normalize($userProfiles),
+        ]));
     }
 
     /**

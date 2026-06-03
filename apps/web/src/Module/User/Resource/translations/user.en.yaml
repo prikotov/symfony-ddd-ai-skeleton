@@ -1,3 +1,5 @@
 user_profile:
   list:
     title: 'User profiles'
+    total: 'Total: %count%'
+    empty: 'No user profiles.'
