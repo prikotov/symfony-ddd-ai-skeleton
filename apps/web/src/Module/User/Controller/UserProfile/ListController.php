@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Skeleton\Web\Module\User\Controller\UserProfile;
 
-use LogicException;
 use Skeleton\Common\Application\Component\QueryBus\QueryBusComponentInterface;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileDto;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileListDto;
@@ -35,9 +34,6 @@ final readonly class ListController
             pagination: null,
             sort: [],
         ));
-        if (!$userProfiles instanceof UserProfileListDto) {
-            throw new LogicException(sprintf('Expected %s user profile list result.', UserProfileListDto::class));
-        }
 
         return new Response($this->twig->render('@WebUser/user_profile/list.html.twig', [
             'userProfiles' => $this->normalize($userProfiles),

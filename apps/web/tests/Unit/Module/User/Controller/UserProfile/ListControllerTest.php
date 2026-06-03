@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Skeleton\Web\Test\Unit\Module\User\Controller\UserProfile;
 
 use DateTimeImmutable;
-use LogicException;
 use Override;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -58,20 +57,6 @@ final class ListControllerTest extends TestCase
         self::assertInstanceOf(Response::class, $response);
         self::assertInstanceOf(ListUserProfilesQuery::class, $queryBus->lastQuery);
         self::assertSame('1:Ada Lovelace:' . $checkedAt->format(DATE_ATOM), $response->getContent());
-    }
-
-    public function testInvokeWithUnexpectedQueryResultFailsFast(): void
-    {
-        $queryBus = new QueryBusStub(new \stdClass());
-        $twig = new Environment(new ArrayLoader([
-            '@WebUser/user_profile/list.html.twig' => 'unused',
-        ]));
-        $controller = new ListController($queryBus, $twig);
-
-        self::expectException(LogicException::class);
-        self::expectExceptionMessage(UserProfileListDto::class);
-
-        $controller();
     }
 }
 
