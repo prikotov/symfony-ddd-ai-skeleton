@@ -210,8 +210,7 @@ flowchart LR
 
     Presentation --> Bus --> Application
     Application --> Domain
-    Application --> RepositoryContract[Domain repository contract]
-    Infrastructure -. implements .-> RepositoryContract
+    Infrastructure -. implements .-> Domain
     Domain --> IntegrationContract[Consumer-owned integration contract]
     Integration -. implements .-> IntegrationContract
     Integration --> OtherApplication
