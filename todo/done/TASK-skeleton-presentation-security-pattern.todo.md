@@ -19,7 +19,7 @@ status: done
 
 ## 0. Простое описание (Human Brief)
 ### Проблема простыми словами (Problem)
-- В проектах повторяется pattern Route/Role/Action/Permission/Grant/Rule/Voter, но в skeleton нет нейтрального reference.
+- В проектах повторяется pattern Route/Role/Action/Permission/Access/Rule/Voter, но в skeleton нет нейтрального reference.
 - Нужно показать проверку прав в Presentation без business-specific permissions.
 
 ### Варианты или путь решения (Solution Sketch)
@@ -34,7 +34,7 @@ status: done
 > Когда я создаю новый Symfony DDD/CQRS проект из skeleton, я хочу иметь этот slice как проверенный reference, чтобы не копировать решения из бизнесового проекта вручную.
 
 ### Goal (Цель по SMART)
-Добавить neutral Presentation security pattern на примере User/demo module: route constants/generator, action, permission, grant/rule/voter.
+Добавить neutral Presentation security pattern на примере User/demo module: route constants/generator, action, permission, access/rule/voter.
 
 ## 2. Context and Scope (Контекст и Границы)
 *   **Где делаем:** `apps/web/src/Module/User` или demo module, security tests/docs.
@@ -45,7 +45,7 @@ status: done
 ### 🔴 Must Have (Обязательно)
 - [x] Route constants/generator pattern нейтрален и documented.
 - [x] Action/Permission enums не используют investment vocabulary.
-- [x] Grant/Rule/Voter отделены от controller logic.
+- [x] Access/Rule/Voter отделены от controller logic.
 - [x] Tests покрывают allow/deny behavior на минимальном сценарии.
 
 ### 🟡 Should Have (Желательно)
@@ -96,7 +96,7 @@ make check
 2. Реализуй задачу согласно описанию, epic boundaries и User module example.
 3. Следуй [Конвенциям](../../docs/conventions/index.md), `AGENTS.md` и [`todo/AGENTS.md`](../AGENTS.md).
 4. Добавь маленький neutral web Presentation security pattern, а не production RBAC/auth subsystem.
-5. Обязательные классы/понятия: route constants/generator, action/permission enum, grant/rule/voter или минимальные equivalents.
+5. Обязательные классы/понятия: route constants/generator, action/permission enum, access/rule/voter или минимальные equivalents.
 6. Не добавляй login/registration/password/default roles/users, object-level ACL, real security firewall changes, secrets или external services.
 7. Controllers/entrypoints не должны содержать permission decision logic; decision logic должна быть вынесена в rule/voter layer.
 8. Tests должны покрывать allow/deny behavior без реального auth subsystem.

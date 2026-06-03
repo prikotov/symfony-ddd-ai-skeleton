@@ -34,7 +34,7 @@ Keep the module small, neutral and layered; move project-specific business rules
    - Sort fields must be whitelisted before applying them to Doctrine or any query builder.
    - Pagination must fail fast on invalid limit/offset.
 7. **Add Presentation security only for web entrypoints**
-   - Put route/action/permission/grant/rule/voter code in the web app module.
+   - Put route/action/permission/access/rule/voter code in the web app module.
    - Keep permission decisions out of controllers.
    - Do not add production login, registration, default users, passwords or RBAC by default.
 8. **Bridge modules through consumer-owned contracts**
@@ -70,7 +70,7 @@ Start from these working examples before adding new code:
   [`PermissionEnum`](../apps/web/src/Module/User/Security/UserProfile/PermissionEnum.php),
   [`Rule`](../apps/web/src/Module/User/Security/UserProfile/Rule.php),
   [`Voter`](../apps/web/src/Module/User/Security/UserProfile/Voter.php),
-  [`Grant`](../apps/web/src/Module/User/Security/UserProfile/Grant.php).
+  [`Access`](../apps/web/src/Module/User/Security/UserProfile/Access.php).
 - User integration bridge classes:
   [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/Integration/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php),
   [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php),
@@ -121,7 +121,7 @@ apps/web/src/Module/Example/
 
 | Layer | Put here | Do not put here |
 | --- | --- | --- |
-| Presentation | Controllers, console commands, routes, voters, grants, request/response formatting | Business rules, repository calls, direct Infrastructure calls |
+| Presentation | Controllers, console commands, routes, voters, access helpers, request/response formatting | Business rules, repository calls, direct Infrastructure calls |
 | Application | Commands, queries, handlers, use-case DTOs, orchestration | Domain invariants, SQL/HTTP/filesystem details, cross-module Domain object usage |
 | Domain | Entities, value objects, domain services, repository interfaces, consumer-owned integration contracts | Symfony services, Doctrine query builders, external API clients, other module Domain models |
 | Infrastructure | Repository implementations, local persistence, cache/filesystem implementations | Business decisions, Presentation authorization rules |
@@ -176,7 +176,7 @@ Use the User web module security files as the copy point:
 3. Define exposed permission values in `PermissionEnum`.
 4. Put decision logic in `Rule`.
 5. Delegate Symfony authorization to `Voter`.
-6. Use `Grant` only as a Presentation helper for UI visibility.
+6. Use `Access` only as a Presentation helper for UI visibility.
 7. Keep controllers limited to `#[IsGranted]`, bus calls and response mapping.
 8. Keep Domain rules separate from Presentation authorization.
 

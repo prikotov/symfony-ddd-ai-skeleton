@@ -42,7 +42,7 @@ pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10
 *   **In Scope (Что делаем):**
     *   Module-level resource path conventions: `Resource/config`, `Resource/templates`, `Resource/translations`, Doctrine mappings/entities.
     *   Kernel/module extension points для Doctrine, Twig и translations; Doctrine `auto_mapping` не включать по умолчанию.
-    *   Presentation module pattern: `Route`, `RoleEnum`, `ActionEnum`, `PermissionEnum`, `Grant`, `Rule`, `Voter`; object-level access — отдельный future slice.
+    *   Presentation module pattern: `Route`, `RoleEnum`, `ActionEnum`, `PermissionEnum`, `Access`, `Rule`, `Voter`; object-level access — отдельный future slice.
     *   Application pattern: `UseCase/Query/*`, `UseCase/Command/*` при необходимости, handler, DTO, mapper.
     *   Domain pattern: model/entity/value object, repository interfaces, criteria, domain service.
     *   Infrastructure pattern: Doctrine/read repository implementation, criteria mapper.
@@ -59,7 +59,7 @@ pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10
 ### 🔴 Must Have (Блокирующие требования)
 - [x] Проведён inventory reusable patterns из `stocks2`: что переносим как framework-level code, что оставляем project-specific domain.
 - [x] Skeleton поддерживает module-local paths для config, Doctrine mappings/entities, Twig templates и translations.
-- [x] Есть нейтральный пример Presentation security pattern: route constants/generator, action, permission, rule, voter, grant.
+- [x] Есть нейтральный пример Presentation security pattern: route constants/generator, action, permission, rule, voter, access helper.
 - [x] Есть canonical Application query handler example в `UseCase/Query`, покрытый тестами.
 - [x] Есть canonical Domain model/repository/criteria example без бизнес-домена `Portfolio`/`TInvest`.
 - [x] Есть Infrastructure repository example с pagination/sorting criteria и tests.
@@ -110,7 +110,7 @@ flowchart LR
 - [x] [TASK-skeleton-repository-criteria-pagination-sort](TASK-skeleton-repository-criteria-pagination-sort.todo.md) — перенести reusable criteria interfaces/traits, sort mapper, pagination DTO/request mapper, whitelist allowed sort fields и tests.
 - [x] [TASK-skeleton-health-query-example](TASK-skeleton-health-query-example.todo.md) — сохранить Health/Diagnostics маленьким canonical read-only Application Query example со слоями и tests.
 - [x] [TASK-skeleton-user-module-ddd-example](TASK-skeleton-user-module-ddd-example.todo.md) — добавить/усилить нейтральный User module example: Domain model, enum, criteria, repository contract, Infrastructure repository, Application query; без production-auth/default credentials.
-- [x] [TASK-skeleton-presentation-security-pattern](TASK-skeleton-presentation-security-pattern.todo.md) — добавить нейтральный `Route/Role/Action/Permission/Grant/Rule/Voter` pattern на примере User или demo module.
+- [x] [TASK-skeleton-presentation-security-pattern](TASK-skeleton-presentation-security-pattern.todo.md) — добавить нейтральный `Route/Role/Action/Permission/Access/Rule/Voter` pattern на примере User или demo module.
 - [x] [TASK-skeleton-integration-bridge-example](TASK-skeleton-integration-bridge-example.todo.md) — добавить пример межмодульного bridge через consumer-owned integration interface.
 - [x] [TASK-skeleton-module-scaffold-docs](TASK-skeleton-module-scaffold-docs.todo.md) — описать checklist создания нового module и границы “generic skeleton vs project-specific domain”.
 
