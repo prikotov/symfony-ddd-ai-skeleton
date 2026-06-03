@@ -29,7 +29,8 @@ It is not a production authentication subsystem.
   [`services.yaml`](../src/Module/User/Resource/config/services.yaml) and
   [`config/modules.php`](../config/modules.php).
   The web [`UserModule`](../apps/web/src/Module/User/UserModule.php) also exposes the module-local Twig namespace
-  `WebUser` for templates under `apps/web/src/Module/User/Resource/templates`.
+  `WebUser` for templates under `apps/web/src/Module/User/Resource/templates` and the module-local translations path
+  `apps/web/src/Module/User/Resource/translations`.
 - Web Presentation security reference:
   [`UserProfileRoute`](../apps/web/src/Module/User/Route/UserProfileRoute.php),
   [`ActionEnum`](../apps/web/src/Module/User/Security/UserProfile/ActionEnum.php),

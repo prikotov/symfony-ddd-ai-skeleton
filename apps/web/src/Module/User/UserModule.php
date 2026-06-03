@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Skeleton\Web\Module\User;
 
 use Override;
+use Skeleton\Common\Component\ModuleSystem\Extension\TranslationInterface;
 use Skeleton\Common\Component\ModuleSystem\Extension\TwigInterface;
 use Skeleton\Common\Component\ModuleSystem\ModuleInterface;
 
-final readonly class UserModule implements ModuleInterface, TwigInterface
+final readonly class UserModule implements ModuleInterface, TranslationInterface, TwigInterface
 {
     #[Override]
     public function getModuleDir(): string
@@ -39,6 +40,21 @@ final readonly class UserModule implements ModuleInterface, TwigInterface
      */
     #[Override]
     public function getAdditionalTemplatesPaths(): array
+    {
+        return [];
+    }
+
+    #[Override]
+    public function getBaseTranslationsPath(): string
+    {
+        return $this->getModuleDir() . '/Resource/translations';
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    #[Override]
+    public function getAdditionalTranslationsPaths(): array
     {
         return [];
     }
