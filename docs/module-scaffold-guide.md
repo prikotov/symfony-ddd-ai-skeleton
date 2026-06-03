@@ -210,8 +210,8 @@ flowchart LR
 
     Presentation --> Bus --> Application
     Application --> Domain
-    Infrastructure -. implements .-> Domain
-    Integration -. implements .-> Domain
+    Infrastructure -. depends on contracts .-> Domain
+    Integration -. depends on contracts .-> Domain
     Integration --> OtherApplication
 ```
 

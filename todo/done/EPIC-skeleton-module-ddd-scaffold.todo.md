@@ -89,12 +89,19 @@ pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/10
 ## 4. Solution Design (Техническое решение)
 ```mermaid
 flowchart LR
-    Web[Presentation module] --> App[Application UseCase]
-    App --> Domain[Domain model/service/contracts]
-    App --> Infra[Infrastructure repository]
-    Domain --> IntegrationContract[Domain Service Interface]
-    Integration[Integration service] -. implements .-> IntegrationContract
-    Integration --> OtherApp[Other module Application UseCase]
+    Presentation[Presentation module]
+    Bus[CommandBus / QueryBus]
+    Application[Application UseCase]
+    Domain[Domain contracts and invariants]
+    Infrastructure[Infrastructure implementation]
+    Integration[Integration bridge]
+    OtherApplication[Other module Application UseCase]
+
+    Presentation --> Bus --> Application
+    Application --> Domain
+    Infrastructure -. depends on contracts .-> Domain
+    Integration -. depends on contracts .-> Domain
+    Integration --> OtherApplication
 ```
 
 Предпочтительный подход:
