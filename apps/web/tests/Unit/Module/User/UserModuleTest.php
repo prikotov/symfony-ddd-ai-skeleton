@@ -23,7 +23,7 @@ final class UserModuleTest extends TestCase
         self::assertSame($module->getModuleDir() . '/Resource/config', $module->getModuleConfigPath());
         self::assertSame($module->getModuleDir() . '/Resource/templates', $module->getBaseTemplatesPath());
         self::assertDirectoryExists($module->getBaseTemplatesPath());
-        self::assertSame('WebUser', $module->getBaseTwigNamespace());
+        self::assertSame('web.user', $module->getBaseTwigNamespace());
         self::assertSame([], $module->getAdditionalTemplatesPaths());
         self::assertSame($module->getModuleDir() . '/Resource/translations', $module->getBaseTranslationsPath());
         self::assertDirectoryExists($module->getBaseTranslationsPath());

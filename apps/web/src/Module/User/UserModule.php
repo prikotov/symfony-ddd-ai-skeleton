@@ -32,7 +32,7 @@ final readonly class UserModule implements ModuleInterface, TranslationInterface
     #[Override]
     public function getBaseTwigNamespace(): string
     {
-        return 'WebUser';
+        return 'web.user';
     }
 
     /**

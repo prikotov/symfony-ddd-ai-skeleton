@@ -48,7 +48,7 @@ final class ListControllerTest extends TestCase
             ),
         ], total: 1));
         $twig = new Environment(new ArrayLoader([
-            '@WebUser/user_profile/list.html.twig' => '{{ userProfiles.total }}:{{ userProfiles.items[0].displayName }}:{{ userProfiles.items[0].createdAt }}',
+            '@web.user/user_profile/list.html.twig' => '{{ userProfiles.total }}:{{ userProfiles.items[0].displayName }}:{{ userProfiles.items[0].createdAt }}',
         ]));
         $controller = new ListController($queryBus, $twig);
 

@@ -29,7 +29,7 @@ It is not a production authentication subsystem.
   [`services.yaml`](../src/Module/User/Resource/config/services.yaml) and
   [`config/modules.php`](../config/modules.php).
   The web [`UserModule`](../apps/web/src/Module/User/UserModule.php) also exposes the module-local Twig namespace
-  `WebUser` for templates under `apps/web/src/Module/User/Resource/templates` and the module-local translations path
+  `web.user` for templates under `apps/web/src/Module/User/Resource/templates` and the module-local translations path
   `apps/web/src/Module/User/Resource/translations`.
 - Web Presentation security reference:
   [`UserProfileRoute`](../apps/web/src/Module/User/Route/UserProfileRoute.php),
@@ -74,7 +74,7 @@ It is not a production authentication or RBAC subsystem:
 
 - `ActionEnum` is the controller-level operation (`user.user_profile.list`).
 - `PermissionEnum` is the permission checked by the Presentation `Rule`.
-- `ListController` renders the module-local Twig template `@WebUser/user_profile/list.html.twig`; it does not return
+- `ListController` renders the module-local Twig template `@web.user/user_profile/list.html.twig`; it does not return
   JSON and does not contain business logic.
 - `Voter` delegates the decision to `Rule`; controllers use `#[IsGranted]` and do not contain permission decision logic.
 - `Grant` is a convenience wrapper for templates or other Presentation services that need to show or hide UI actions.

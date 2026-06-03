@@ -35,7 +35,7 @@ final readonly class ListController
             sort: [],
         ));
 
-        return new Response($this->twig->render('@WebUser/user_profile/list.html.twig', [
+        return new Response($this->twig->render('@web.user/user_profile/list.html.twig', [
             'userProfiles' => $this->normalize($userProfiles),
         ]));
     }
