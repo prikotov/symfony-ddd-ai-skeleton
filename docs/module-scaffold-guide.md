@@ -211,8 +211,7 @@ flowchart LR
     Presentation --> Bus --> Application
     Application --> Domain
     Infrastructure -. implements .-> Domain
-    Domain --> IntegrationContract[Consumer-owned integration contract]
-    Integration -. implements .-> IntegrationContract
+    Integration -. implements .-> Domain
     Integration --> OtherApplication
 ```
 
