@@ -8,7 +8,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 final readonly class UserProfileRoute
 {
-    public const string LIST = 'web_user_profile_list';
+    public const string LIST = 'user_profile_list';
     public const string LIST_PATH = '/user-profiles';
 
     public function __construct(

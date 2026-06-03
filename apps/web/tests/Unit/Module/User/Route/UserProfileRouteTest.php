@@ -12,6 +12,8 @@ final class UserProfileRouteTest extends TestCase
 {
     public function testListGeneratesUserProfileListRoute(): void
     {
+        self::assertSame('user_profile_list', UserProfileRoute::LIST);
+
         $router = $this->createMock(RouterInterface::class);
         $router
             ->expects(self::once())
