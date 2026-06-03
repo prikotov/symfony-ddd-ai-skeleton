@@ -9,7 +9,6 @@ use Override;
 use PHPUnit\Framework\TestCase;
 use Skeleton\Common\Application\Dto\PaginationDto;
 use Skeleton\Common\Component\Repository\Enum\SortEnum;
-use Skeleton\Common\Exception\ValidationExceptionInterface;
 use Skeleton\Common\Module\User\Application\UseCase\Query\UserProfile\ListUserProfiles\ListUserProfilesQuery;
 use Skeleton\Common\Module\User\Application\UseCase\Query\UserProfile\ListUserProfiles\ListUserProfilesQueryHandler;
 use Skeleton\Common\Module\User\Domain\Entity\UserProfileModel;
@@ -52,32 +51,6 @@ final class ListUserProfilesQueryHandlerTest extends TestCase
             ['displayName' => SortEnum::asc, 'uuid' => SortEnum::asc],
             $repository->lastListCriteria->getSort(),
         );
-    }
-
-    public function testInvokeWithInvalidLimitThrowsValidationException(): void
-    {
-        $handler = new ListUserProfilesQueryHandler(new UserProfileRepositoryStub([], total: 0));
-
-        self::expectException(ValidationExceptionInterface::class);
-        self::expectExceptionMessage('Pagination limit must be greater than zero.');
-
-        $handler(new ListUserProfilesQuery(
-            pagination: new PaginationDto(limit: 0, offset: 0),
-            sort: [],
-        ));
-    }
-
-    public function testInvokeWithInvalidOffsetThrowsValidationException(): void
-    {
-        $handler = new ListUserProfilesQueryHandler(new UserProfileRepositoryStub([], total: 0));
-
-        self::expectException(ValidationExceptionInterface::class);
-        self::expectExceptionMessage('Pagination offset must not be negative.');
-
-        $handler(new ListUserProfilesQuery(
-            pagination: new PaginationDto(limit: 10, offset: -1),
-            sort: [],
-        ));
     }
 
     private function createUserProfile(

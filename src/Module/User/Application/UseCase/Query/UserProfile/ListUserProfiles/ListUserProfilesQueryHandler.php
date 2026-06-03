@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Skeleton\Common\Module\User\Application\UseCase\Query\UserProfile\ListUserProfiles;
 
-use Skeleton\Common\Application\Dto\PaginationDto;
-use Skeleton\Common\Exception\ValidationException;
-use Skeleton\Common\Exception\ValidationExceptionInterface;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileDto;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileListDto;
 use Skeleton\Common\Module\User\Domain\Entity\UserProfileModel;
@@ -22,13 +19,8 @@ final readonly class ListUserProfilesQueryHandler
     ) {
     }
 
-    /**
-     * @throws ValidationExceptionInterface
-     */
     public function __invoke(ListUserProfilesQuery $query): UserProfileListDto
     {
-        $this->assertPaginationValid($query->pagination);
-
         $criteria = new UserProfileFindCriteria();
         $total = $this->userProfiles->getCountByCriteria($criteria);
 
@@ -48,24 +40,6 @@ final readonly class ListUserProfilesQueryHandler
             items: $items,
             total: $total,
         );
-    }
-
-    /**
-     * @throws ValidationExceptionInterface
-     */
-    private function assertPaginationValid(?PaginationDto $pagination): void
-    {
-        if ($pagination === null) {
-            return;
-        }
-
-        if ($pagination->limit <= 0) {
-            throw new ValidationException('Pagination limit must be greater than zero.');
-        }
-
-        if ($pagination->offset < 0) {
-            throw new ValidationException('Pagination offset must not be negative.');
-        }
     }
 
     private function mapUserProfile(UserProfileModel $userProfile): UserProfileDto

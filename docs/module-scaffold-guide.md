@@ -32,7 +32,7 @@ Keep the module small, neutral and layered; move project-specific business rules
 6. **Add repository primitives only where needed**
    - Criteria contracts live in Domain.
    - Sort fields must be whitelisted before applying them to Doctrine or any query builder.
-   - Pagination must fail fast on invalid limit/offset.
+   - Criteria setters must fail fast on invalid pagination limit/offset.
 7. **Add Presentation security only for web entrypoints**
    - Put route/action/permission/grant/rule/voter code in the web app module.
    - Keep permission decisions out of controllers.

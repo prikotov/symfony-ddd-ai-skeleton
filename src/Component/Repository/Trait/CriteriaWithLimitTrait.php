@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Skeleton\Common\Component\Repository\Trait;
 
+use InvalidArgumentException;
+
 /**
  * Default implementation of {@see \Skeleton\Common\Component\Repository\CriteriaWithLimitInterface}.
  *
@@ -15,6 +17,10 @@ trait CriteriaWithLimitTrait
 
     public function setLimit(int $limit): void
     {
+        if ($limit <= 0) {
+            throw new InvalidArgumentException('Criteria limit must be greater than zero.');
+        }
+
         $this->limit = $limit;
     }
 

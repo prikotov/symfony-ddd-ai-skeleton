@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Skeleton\Common\Component\Repository\Trait;
 
+use InvalidArgumentException;
+
 /**
  * Default implementation of {@see \Skeleton\Common\Component\Repository\CriteriaWithOffsetInterface}.
  *
@@ -15,6 +17,10 @@ trait CriteriaWithOffsetTrait
 
     public function setOffset(int $offset): void
     {
+        if ($offset < 0) {
+            throw new InvalidArgumentException('Criteria offset must not be negative.');
+        }
+
         $this->offset = $offset;
     }
 
