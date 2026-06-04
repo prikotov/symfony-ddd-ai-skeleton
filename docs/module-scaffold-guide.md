@@ -38,7 +38,7 @@ Keep the module small, neutral and layered; move project-specific business rules
    - Keep permission decisions out of controllers.
    - Do not add production login, registration, default users, passwords or RBAC by default.
 8. **Bridge modules through consumer-owned contracts**
-   - The consuming module owns the interface under `Domain/Service/{Context}`.
+   - The consuming module owns the Domain service contract.
    - The implementation lives in the consuming module's `Integration` layer.
    - The implementation calls another module's Application query/DTO, not its Domain model.
 9. **Validate**
@@ -105,7 +105,6 @@ src/Module/Example/
 │   ├── Enum/
 │   ├── Repository/
 │   ├── Service/
-│   │   └── {Context}/
 │   └── ValueObject/
 ├── Infrastructure/
 │   ├── Repository/
