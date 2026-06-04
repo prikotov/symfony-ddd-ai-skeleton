@@ -25,12 +25,4 @@ final readonly class CriteriaMapper
             default => throw new ConfigurationException('Mapper not found for ' . $criteria::class),
         };
     }
-
-    public function mapFilters(UserProfileRepository $repository, UserProfileCriteriaInterface $criteria): QueryBuilder
-    {
-        return match ($criteria::class) {
-            UserProfileFindCriteria::class => $this->userProfileFindCriteriaMapper->mapFilters($repository, $criteria),
-            default => throw new ConfigurationException('Mapper not found for ' . $criteria::class),
-        };
-    }
 }

@@ -79,9 +79,14 @@ final class UserProfileRepository extends ServiceEntityRepository implements Use
     #[Override]
     public function getCountByCriteria(UserProfileCriteriaInterface $criteria): int
     {
-        $queryBuilder = $this
-            ->getQueryBuilderByFilters($criteria)
-            ->select('COUNT(userProfile.id)');
+        $queryBuilder = $this->getQueryBuilderByCriteria($criteria);
+        $alias = $queryBuilder->getRootAliases()[0];
+
+        $queryBuilder
+            ->select(sprintf('COUNT(%s.id)', $alias))
+            ->resetDQLPart('orderBy')
+            ->setFirstResult(0)
+            ->setMaxResults(null);
 
         return (int) $queryBuilder->getQuery()->getSingleScalarResult();
     }
@@ -96,18 +101,6 @@ final class UserProfileRepository extends ServiceEntityRepository implements Use
     {
         try {
             return $this->criteriaMapper->map($this, $criteria);
-        } catch (QueryException $exception) {
-            throw new InfrastructureException(
-                message: sprintf('Failed to build query for %s: %s', $this->getEntityName(), $exception->getMessage()),
-                previous: $exception,
-            );
-        }
-    }
-
-    private function getQueryBuilderByFilters(UserProfileCriteriaInterface $criteria): QueryBuilder
-    {
-        try {
-            return $this->criteriaMapper->mapFilters($this, $criteria);
         } catch (QueryException $exception) {
             throw new InfrastructureException(
                 message: sprintf('Failed to build query for %s: %s', $this->getEntityName(), $exception->getMessage()),
