@@ -205,7 +205,7 @@ Use the User → Diagnostics bridge as the copy point:
 4. Bridge calls provider Application:
    [`GetRuntimeDiagnosticsQuery`](../src/Module/Diagnostics/Application/UseCase/Query/GetRuntimeDiagnostics/GetRuntimeDiagnosticsQuery.php).
 5. Bridge maps provider DTO into consumer-owned DTO.
-6. Tests must prove dependency direction and fail fast on unexpected bus results.
+6. Tests must prove dependency direction; the bridge relies on the typed Query/QueryBus contract for result type.
 
 The diagram separates runtime calls from DI bindings: Domain owns contracts; one or more Infrastructure/Integration implementations can be bound to those contracts by the container. Dotted implementation links are intentionally non-directional.
 

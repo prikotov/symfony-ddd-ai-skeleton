@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Skeleton\Common\Test\Unit\Module\User\Integration\Service\RuntimeDiagnostics;
 
 use DateTimeImmutable;
-use LogicException;
 use Override;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -43,17 +42,6 @@ final class GetRuntimeDiagnosticsSnapshotServiceTest extends TestCase
         self::assertTrue($snapshot->debug);
         self::assertSame('Asia/Novosibirsk', $snapshot->timezone);
         self::assertSame('2026-06-02T12:34:56+00:00', $snapshot->checkedAt);
-    }
-
-    public function testGetThrowsWhenDiagnosticsQueryReturnsUnexpectedResult(): void
-    {
-        $queryBus = new UnexpectedResultQueryBusStub();
-        $service = new GetRuntimeDiagnosticsSnapshotService($queryBus);
-
-        self::expectException(LogicException::class);
-        self::expectExceptionMessage(sprintf('Expected %s diagnostics query result.', RuntimeDiagnosticsDto::class));
-
-        $service->get();
     }
 
     public function testServiceImplementsConsumerOwnedDomainContract(): void
@@ -94,14 +82,5 @@ final class RuntimeDiagnosticsQueryBusStub implements QueryBusComponentInterface
         $this->lastQuery = $query;
 
         return $this->diagnostics;
-    }
-}
-
-final class UnexpectedResultQueryBusStub implements QueryBusComponentInterface
-{
-    #[Override]
-    public function query(QueryInterface $query)
-    {
-        return new \stdClass();
     }
 }

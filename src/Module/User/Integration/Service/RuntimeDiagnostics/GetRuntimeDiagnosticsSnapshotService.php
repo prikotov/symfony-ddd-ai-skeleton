@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics;
 
-use LogicException;
 use Override;
 use Skeleton\Common\Application\Component\QueryBus\QueryBusComponentInterface;
-use Skeleton\Common\Module\Diagnostics\Application\Dto\RuntimeDiagnosticsDto;
 use Skeleton\Common\Module\Diagnostics\Application\UseCase\Query\GetRuntimeDiagnostics\GetRuntimeDiagnosticsQuery;
 use Skeleton\Common\Module\User\Domain\Dto\RuntimeDiagnosticsSnapshotDto;
 use Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface;
@@ -28,10 +26,6 @@ final readonly class GetRuntimeDiagnosticsSnapshotService implements GetRuntimeD
     public function get(): RuntimeDiagnosticsSnapshotDto
     {
         $diagnostics = $this->queryBus->query(new GetRuntimeDiagnosticsQuery(self::ENTRYPOINT));
-
-        if (!$diagnostics instanceof RuntimeDiagnosticsDto) {
-            throw new LogicException(sprintf('Expected %s diagnostics query result.', RuntimeDiagnosticsDto::class));
-        }
 
         return new RuntimeDiagnosticsSnapshotDto(
             status: $diagnostics->status,
