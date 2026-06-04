@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Common\Test\Unit\Module\User\Integration\Service\Diagnostics;
+namespace Skeleton\Common\Test\Unit\Module\User\Integration\Service\RuntimeDiagnostics\Diagnostics;
 
 use DateTimeImmutable;
 use LogicException;
@@ -14,9 +14,9 @@ use Skeleton\Common\Application\Query\QueryInterface;
 use Skeleton\Common\Module\Diagnostics\Application\Dto\RuntimeDiagnosticsDto;
 use Skeleton\Common\Module\Diagnostics\Application\UseCase\Query\GetRuntimeDiagnostics\GetRuntimeDiagnosticsQuery;
 use Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface;
-use Skeleton\Common\Module\User\Integration\Service\Diagnostics\QueryBusGetRuntimeDiagnosticsSnapshotService;
+use Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics\Diagnostics\GetRuntimeDiagnosticsSnapshotService;
 
-final class QueryBusGetRuntimeDiagnosticsSnapshotServiceTest extends TestCase
+final class GetRuntimeDiagnosticsSnapshotServiceTest extends TestCase
 {
     public function testGetUsesDiagnosticsQueryEntrypointAndMapsApplicationDto(): void
     {
@@ -30,7 +30,7 @@ final class QueryBusGetRuntimeDiagnosticsSnapshotServiceTest extends TestCase
             timezone: 'Asia/Novosibirsk',
             checkedAt: $checkedAt,
         ));
-        $service = new QueryBusGetRuntimeDiagnosticsSnapshotService($queryBus);
+        $service = new GetRuntimeDiagnosticsSnapshotService($queryBus);
 
         $snapshot = $service->get();
 
@@ -45,11 +45,10 @@ final class QueryBusGetRuntimeDiagnosticsSnapshotServiceTest extends TestCase
         self::assertSame('2026-06-02T12:34:56+00:00', $snapshot->checkedAt);
     }
 
-
     public function testGetThrowsWhenDiagnosticsQueryReturnsUnexpectedResult(): void
     {
         $queryBus = new UnexpectedResultQueryBusStub();
-        $service = new QueryBusGetRuntimeDiagnosticsSnapshotService($queryBus);
+        $service = new GetRuntimeDiagnosticsSnapshotService($queryBus);
 
         self::expectException(LogicException::class);
         self::expectExceptionMessage(sprintf('Expected %s diagnostics query result.', RuntimeDiagnosticsDto::class));
@@ -61,13 +60,13 @@ final class QueryBusGetRuntimeDiagnosticsSnapshotServiceTest extends TestCase
     {
         self::assertContains(
             GetRuntimeDiagnosticsSnapshotServiceInterface::class,
-            class_implements(QueryBusGetRuntimeDiagnosticsSnapshotService::class),
+            class_implements(GetRuntimeDiagnosticsSnapshotService::class),
         );
     }
 
     public function testServiceDoesNotDependOnDiagnosticsDomainOrInfrastructure(): void
     {
-        $reflection = new ReflectionClass(QueryBusGetRuntimeDiagnosticsSnapshotService::class);
+        $reflection = new ReflectionClass(GetRuntimeDiagnosticsSnapshotService::class);
         $fileName = $reflection->getFileName();
 
         self::assertIsString($fileName);

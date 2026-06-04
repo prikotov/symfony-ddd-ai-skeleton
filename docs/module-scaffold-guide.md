@@ -87,7 +87,7 @@ Start from these working examples before adding new code:
 - User integration bridge classes:
   [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php),
   [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php),
-  [`QueryBusGetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/Diagnostics/QueryBusGetRuntimeDiagnosticsSnapshotService.php),
+  [`GetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/RuntimeDiagnostics/Diagnostics/GetRuntimeDiagnosticsSnapshotService.php),
   [`GetRuntimeDiagnosticsQuery`](../src/Module/Diagnostics/Application/UseCase/Query/GetRuntimeDiagnostics/GetRuntimeDiagnosticsQuery.php),
   [`RuntimeDiagnosticsDto`](../src/Module/Diagnostics/Application/Dto/RuntimeDiagnosticsDto.php).
 
@@ -201,7 +201,7 @@ Use the User → Diagnostics bridge as the copy point:
 2. Consumer module owns the scalar/value DTO:
    [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php).
 3. Consumer module implements the bridge in Integration:
-   [`QueryBusGetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/Diagnostics/QueryBusGetRuntimeDiagnosticsSnapshotService.php).
+   [`GetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/RuntimeDiagnostics/Diagnostics/GetRuntimeDiagnosticsSnapshotService.php).
 4. Bridge calls provider Application:
    [`GetRuntimeDiagnosticsQuery`](../src/Module/Diagnostics/Application/UseCase/Query/GetRuntimeDiagnostics/GetRuntimeDiagnosticsQuery.php).
 5. Bridge maps provider DTO into consumer-owned DTO.

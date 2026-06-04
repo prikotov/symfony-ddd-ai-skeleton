@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Common\Module\User\Integration\Service\Diagnostics;
+namespace Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics\Diagnostics;
 
 use LogicException;
 use Override;
@@ -15,7 +15,7 @@ use Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics\GetRuntimeDiag
 /**
  * Calls the Diagnostics Application query and maps its DTO to the User-owned snapshot.
  */
-final readonly class QueryBusGetRuntimeDiagnosticsSnapshotService implements GetRuntimeDiagnosticsSnapshotServiceInterface
+final readonly class GetRuntimeDiagnosticsSnapshotService implements GetRuntimeDiagnosticsSnapshotServiceInterface
 {
     private const string ENTRYPOINT = 'user-integration-bridge';
 

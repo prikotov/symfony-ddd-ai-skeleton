@@ -9,7 +9,7 @@ use Skeleton\Common\Kernel;
 use Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileRepositoryInterface;
 use Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface;
 use Skeleton\Common\Module\User\Infrastructure\Repository\UserProfile\UserProfileRepository;
-use Skeleton\Common\Module\User\Integration\Service\Diagnostics\QueryBusGetRuntimeDiagnosticsSnapshotService;
+use Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics\Diagnostics\GetRuntimeDiagnosticsSnapshotService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -30,7 +30,7 @@ final class UserModuleWiringTest extends KernelTestCase
 
         $service = $kernel->getContainer()->get(GetRuntimeDiagnosticsSnapshotServiceInterface::class);
 
-        self::assertInstanceOf(QueryBusGetRuntimeDiagnosticsSnapshotService::class, $service);
+        self::assertInstanceOf(GetRuntimeDiagnosticsSnapshotService::class, $service);
     }
 
     #[Override]
