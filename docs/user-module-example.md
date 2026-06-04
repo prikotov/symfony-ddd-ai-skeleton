@@ -59,6 +59,8 @@ The User module demonstrates the default persistence-oriented module shape:
 - The entity remains in `Domain/Entity`, while QueryBuilder and database criteria mapping stay in `Infrastructure`.
 - Reusable Doctrine primitives (`id`, `uuid`, `ins_ts`) live in `src/Component/Doctrine/*`; module-specific fields stay
   inside the entity.
+- Creation timestamps should come from `Psr\Clock\ClockInterface` in the factory/use case that creates the entity; the
+  entity itself does not call a static `ClockFactory` or the service container.
 - The Domain repository contract and criteria do not depend on Doctrine.
 - Sort fields are whitelisted in Infrastructure before they reach Doctrine.
 - The repository calls `persist()` but does not flush; transaction boundaries stay in Application command handlers.

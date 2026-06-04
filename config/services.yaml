@@ -28,3 +28,10 @@ services:
     class: Skeleton\Common\Infrastructure\Component\Event\SymfonyMessengerEventBus
     arguments:
       $eventBus: '@event.bus'
+
+  Skeleton\Common\Component\Clock\Clock:
+    arguments:
+      $timezone: '%timezone%'
+
+  Psr\Clock\ClockInterface:
+    alias: Skeleton\Common\Component\Clock\Clock

@@ -52,6 +52,9 @@ Start from these working examples before adding new code:
 
 - Minimal read-only Query flow: [`docs/diagnostics-query-flow.md`](diagnostics-query-flow.md).
 - Neutral DDD/CQRS User module: [`docs/user-module-example.md`](user-module-example.md).
+- PSR clock primitive: [`Clock`](../src/Component/Clock/Clock.php) is bound to `Psr\Clock\ClockInterface` and uses the
+  project `timezone` parameter. Pass `ClockInterface::now()` into factories/use cases instead of reading time from
+  entities through static container access.
 - Module extension interfaces under `src/Component/ModuleSystem/Extension/*`:
   [`DoctrineInterface`](../src/Component/ModuleSystem/Extension/DoctrineInterface.php),
   [`TwigInterface`](../src/Component/ModuleSystem/Extension/TwigInterface.php),
