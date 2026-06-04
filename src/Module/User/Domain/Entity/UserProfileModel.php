@@ -7,10 +7,15 @@ namespace Skeleton\Common\Module\User\Domain\Entity;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Skeleton\Common\Component\Doctrine\Model\IdModelInterface;
+use Skeleton\Common\Component\Doctrine\Model\InsTsModelInterface;
+use Skeleton\Common\Component\Doctrine\Model\UuidModelInterface;
+use Skeleton\Common\Component\Doctrine\Trait\IdTrait;
+use Skeleton\Common\Component\Doctrine\Trait\InsTsTrait;
+use Skeleton\Common\Component\Doctrine\Trait\UuidTrait;
 use Skeleton\Common\Module\User\Domain\Enum\UserProfileStatusEnum;
 use Skeleton\Common\Module\User\Domain\ValueObject\ContactEmailVo;
 use Skeleton\Common\Module\User\Domain\ValueObject\DisplayNameVo;
-use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Uid\Uuid;
 
 /**
@@ -23,17 +28,13 @@ use Symfony\Component\Uid\Uuid;
 #[ORM\Index(name: 'i_user_profile__status', columns: ['status'])]
 #[ORM\Index(name: 'i_user_profile__display_name', columns: ['display_name'])]
 #[ORM\Index(name: 'i_user_profile__contact_email', columns: ['contact_email'])]
-#[ORM\Index(name: 'i_user_profile__created_at', columns: ['created_at'])]
+#[ORM\Index(name: 'i_user_profile__ins_ts', columns: ['ins_ts'])]
 #[ORM\UniqueConstraint(name: 'ui_user_profile__uuid', columns: ['uuid'])]
-class UserProfileModel
+class UserProfileModel implements IdModelInterface, UuidModelInterface, InsTsModelInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: Types::INTEGER)]
-    private ?int $id = null;
-
-    #[ORM\Column(type: UuidType::NAME, unique: true)]
-    private Uuid $uuid;
+    use IdTrait;
+    use UuidTrait;
+    use InsTsTrait;
 
     #[ORM\Column(name: 'display_name', type: Types::STRING, length: DisplayNameVo::MAX_LENGTH)]
     private string $displayName;
@@ -43,9 +44,6 @@ class UserProfileModel
 
     #[ORM\Column(type: Types::SMALLINT, enumType: UserProfileStatusEnum::class)]
     private UserProfileStatusEnum $status;
-
-    #[ORM\Column(name: 'created_at', type: Types::DATETIME_IMMUTABLE)]
-    private DateTimeImmutable $createdAt;
 
     public function __construct(
         Uuid $uuid,
@@ -58,17 +56,7 @@ class UserProfileModel
         $this->displayName = $displayName->toString();
         $this->contactEmail = $contactEmail->toString();
         $this->status = $status;
-        $this->createdAt = $createdAt;
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getUuid(): Uuid
-    {
-        return $this->uuid;
+        $this->insTs = $createdAt;
     }
 
     public function getDisplayName(): DisplayNameVo
@@ -108,6 +96,6 @@ class UserProfileModel
 
     public function getCreatedAt(): DateTimeImmutable
     {
-        return $this->createdAt;
+        return $this->getInsTs();
     }
 }

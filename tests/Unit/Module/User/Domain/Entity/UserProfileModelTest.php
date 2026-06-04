@@ -6,11 +6,15 @@ namespace Skeleton\Common\Test\Unit\Module\User\Domain\Entity;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use Skeleton\Common\Component\Doctrine\Model\IdModelInterface;
+use Skeleton\Common\Component\Doctrine\Model\InsTsModelInterface;
+use Skeleton\Common\Component\Doctrine\Model\UuidModelInterface;
 use Skeleton\Common\Module\User\Domain\Entity\UserProfileModel;
 use Skeleton\Common\Module\User\Domain\Enum\UserProfileStatusEnum;
 use Skeleton\Common\Module\User\Domain\ValueObject\ContactEmailVo;
 use Skeleton\Common\Module\User\Domain\ValueObject\DisplayNameVo;
 use Symfony\Component\Uid\Uuid;
+use ValueError;
 
 final class UserProfileModelTest extends TestCase
 {
@@ -28,10 +32,24 @@ final class UserProfileModelTest extends TestCase
         );
 
         self::assertSame($uuid, $userProfile->getUuid());
+        self::assertInstanceOf(IdModelInterface::class, $userProfile);
+        self::assertInstanceOf(UuidModelInterface::class, $userProfile);
+        self::assertInstanceOf(InsTsModelInterface::class, $userProfile);
         self::assertSame('Ada Lovelace', $userProfile->getDisplayName()->toString());
         self::assertSame('ada@example.com', $userProfile->getContactEmail()->toString());
         self::assertSame(UserProfileStatusEnum::draft, $userProfile->getStatus());
+        self::assertSame($createdAt, $userProfile->getInsTs());
         self::assertSame($createdAt, $userProfile->getCreatedAt());
+    }
+
+    public function testGetIdBeforePersistenceThrowsValueError(): void
+    {
+        $userProfile = $this->createUserProfile();
+
+        self::expectException(ValueError::class);
+        self::expectExceptionMessage('Entity is not persisted yet.');
+
+        $userProfile->getId();
     }
 
     public function testRenameAndChangeContactEmailUpdateProfileFields(): void

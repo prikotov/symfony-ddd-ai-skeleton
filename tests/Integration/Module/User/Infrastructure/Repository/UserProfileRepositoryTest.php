@@ -68,7 +68,9 @@ final class UserProfileRepositoryTest extends KernelTestCase
         $userProfile = $this->repository->getByUuid($uuid);
 
         self::assertInstanceOf(UserProfileModel::class, $userProfile);
+        self::assertGreaterThan(0, $userProfile->getId());
         self::assertSame('Ada Lovelace', $userProfile->getDisplayName()->toString());
+        self::assertSame('2026-06-02 00:00:00', $userProfile->getInsTs()->format('Y-m-d H:i:s'));
     }
 
     public function testGetByCriteriaFiltersBySearchAndStatus(): void
@@ -111,6 +113,18 @@ final class UserProfileRepositoryTest extends KernelTestCase
 
         self::assertCount(1, $result);
         self::assertSame('Grace Hopper', $result[0]->getDisplayName()->toString());
+    }
+
+    public function testGetByCriteriaMapsCreatedAtSortToInsertTimestamp(): void
+    {
+        $criteria = new UserProfileFindCriteria(status: UserProfileStatusEnum::published);
+        $criteria->setSort(['createdAt' => SortEnum::asc, 'uuid' => SortEnum::asc]);
+
+        $result = $this->repository->getByCriteria($criteria);
+
+        self::assertCount(2, $result);
+        self::assertSame('Ada Lovelace', $result[0]->getDisplayName()->toString());
+        self::assertSame('Grace Hopper', $result[1]->getDisplayName()->toString());
     }
 
     public function testGetCountByCriteriaIgnoresLimitAndOffset(): void

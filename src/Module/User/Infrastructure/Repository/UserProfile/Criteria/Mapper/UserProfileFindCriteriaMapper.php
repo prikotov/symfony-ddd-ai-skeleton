@@ -18,7 +18,7 @@ final readonly class UserProfileFindCriteriaMapper
      */
     private const array SORT_WHITELIST = [
         'contactEmail' => self::ALIAS . '.contactEmail',
-        'createdAt' => self::ALIAS . '.createdAt',
+        'createdAt' => self::ALIAS . '.insTs',
         'displayName' => self::ALIAS . '.displayName',
         'status' => self::ALIAS . '.status',
         'uuid' => self::ALIAS . '.uuid',

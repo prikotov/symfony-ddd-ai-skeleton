@@ -59,6 +59,13 @@ Start from these working examples before adding new code:
   The web [`UserModule`](../apps/web/src/Module/User/UserModule.php) is the minimal `TwigInterface` example
   with namespace `web.user` and templates under `Resource/templates`; it also shows `TranslationInterface`
   with translations under `Resource/translations`.
+- Doctrine entity primitives under `src/Component/Doctrine/*`:
+  [`IdModelInterface`](../src/Component/Doctrine/Model/IdModelInterface.php),
+  [`UuidModelInterface`](../src/Component/Doctrine/Model/UuidModelInterface.php),
+  [`InsTsModelInterface`](../src/Component/Doctrine/Model/InsTsModelInterface.php),
+  [`IdTrait`](../src/Component/Doctrine/Trait/IdTrait.php),
+  [`UuidTrait`](../src/Component/Doctrine/Trait/UuidTrait.php),
+  [`InsTsTrait`](../src/Component/Doctrine/Trait/InsTsTrait.php).
 - Repository criteria, pagination and sort primitives under `src/Component/Repository/*`:
   [`CriteriaWithLimitInterface`](../src/Component/Repository/CriteriaWithLimitInterface.php),
   [`CriteriaWithOffsetInterface`](../src/Component/Repository/CriteriaWithOffsetInterface.php),

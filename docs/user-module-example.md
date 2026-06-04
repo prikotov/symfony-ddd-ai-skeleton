@@ -20,7 +20,10 @@ It is not a production authentication subsystem.
   [`ContactEmailVo`](../src/Module/User/Domain/ValueObject/ContactEmailVo.php),
   [`UserProfileStatusEnum`](../src/Module/User/Domain/Enum/UserProfileStatusEnum.php).
   `UserProfileModel` is a Doctrine entity with explicit module mapping via
-  [`UserModule`](../src/Module/User/UserModule.php).
+  [`UserModule`](../src/Module/User/UserModule.php) and reusable technical fields from
+  [`IdTrait`](../src/Component/Doctrine/Trait/IdTrait.php),
+  [`UuidTrait`](../src/Component/Doctrine/Trait/UuidTrait.php) and
+  [`InsTsTrait`](../src/Component/Doctrine/Trait/InsTsTrait.php).
 - Domain repository contract and criteria:
   [`UserProfileRepositoryInterface`](../src/Module/User/Domain/Repository/UserProfile/UserProfileRepositoryInterface.php),
   [`UserProfileFindCriteria`](../src/Module/User/Domain/Repository/UserProfile/Criteria/UserProfileFindCriteria.php).
@@ -54,6 +57,8 @@ The User module demonstrates the default persistence-oriented module shape:
 
 - Doctrine mapping is explicit through `DoctrineInterface`; global `auto_mapping: true` is not used as a module contract.
 - The entity remains in `Domain/Entity`, while QueryBuilder and database criteria mapping stay in `Infrastructure`.
+- Reusable Doctrine primitives (`id`, `uuid`, `ins_ts`) live in `src/Component/Doctrine/*`; module-specific fields stay
+  inside the entity.
 - The Domain repository contract and criteria do not depend on Doctrine.
 - Sort fields are whitelisted in Infrastructure before they reach Doctrine.
 - The repository calls `persist()` but does not flush; transaction boundaries stay in Application command handlers.
