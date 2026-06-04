@@ -78,7 +78,7 @@ The User module also contains a small consumer-owned bridge to the Diagnostics m
   and scalar snapshot
   [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php).
 - The Integration implementation
-  [`GetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/RuntimeDiagnostics/Diagnostics/GetRuntimeDiagnosticsSnapshotService.php)
+  [`GetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotService.php)
   calls the Diagnostics Application query
   [`GetRuntimeDiagnosticsQuery`](../src/Module/Diagnostics/Application/UseCase/Query/GetRuntimeDiagnostics/GetRuntimeDiagnosticsQuery.php)
   through `QueryBusComponentInterface` and maps

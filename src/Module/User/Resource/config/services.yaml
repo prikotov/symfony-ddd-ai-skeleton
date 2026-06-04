@@ -21,4 +21,4 @@ services:
     alias: Skeleton\Common\Module\User\Infrastructure\Repository\UserProfile\UserProfileRepository
 
   Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface:
-    alias: Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics\Diagnostics\GetRuntimeDiagnosticsSnapshotService
+    alias: Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotService

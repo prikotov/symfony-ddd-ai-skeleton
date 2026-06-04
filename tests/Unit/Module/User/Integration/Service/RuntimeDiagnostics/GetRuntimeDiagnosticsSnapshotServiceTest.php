@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Common\Test\Unit\Module\User\Integration\Service\RuntimeDiagnostics\Diagnostics;
+namespace Skeleton\Common\Test\Unit\Module\User\Integration\Service\RuntimeDiagnostics;
 
 use DateTimeImmutable;
 use LogicException;
@@ -14,7 +14,7 @@ use Skeleton\Common\Application\Query\QueryInterface;
 use Skeleton\Common\Module\Diagnostics\Application\Dto\RuntimeDiagnosticsDto;
 use Skeleton\Common\Module\Diagnostics\Application\UseCase\Query\GetRuntimeDiagnostics\GetRuntimeDiagnosticsQuery;
 use Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface;
-use Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics\Diagnostics\GetRuntimeDiagnosticsSnapshotService;
+use Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotService;
 
 final class GetRuntimeDiagnosticsSnapshotServiceTest extends TestCase
 {

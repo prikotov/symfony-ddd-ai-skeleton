@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics\Diagnostics;
+namespace Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics;
 
 use LogicException;
 use Override;
