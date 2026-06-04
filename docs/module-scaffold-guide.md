@@ -228,7 +228,7 @@ Keep in the skeleton:
 
 - Neutral module layout and registration rules.
 - Minimal Diagnostics query flow.
-- Neutral UserProfile example with in-memory persistence.
+- Neutral UserProfile example with Doctrine-backed persistence.
 - Generic repository criteria/pagination/sort primitives.
 - Presentation security structure without production auth.
 - Consumer-owned Integration bridge pattern.
