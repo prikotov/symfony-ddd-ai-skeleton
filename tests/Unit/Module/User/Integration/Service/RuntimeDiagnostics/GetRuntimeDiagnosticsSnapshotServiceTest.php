@@ -35,13 +35,13 @@ final class GetRuntimeDiagnosticsSnapshotServiceTest extends TestCase
 
         self::assertInstanceOf(GetRuntimeDiagnosticsQuery::class, $queryBus->lastQuery);
         self::assertSame('user-integration-bridge', $queryBus->lastQuery->entrypoint);
-        self::assertSame('ok', $snapshot->status);
-        self::assertSame('user-integration-bridge', $snapshot->entrypoint);
-        self::assertSame('console', $snapshot->appId);
-        self::assertSame('test', $snapshot->environment);
-        self::assertTrue($snapshot->debug);
-        self::assertSame('Asia/Novosibirsk', $snapshot->timezone);
-        self::assertSame('2026-06-02T12:34:56+00:00', $snapshot->checkedAt);
+        self::assertSame('ok', $snapshot->status());
+        self::assertSame('user-integration-bridge', $snapshot->entrypoint());
+        self::assertSame('console', $snapshot->appId());
+        self::assertSame('test', $snapshot->environment());
+        self::assertTrue($snapshot->isDebug());
+        self::assertSame('Asia/Novosibirsk', $snapshot->timezone());
+        self::assertSame('2026-06-02T12:34:56+00:00', $snapshot->checkedAt());
     }
 
     public function testServiceImplementsConsumerOwnedDomainContract(): void

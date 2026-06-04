@@ -86,7 +86,7 @@ Start from these working examples before adding new code:
   [`Grant`](../apps/web/src/Module/User/Security/UserProfile/Grant.php).
 - User integration bridge classes:
   [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php),
-  [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php),
+  [`RuntimeDiagnosticsSnapshotVo`](../src/Module/User/Domain/ValueObject/RuntimeDiagnosticsSnapshotVo.php),
   [`GetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotService.php),
   [`GetRuntimeDiagnosticsQuery`](../src/Module/Diagnostics/Application/UseCase/Query/GetRuntimeDiagnostics/GetRuntimeDiagnosticsQuery.php),
   [`RuntimeDiagnosticsDto`](../src/Module/Diagnostics/Application/Dto/RuntimeDiagnosticsDto.php).
@@ -198,13 +198,13 @@ Use the User → Diagnostics bridge as the copy point:
 
 1. Consumer module owns the contract:
    [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php).
-2. Consumer module owns the scalar/value DTO:
-   [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php).
+2. Consumer module owns the value object:
+   [`RuntimeDiagnosticsSnapshotVo`](../src/Module/User/Domain/ValueObject/RuntimeDiagnosticsSnapshotVo.php).
 3. Consumer module implements the bridge in Integration:
    [`GetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotService.php).
 4. Bridge calls provider Application:
    [`GetRuntimeDiagnosticsQuery`](../src/Module/Diagnostics/Application/UseCase/Query/GetRuntimeDiagnostics/GetRuntimeDiagnosticsQuery.php).
-5. Bridge maps provider DTO into consumer-owned DTO.
+5. Bridge maps provider DTO into consumer-owned value object.
 6. Tests must prove dependency direction; the bridge relies on the typed Query/QueryBus contract for result type.
 
 The diagram separates runtime calls from DI bindings: Domain owns contracts; one or more Infrastructure/Integration implementations can be bound to those contracts by the container. Dotted implementation links are intentionally non-directional.

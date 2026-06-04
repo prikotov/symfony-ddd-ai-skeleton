@@ -7,8 +7,8 @@ namespace Skeleton\Common\Module\User\Integration\Service\RuntimeDiagnostics;
 use Override;
 use Skeleton\Common\Application\Component\QueryBus\QueryBusComponentInterface;
 use Skeleton\Common\Module\Diagnostics\Application\UseCase\Query\GetRuntimeDiagnostics\GetRuntimeDiagnosticsQuery;
-use Skeleton\Common\Module\User\Domain\Dto\RuntimeDiagnosticsSnapshotDto;
 use Skeleton\Common\Module\User\Domain\Service\RuntimeDiagnostics\GetRuntimeDiagnosticsSnapshotServiceInterface;
+use Skeleton\Common\Module\User\Domain\ValueObject\RuntimeDiagnosticsSnapshotVo;
 
 /**
  * Calls the Diagnostics Application query and maps its DTO to the User-owned snapshot.
@@ -23,11 +23,11 @@ final readonly class GetRuntimeDiagnosticsSnapshotService implements GetRuntimeD
     }
 
     #[Override]
-    public function get(): RuntimeDiagnosticsSnapshotDto
+    public function get(): RuntimeDiagnosticsSnapshotVo
     {
         $diagnostics = $this->queryBus->query(new GetRuntimeDiagnosticsQuery(self::ENTRYPOINT));
 
-        return new RuntimeDiagnosticsSnapshotDto(
+        return RuntimeDiagnosticsSnapshotVo::createFromValues(
             status: $diagnostics->status,
             entrypoint: $diagnostics->entrypoint,
             appId: $diagnostics->appId,

@@ -75,8 +75,8 @@ The User module also contains a small consumer-owned bridge to the Diagnostics m
 
 - User owns the Domain contract
   [`GetRuntimeDiagnosticsSnapshotServiceInterface`](../src/Module/User/Domain/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotServiceInterface.php)
-  and scalar snapshot
-  [`RuntimeDiagnosticsSnapshotDto`](../src/Module/User/Domain/Dto/RuntimeDiagnosticsSnapshotDto.php).
+  and snapshot value object
+  [`RuntimeDiagnosticsSnapshotVo`](../src/Module/User/Domain/ValueObject/RuntimeDiagnosticsSnapshotVo.php).
 - The Integration implementation
   [`GetRuntimeDiagnosticsSnapshotService`](../src/Module/User/Integration/Service/RuntimeDiagnostics/GetRuntimeDiagnosticsSnapshotService.php)
   calls the Diagnostics Application query

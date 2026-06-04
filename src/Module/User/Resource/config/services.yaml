@@ -10,7 +10,6 @@ services:
     resource: '%module.user.module_dir%/'
     exclude:
       - '%module.user.module_dir%/Application/Dto/'
-      - '%module.user.module_dir%/Domain/Dto/'
       - '%module.user.module_dir%/Domain/Entity/'
       - '%module.user.module_dir%/Domain/Enum/'
       - '%module.user.module_dir%/Domain/ValueObject/'
