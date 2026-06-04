@@ -10,10 +10,12 @@ use Doctrine\ORM\Tools\SchemaTool;
 use InvalidArgumentException;
 use Override;
 use Skeleton\Common\Component\Repository\Enum\SortEnum;
+use Skeleton\Common\Exception\ConfigurationException;
 use Skeleton\Common\Kernel;
 use Skeleton\Common\Module\User\Domain\Entity\UserProfileModel;
 use Skeleton\Common\Module\User\Domain\Enum\UserProfileStatusEnum;
 use Skeleton\Common\Module\User\Domain\Repository\UserProfile\Criteria\UserProfileFindCriteria;
+use Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileCriteriaInterface;
 use Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileRepositoryInterface;
 use Skeleton\Common\Module\User\Domain\ValueObject\ContactEmailVo;
 use Skeleton\Common\Module\User\Domain\ValueObject\DisplayNameVo;
@@ -147,6 +149,14 @@ final class UserProfileRepositoryTest extends KernelTestCase
         $this->repository->getByCriteria($criteria);
     }
 
+    public function testGetByCriteriaRejectsUnsupportedCriteria(): void
+    {
+        self::expectException(ConfigurationException::class);
+        self::expectExceptionMessage('Mapper not found for ' . UnsupportedUserProfileCriteria::class);
+
+        $this->repository->getByCriteria(new UnsupportedUserProfileCriteria());
+    }
+
     private function seedUserProfiles(): void
     {
         foreach ([
@@ -207,4 +217,8 @@ final class UserProfileRepositoryTest extends KernelTestCase
 
         return new Kernel('test', true, 'console');
     }
+}
+
+final class UnsupportedUserProfileCriteria implements UserProfileCriteriaInterface
+{
 }

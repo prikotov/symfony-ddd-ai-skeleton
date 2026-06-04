@@ -28,10 +28,11 @@ It is not a production authentication subsystem.
   [`UserProfileRepositoryInterface`](../src/Module/User/Domain/Repository/UserProfile/UserProfileRepositoryInterface.php),
   [`UserProfileFindCriteria`](../src/Module/User/Domain/Repository/UserProfile/Criteria/UserProfileFindCriteria.php).
 - Infrastructure persistence:
-  [`UserProfileRepository`](../src/Module/User/Infrastructure/Repository/UserProfile/UserProfileRepository.php) and
+  [`UserProfileRepository`](../src/Module/User/Infrastructure/Repository/UserProfile/UserProfileRepository.php),
+  [`CriteriaMapper`](../src/Module/User/Infrastructure/Repository/UserProfile/Criteria/CriteriaMapper.php) and
   [`UserProfileFindCriteriaMapper`](../src/Module/User/Infrastructure/Repository/UserProfile/Criteria/Mapper/UserProfileFindCriteriaMapper.php).
-  The mapper applies Domain criteria to Doctrine QueryBuilder, keeps sort fields whitelisted and reuses generic
-  limit/offset/sort primitives.
+  The dispatcher resolves Domain criteria by runtime type, while concrete mappers apply criteria to Doctrine QueryBuilder,
+  keep sort fields whitelisted and reuse generic limit/offset/sort primitives.
 - Application query returning DTO:
   [`ListUserProfilesQuery`](../src/Module/User/Application/UseCase/Query/UserProfile/ListUserProfiles/ListUserProfilesQuery.php),
   [`ListUserProfilesQueryHandler`](../src/Module/User/Application/UseCase/Query/UserProfile/ListUserProfiles/ListUserProfilesQueryHandler.php).

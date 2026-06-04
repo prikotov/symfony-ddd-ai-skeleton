@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace Skeleton\Common\Module\User\Infrastructure\Repository\UserProfile;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Override;
-use Skeleton\Common\Exception\ConfigurationException;
 use Skeleton\Common\Exception\InfrastructureException;
 use Skeleton\Common\Module\User\Domain\Entity\UserProfileModel;
-use Skeleton\Common\Module\User\Domain\Repository\UserProfile\Criteria\UserProfileFindCriteria;
 use Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileCriteriaInterface;
 use Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileRepositoryInterface;
-use Skeleton\Common\Module\User\Infrastructure\Repository\UserProfile\Criteria\Mapper\UserProfileFindCriteriaMapper;
+use Skeleton\Common\Module\User\Infrastructure\Repository\UserProfile\Criteria\CriteriaMapper;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Uid\Uuid;
 
@@ -32,8 +29,7 @@ final class UserProfileRepository extends ServiceEntityRepository implements Use
 {
     public function __construct(
         ManagerRegistry $registry,
-        private readonly EntityManagerInterface $entityManager,
-        private readonly UserProfileFindCriteriaMapper $criteriaMapper,
+        private readonly CriteriaMapper $criteriaMapper,
     ) {
         parent::__construct($registry, UserProfileModel::class);
     }
@@ -93,15 +89,13 @@ final class UserProfileRepository extends ServiceEntityRepository implements Use
     #[Override]
     public function save(UserProfileModel $userProfile): void
     {
-        $this->entityManager->persist($userProfile);
+        $this->getEntityManager()->persist($userProfile);
     }
 
     private function getQueryBuilderByCriteria(UserProfileCriteriaInterface $criteria): QueryBuilder
     {
-        $findCriteria = $this->ensureFindCriteria($criteria);
-
         try {
-            return $this->criteriaMapper->map($this, $findCriteria);
+            return $this->criteriaMapper->map($this, $criteria);
         } catch (QueryException $exception) {
             throw new InfrastructureException(
                 message: sprintf('Failed to build query for %s: %s', $this->getEntityName(), $exception->getMessage()),
@@ -112,24 +106,13 @@ final class UserProfileRepository extends ServiceEntityRepository implements Use
 
     private function getQueryBuilderByFilters(UserProfileCriteriaInterface $criteria): QueryBuilder
     {
-        $findCriteria = $this->ensureFindCriteria($criteria);
-
         try {
-            return $this->criteriaMapper->mapFilters($this, $findCriteria);
+            return $this->criteriaMapper->mapFilters($this, $criteria);
         } catch (QueryException $exception) {
             throw new InfrastructureException(
                 message: sprintf('Failed to build query for %s: %s', $this->getEntityName(), $exception->getMessage()),
                 previous: $exception,
             );
         }
-    }
-
-    private function ensureFindCriteria(UserProfileCriteriaInterface $criteria): UserProfileFindCriteria
-    {
-        if (!$criteria instanceof UserProfileFindCriteria) {
-            throw new ConfigurationException(sprintf('Unsupported user profile criteria: %s.', $criteria::class));
-        }
-
-        return $criteria;
     }
 }
