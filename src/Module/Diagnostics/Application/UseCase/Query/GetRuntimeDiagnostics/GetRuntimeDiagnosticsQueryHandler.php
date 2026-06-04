@@ -11,6 +11,9 @@ use Skeleton\Common\Module\Diagnostics\Application\Dto\RuntimeDiagnosticsDto;
 use Skeleton\Common\Module\Diagnostics\Domain\Service\RuntimeContext\GetRuntimeContextServiceInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
+/**
+ * Builds a read-only diagnostics snapshot without DB or external service probes.
+ */
 #[AsMessageHandler]
 final readonly class GetRuntimeDiagnosticsQueryHandler
 {

@@ -1,0 +1,136 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Skeleton\Common\Module\User\Infrastructure\Repository\UserProfile;
+
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\QueryException;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ManagerRegistry;
+use InvalidArgumentException;
+use Override;
+use Skeleton\Common\Exception\InfrastructureException;
+use Skeleton\Common\Exception\NotFoundException;
+use Skeleton\Common\Module\User\Domain\Entity\UserProfileModel;
+use Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileCriteriaInterface;
+use Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileRepositoryInterface;
+use Skeleton\Common\Module\User\Infrastructure\Repository\UserProfile\Criteria\CriteriaMapper;
+use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Uid\Uuid;
+
+/**
+ * Doctrine Infrastructure repository for the neutral UserProfile example.
+ *
+ * The repository persists only profile data. It intentionally does not add credentials, default users or authentication
+ * data to the skeleton.
+ *
+ * @extends ServiceEntityRepository<UserProfileModel>
+ */
+final class UserProfileRepository extends ServiceEntityRepository implements UserProfileRepositoryInterface
+{
+    public function __construct(
+        ManagerRegistry $registry,
+        private readonly CriteriaMapper $criteriaMapper,
+    ) {
+        parent::__construct($registry, UserProfileModel::class);
+    }
+
+    #[Override]
+    public function getById(?int $id = null, ?Uuid $uuid = null): UserProfileModel
+    {
+        if ($id === null && $uuid === null) {
+            throw new InvalidArgumentException(sprintf(
+                'Either an ID or a UUID must be provided for entity %s.',
+                $this->getEntityName(),
+            ));
+        }
+
+        if ($id !== null) {
+            return $this->find($id) ?? throw new NotFoundException(sprintf(
+                'Cannot find %s with id %s',
+                $this->getEntityName(),
+                $id,
+            ));
+        }
+
+        if ($uuid !== null) {
+            /** @var UserProfileModel|null $userProfile */
+            $userProfile = $this
+                ->createQueryBuilder('userProfile')
+                ->andWhere('userProfile.uuid = :uuid')
+                ->setParameter('uuid', $uuid, UuidType::NAME)
+                ->getQuery()
+                ->getOneOrNullResult();
+
+            return $userProfile ?? throw new NotFoundException(sprintf(
+                'Cannot find %s with uuid %s',
+                $this->getEntityName(),
+                $uuid->toRfc4122(),
+            ));
+        }
+
+        throw new NotFoundException(sprintf('%s not found.', $this->getEntityName()));
+    }
+
+    #[Override]
+    public function getOneByCriteria(UserProfileCriteriaInterface $criteria): ?UserProfileModel
+    {
+        /** @var UserProfileModel|null $userProfile */
+        $userProfile = $this
+            ->getQueryBuilderByCriteria($criteria)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $userProfile;
+    }
+
+    /**
+     * @return list<UserProfileModel>
+     */
+    #[Override]
+    public function getByCriteria(UserProfileCriteriaInterface $criteria): array
+    {
+        /** @var list<UserProfileModel> $userProfiles */
+        $userProfiles = $this
+            ->getQueryBuilderByCriteria($criteria)
+            ->getQuery()
+            ->getResult();
+
+        return $userProfiles;
+    }
+
+    #[Override]
+    public function getCountByCriteria(UserProfileCriteriaInterface $criteria): int
+    {
+        $queryBuilder = $this->getQueryBuilderByCriteria($criteria);
+        $alias = $queryBuilder->getRootAliases()[0];
+
+        $queryBuilder
+            ->select(sprintf('COUNT(%s.id)', $alias))
+            ->resetDQLPart('orderBy')
+            ->setFirstResult(0)
+            ->setMaxResults(null);
+
+        return (int) $queryBuilder->getQuery()->getSingleScalarResult();
+    }
+
+    #[Override]
+    public function save(UserProfileModel $userProfile): void
+    {
+        $this->getEntityManager()->persist($userProfile);
+    }
+
+    private function getQueryBuilderByCriteria(UserProfileCriteriaInterface $criteria): QueryBuilder
+    {
+        try {
+            return $this->criteriaMapper->map($this, $criteria);
+        } catch (QueryException $exception) {
+            throw new InfrastructureException(
+                message: sprintf('Failed to build query for %s: %s', $this->getEntityName(), $exception->getMessage()),
+                previous: $exception,
+            );
+        }
+    }
+}

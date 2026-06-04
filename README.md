@@ -140,6 +140,9 @@ Controller / Console Command
         → Infrastructure implementations
 ```
 
+The bundled `Diagnostics` module documents the minimal read-only Query example:
+[`docs/diagnostics-query-flow.md`](docs/diagnostics-query-flow.md).
+
 ---
 
 ## Module system
@@ -206,6 +209,7 @@ This skeleton depends on several purpose-built open-source packages:
 ## Documentation
 
 - **Architecture & conventions** — [`docs/conventions/`](docs/conventions/)
+- **Module scaffold guide** — [`docs/module-scaffold-guide.md`](docs/module-scaffold-guide.md)
 - **Agent roles** — [`docs/agents/roles/team/`](docs/agents/roles/team/)
 - **Git workflow** — [`docs/git-workflow/`](docs/git-workflow/)
 - **UI components** — [`docs/ui/`](docs/ui/)
