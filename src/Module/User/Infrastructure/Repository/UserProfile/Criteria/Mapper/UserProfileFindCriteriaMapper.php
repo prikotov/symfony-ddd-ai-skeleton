@@ -52,8 +52,8 @@ final readonly class UserProfileFindCriteriaMapper
         if ($search !== null) {
             $queryBuilder
                 ->andWhere($queryBuilder->expr()->orX(
-                    sprintf('LOWER(%s.displayName) LIKE :search', self::ALIAS),
-                    sprintf('LOWER(%s.contactEmail) LIKE :search', self::ALIAS),
+                    sprintf('%s.displayName LIKE :search', self::ALIAS),
+                    sprintf('%s.contactEmail LIKE :search', self::ALIAS),
                 ))
                 ->setParameter('search', '%' . $search . '%');
         }

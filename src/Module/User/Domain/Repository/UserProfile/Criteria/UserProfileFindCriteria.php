@@ -37,7 +37,7 @@ final class UserProfileFindCriteria implements
 
     public function setSearch(?string $search): void
     {
-        $normalized = $search === null ? null : strtolower(trim($search));
+        $normalized = $search === null ? null : trim($search);
         $this->search = $normalized === '' ? null : $normalized;
     }
 

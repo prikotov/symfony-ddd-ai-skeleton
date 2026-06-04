@@ -76,7 +76,7 @@ final class UserProfileRepositoryTest extends KernelTestCase
     public function testGetByCriteriaFiltersBySearchAndStatus(): void
     {
         $criteria = new UserProfileFindCriteria(
-            search: 'ada',
+            search: 'Ada',
             status: UserProfileStatusEnum::published,
         );
 

@@ -63,6 +63,8 @@ The User module demonstrates the default persistence-oriented module shape:
   entity itself does not call a static `ClockFactory` or the service container.
 - The Domain repository contract and criteria do not depend on Doctrine.
 - Sort fields are whitelisted in Infrastructure before they reach Doctrine.
+- The example does not wrap searchable columns in `LOWER(...)`; case-insensitive search is a database/platform concern
+  (for example collation, `citext`, functional index or project-specific query strategy).
 - The repository calls `persist()` but does not flush; transaction boundaries stay in Application command handlers.
 - A concrete project must generate/review its own migration for the target database platform before relying on the table.
 
