@@ -8,8 +8,10 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use InvalidArgumentException;
 use Override;
 use Skeleton\Common\Exception\InfrastructureException;
+use Skeleton\Common\Exception\NotFoundException;
 use Skeleton\Common\Module\User\Domain\Entity\UserProfileModel;
 use Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileCriteriaInterface;
 use Skeleton\Common\Module\User\Domain\Repository\UserProfile\UserProfileRepositoryInterface;
@@ -35,17 +37,40 @@ final class UserProfileRepository extends ServiceEntityRepository implements Use
     }
 
     #[Override]
-    public function getByUuid(Uuid $uuid): ?UserProfileModel
+    public function getById(?int $id = null, ?Uuid $uuid = null): UserProfileModel
     {
-        /** @var UserProfileModel|null $userProfile */
-        $userProfile = $this
-            ->createQueryBuilder('userProfile')
-            ->andWhere('userProfile.uuid = :uuid')
-            ->setParameter('uuid', $uuid, UuidType::NAME)
-            ->getQuery()
-            ->getOneOrNullResult();
+        if ($id === null && $uuid === null) {
+            throw new InvalidArgumentException(sprintf(
+                'Either an ID or a UUID must be provided for entity %s.',
+                $this->getEntityName(),
+            ));
+        }
 
-        return $userProfile;
+        if ($id !== null) {
+            return $this->find($id) ?? throw new NotFoundException(sprintf(
+                'Cannot find %s with id %s',
+                $this->getEntityName(),
+                $id,
+            ));
+        }
+
+        if ($uuid !== null) {
+            /** @var UserProfileModel|null $userProfile */
+            $userProfile = $this
+                ->createQueryBuilder('userProfile')
+                ->andWhere('userProfile.uuid = :uuid')
+                ->setParameter('uuid', $uuid, UuidType::NAME)
+                ->getQuery()
+                ->getOneOrNullResult();
+
+            return $userProfile ?? throw new NotFoundException(sprintf(
+                'Cannot find %s with uuid %s',
+                $this->getEntityName(),
+                $uuid->toRfc4122(),
+            ));
+        }
+
+        throw new NotFoundException(sprintf('%s not found.', $this->getEntityName()));
     }
 
     #[Override]

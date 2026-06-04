@@ -11,6 +11,7 @@ use InvalidArgumentException;
 use Override;
 use Skeleton\Common\Component\Repository\Enum\SortEnum;
 use Skeleton\Common\Exception\ConfigurationException;
+use Skeleton\Common\Exception\NotFoundException;
 use Skeleton\Common\Kernel;
 use Skeleton\Common\Module\User\Domain\Entity\UserProfileModel;
 use Skeleton\Common\Module\User\Domain\Enum\UserProfileStatusEnum;
@@ -63,16 +64,60 @@ final class UserProfileRepositoryTest extends KernelTestCase
         parent::tearDown();
     }
 
-    public function testGetByUuidReturnsPersistedUserProfile(): void
+    public function testGetByIdWithUuidReturnsPersistedUserProfile(): void
     {
         $uuid = Uuid::fromString('01890f7a-0000-7000-8000-000000000002');
 
-        $userProfile = $this->repository->getByUuid($uuid);
+        $userProfile = $this->repository->getById(uuid: $uuid);
 
         self::assertInstanceOf(UserProfileModel::class, $userProfile);
         self::assertGreaterThan(0, $userProfile->getId());
         self::assertSame('Ada Lovelace', $userProfile->getDisplayName()->toString());
         self::assertSame('2026-06-02 00:00:00', $userProfile->getInsTs()->format('Y-m-d H:i:s'));
+    }
+
+    public function testGetByIdWithIdReturnsPersistedUserProfile(): void
+    {
+        $userProfile = $this->repository->getById(
+            uuid: Uuid::fromString('01890f7a-0000-7000-8000-000000000001'),
+        );
+
+        $result = $this->repository->getById(id: $userProfile->getId());
+
+        self::assertSame('Grace Hopper', $result->getDisplayName()->toString());
+    }
+
+    public function testGetByIdWithoutIdentifierThrowsInvalidArgumentException(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage(sprintf(
+            'Either an ID or a UUID must be provided for entity %s.',
+            UserProfileModel::class,
+        ));
+
+        $this->repository->getById();
+    }
+
+    public function testGetByIdWithUnknownIdThrowsNotFoundException(): void
+    {
+        self::expectException(NotFoundException::class);
+        self::expectExceptionMessage(sprintf('Cannot find %s with id 999', UserProfileModel::class));
+
+        $this->repository->getById(id: 999);
+    }
+
+    public function testGetByIdWithUnknownUuidThrowsNotFoundException(): void
+    {
+        $uuid = Uuid::fromString('01890f7a-0000-7000-8000-999999999999');
+
+        self::expectException(NotFoundException::class);
+        self::expectExceptionMessage(sprintf(
+            'Cannot find %s with uuid %s',
+            UserProfileModel::class,
+            $uuid->toRfc4122(),
+        ));
+
+        $this->repository->getById(uuid: $uuid);
     }
 
     public function testGetByCriteriaFiltersBySearchAndStatus(): void

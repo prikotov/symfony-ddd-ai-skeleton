@@ -82,9 +82,11 @@ final class UserProfileRepositoryStub implements UserProfileRepositoryInterface
     }
 
     #[Override]
-    public function getByUuid(Uuid $uuid): ?UserProfileModel
+    public function getById(?int $id = null, ?Uuid $uuid = null): UserProfileModel
     {
-        return null;
+        unset($id, $uuid);
+
+        return $this->items[0];
     }
 
     #[Override]

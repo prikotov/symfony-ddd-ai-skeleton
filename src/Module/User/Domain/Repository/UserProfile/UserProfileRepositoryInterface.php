@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Skeleton\Common\Module\User\Domain\Repository\UserProfile;
 
+use Skeleton\Common\Exception\NotFoundExceptionInterface;
 use Skeleton\Common\Module\User\Domain\Entity\UserProfileModel;
 use Symfony\Component\Uid\Uuid;
 
@@ -12,7 +13,10 @@ use Symfony\Component\Uid\Uuid;
  */
 interface UserProfileRepositoryInterface
 {
-    public function getByUuid(Uuid $uuid): ?UserProfileModel;
+    /**
+     * @throws NotFoundExceptionInterface
+     */
+    public function getById(?int $id = null, ?Uuid $uuid = null): UserProfileModel;
 
     public function getOneByCriteria(UserProfileCriteriaInterface $criteria): ?UserProfileModel;
 
