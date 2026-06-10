@@ -9,10 +9,14 @@ use Override;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use Skeleton\Common\Application\Component\QueryBus\QueryBusComponentInterface;
+use Skeleton\Common\Application\Mapper\SortDtoToOrderMapper;
 use Skeleton\Common\Application\Query\QueryInterface;
+use Skeleton\Common\Component\Repository\Enum\SortEnum;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileDto;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileListDto;
 use Skeleton\Common\Module\User\Application\UseCase\Query\UserProfile\ListUserProfiles\ListUserProfilesQuery;
+use Skeleton\Web\Component\Sort\SortRequestDto;
+use Skeleton\Web\Component\Sort\SortRequestToApplicationDtoMapper;
 use Skeleton\Web\Module\User\Controller\UserProfile\ListController;
 use Skeleton\Web\Module\User\Security\UserProfile\ActionEnum;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,13 +54,39 @@ final class ListControllerTest extends TestCase
         $twig = new Environment(new ArrayLoader([
             '@web.user/user_profile/list.html.twig' => '{{ userProfiles.total }}:{{ userProfiles.items[0].displayName }}:{{ userProfiles.items[0].createdAt }}',
         ]));
-        $controller = new ListController($queryBus, $twig);
+        $controller = $this->createController($queryBus, $twig);
 
         $response = $controller();
 
         self::assertInstanceOf(Response::class, $response);
         self::assertInstanceOf(ListUserProfilesQuery::class, $queryBus->lastQuery);
+        self::assertSame([], $queryBus->lastQuery->sort);
         self::assertSame('1:Ada Lovelace:' . $checkedAt->format(DATE_ATOM), $response->getContent());
+    }
+
+    public function testInvokeMapsSortRequestToListQuery(): void
+    {
+        $queryBus = new QueryBusStub(new UserProfileListDto([], total: 0));
+        $twig = new Environment(new ArrayLoader([
+            '@web.user/user_profile/list.html.twig' => '{{ userProfiles.total }}',
+        ]));
+        $controller = $this->createController($queryBus, $twig);
+
+        $response = $controller(new SortRequestDto(sort: '-displayName'));
+
+        self::assertSame('0', $response->getContent());
+        self::assertInstanceOf(ListUserProfilesQuery::class, $queryBus->lastQuery);
+        self::assertSame(['displayName' => SortEnum::desc], $queryBus->lastQuery->sort);
+    }
+
+    private function createController(QueryBusComponentInterface $queryBus, Environment $twig): ListController
+    {
+        return new ListController(
+            queryBus: $queryBus,
+            twig: $twig,
+            sortRequestToApplicationDtoMapper: new SortRequestToApplicationDtoMapper(),
+            sortDtoToOrderMapper: new SortDtoToOrderMapper(),
+        );
     }
 }
 

@@ -26,7 +26,8 @@ status: review
 - Перенести минимальный reusable `SortRequestDto` и `SortRequestToApplicationDtoMapper` из рабочего проекта в `apps/web/src/Component/Sort`.
 - Адаптировать `namespace` под skeleton и не переносить зависимости, которых нет в skeleton.
 - Добавить общий Application `SortDto`, `SortDirectionEnum` и mapper в repository order.
-- Добавить unit-тесты на transport-validation и mapping.
+- Подключить sort mapping в demo list controller, чтобы primitives были показаны в реальном сценарии.
+- Добавить unit-тесты на transport-validation, mapping и controller usage.
 
 ### Ожидаемый результат (Expected Result)
 - В web-приложении skeleton есть готовый DTO и mapper для query-параметра `sort`, совместимые с текущими conventions.
@@ -39,9 +40,9 @@ status: review
 Добавить cross-cutting presentation DTO/mapper для query-параметра `sort` и покрыть их unit-тестами в рамках одного PR.
 
 ## 2. Context and Scope (Контекст и Границы)
-*   **Где делаем:** `apps/web/src/Component/Sort`, `src/Application`, `apps/web/tests/Unit/Component/Sort`, `tests/Unit/Application`.
+*   **Где делаем:** `apps/web/src/Component/Sort`, `apps/web/src/Module/User/Controller/UserProfile`, `src/Application`, `apps/web/tests/Unit/Component/Sort`, `tests/Unit/Application`.
 *   **Текущее поведение:** `PaginationRequestDto`/mapper есть, `SortRequestDto`/mapper отсутствуют.
-*   **Границы (Out of Scope):** Не добавлять OpenAPI/Nelmio зависимости, изменения контроллеров или бизнес-логику.
+*   **Границы (Out of Scope):** Не добавлять OpenAPI/Nelmio зависимости, UI-sort controls или бизнес-логику.
 
 ## 3. Requirements (Требования, MoSCoW)
 ### 🔴 Must Have (Обязательно)
@@ -49,6 +50,7 @@ status: review
 - [x] Добавить `SortRequestToApplicationDtoMapper` с mandatory allowed sorts whitelist.
 - [x] Добавить общий `SortDto` и `SortDirectionEnum` для Application boundary.
 - [x] Добавить mapper из Application sort DTO в repository order.
+- [x] Подключить sort mapper в `UserProfile` demo `ListController`.
 - [x] Сохранить nullable `sort` и `NotBlank(allowNull: true)` validation metadata.
 - [x] Покрыть DTO и mappers unit-тестами.
 
@@ -56,7 +58,7 @@ status: review
 - [x] Не переносить OpenAPI attributes без зависимости в skeleton.
 
 ### 🟢 Could Have (Опционально)
-- [ ] Подключить sort mapper в demo controller отдельной задачей.
+- [ ] Добавить sort UI controls в Twig template отдельной задачей.
 
 ### ⚫ Won't Have (Не будем делать)
 - [x] Не менять существующие controllers.
@@ -68,11 +70,13 @@ status: review
 3. [x] Добавить `SortRequestDto` с skeleton namespace.
 4. [x] Добавить Application `SortDto`/`SortDirectionEnum`.
 5. [x] Добавить mappers и unit-тесты для null/default/asc/desc/invalid/whitelist cases.
-6. [x] Запустить `make check`.
+6. [x] Подключить mapper в `UserProfile` demo `ListController` и обновить controller test.
+7. [x] Запустить `make check`.
 
 ## 5. Definition of Done (Критерии приёмки)
 - [x] DTO и mapper добавлены в web component namespace.
 - [x] Application sort DTO и direction enum добавлены без business vocabulary.
+- [x] Demo controller использует sort request mapper при построении query.
 - [x] Новый код покрыт unit-тестами.
 - [x] `make check` проходит успешно.
 
@@ -83,7 +87,7 @@ make check
 
 ## 7. Risks and Dependencies (Риски и зависимости)
 - OpenAPI attributes из исходного проекта не переносились, потому что skeleton не содержит соответствующей зависимости.
-- Mapper в controllers намеренно не подключался, чтобы не смешивать перенос primitives с изменением поведения demo list.
+- UI-sort controls не добавлялись, чтобы не раздувать PR изменениями Twig-разметки.
 
 ## 8. Sources (Источники)
 - Исходный файл: `/home/dp/MyProjects/TasK/Development/apps/web/src/Component/Sort/SortRequestDto.php`
@@ -99,3 +103,4 @@ make check
 | 2026-06-10 | Лид Арагорн (codex-cli) | Создание задачи и фиксация scope для PR |
 | 2026-06-10 | Лид Арагорн (codex-cli) | Создан draft PR #20, задача переведена в review |
 | 2026-06-10 | Лид Арагорн (codex-cli) | Добавлен sort mapper и связанные Application primitives по уточнению scope |
+| 2026-06-10 | Лид Арагорн (codex-cli) | Sort mapper подключен в demo `UserProfile` list controller |
