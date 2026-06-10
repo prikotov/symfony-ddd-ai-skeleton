@@ -11,8 +11,8 @@ epic:
 author: Лид Арагорн (codex-cli)
 assignee: Лид Арагорн (codex-cli)
 branch: task/add-sort-request-dto
-pr:
-status: in_progress
+pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/20
+status: review
 ---
 
 # TASK-skeleton-sort-request-dto: Sort request DTO for web lists
@@ -89,3 +89,4 @@ make check
 | Дата | Автор (роль) | Изменение |
 | :--- | :--- | :--- |
 | 2026-06-10 | Лид Арагорн (codex-cli) | Создание задачи и фиксация scope для PR |
+| 2026-06-10 | Лид Арагорн (codex-cli) | Создан draft PR #20, задача переведена в review |
