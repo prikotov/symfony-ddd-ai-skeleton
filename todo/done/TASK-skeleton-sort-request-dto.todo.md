@@ -12,7 +12,7 @@ author: Лид Арагорн (codex-cli)
 assignee: Лид Арагорн (codex-cli)
 branch: task/add-sort-request-dto
 pr: https://github.com/prikotov/symfony-ddd-ai-skeleton/pull/20
-status: review
+status: done
 ---
 
 # TASK-skeleton-sort-request-dto: Sort request DTO for web lists
@@ -106,3 +106,4 @@ make check
 | 2026-06-10 | Лид Арагорн (codex-cli) | Добавлен sort mapper и связанные Application primitives по уточнению scope |
 | 2026-06-10 | Лид Арагорн (codex-cli) | Sort mapper подключен в demo `UserProfile` list controller |
 | 2026-06-10 | Лид Арагорн (codex-cli) | Pagination mapper подключен в demo `UserProfile` list controller |
+| 2026-06-10 | Лид Арагорн (codex-cli) | Задача переведена в done перед merge PR #20 |
