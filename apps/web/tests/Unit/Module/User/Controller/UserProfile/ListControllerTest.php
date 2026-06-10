@@ -9,12 +9,15 @@ use Override;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use Skeleton\Common\Application\Component\QueryBus\QueryBusComponentInterface;
+use Skeleton\Common\Application\Dto\PaginationDto;
 use Skeleton\Common\Application\Mapper\SortDtoToOrderMapper;
 use Skeleton\Common\Application\Query\QueryInterface;
 use Skeleton\Common\Component\Repository\Enum\SortEnum;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileDto;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileListDto;
 use Skeleton\Common\Module\User\Application\UseCase\Query\UserProfile\ListUserProfiles\ListUserProfilesQuery;
+use Skeleton\Web\Component\Pagination\PaginationRequestDto;
+use Skeleton\Web\Component\Pagination\PaginationRequestToApplicationDtoMapper;
 use Skeleton\Web\Component\Sort\SortRequestDto;
 use Skeleton\Web\Component\Sort\SortRequestToApplicationDtoMapper;
 use Skeleton\Web\Module\User\Controller\UserProfile\ListController;
@@ -60,6 +63,9 @@ final class ListControllerTest extends TestCase
 
         self::assertInstanceOf(Response::class, $response);
         self::assertInstanceOf(ListUserProfilesQuery::class, $queryBus->lastQuery);
+        self::assertInstanceOf(PaginationDto::class, $queryBus->lastQuery->pagination);
+        self::assertSame(10, $queryBus->lastQuery->pagination->limit);
+        self::assertSame(0, $queryBus->lastQuery->pagination->offset);
         self::assertSame([], $queryBus->lastQuery->sort);
         self::assertSame('1:Ada Lovelace:' . $checkedAt->format(DATE_ATOM), $response->getContent());
     }
@@ -72,11 +78,28 @@ final class ListControllerTest extends TestCase
         ]));
         $controller = $this->createController($queryBus, $twig);
 
-        $response = $controller(new SortRequestDto(sort: '-displayName'));
+        $response = $controller->__invoke(sortRequestDto: new SortRequestDto(sort: '-displayName'));
 
         self::assertSame('0', $response->getContent());
         self::assertInstanceOf(ListUserProfilesQuery::class, $queryBus->lastQuery);
         self::assertSame(['displayName' => SortEnum::desc], $queryBus->lastQuery->sort);
+    }
+
+    public function testInvokeMapsPaginationRequestToListQuery(): void
+    {
+        $queryBus = new QueryBusStub(new UserProfileListDto([], total: 0));
+        $twig = new Environment(new ArrayLoader([
+            '@web.user/user_profile/list.html.twig' => '{{ pagination.page }}:{{ pagination.perPage }}:{{ userProfiles.total }}',
+        ]));
+        $controller = $this->createController($queryBus, $twig);
+
+        $response = $controller(new PaginationRequestDto(page: 3, perPage: 25));
+
+        self::assertSame('3:25:0', $response->getContent());
+        self::assertInstanceOf(ListUserProfilesQuery::class, $queryBus->lastQuery);
+        self::assertInstanceOf(PaginationDto::class, $queryBus->lastQuery->pagination);
+        self::assertSame(25, $queryBus->lastQuery->pagination->limit);
+        self::assertSame(50, $queryBus->lastQuery->pagination->offset);
     }
 
     private function createController(QueryBusComponentInterface $queryBus, Environment $twig): ListController
@@ -84,6 +107,7 @@ final class ListControllerTest extends TestCase
         return new ListController(
             queryBus: $queryBus,
             twig: $twig,
+            paginationRequestToApplicationDtoMapper: new PaginationRequestToApplicationDtoMapper(),
             sortRequestToApplicationDtoMapper: new SortRequestToApplicationDtoMapper(),
             sortDtoToOrderMapper: new SortDtoToOrderMapper(),
         );

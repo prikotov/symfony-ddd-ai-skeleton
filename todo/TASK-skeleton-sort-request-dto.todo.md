@@ -26,7 +26,7 @@ status: review
 - Перенести минимальный reusable `SortRequestDto` и `SortRequestToApplicationDtoMapper` из рабочего проекта в `apps/web/src/Component/Sort`.
 - Адаптировать `namespace` под skeleton и не переносить зависимости, которых нет в skeleton.
 - Добавить общий Application `SortDto`, `SortDirectionEnum` и mapper в repository order.
-- Подключить sort mapping в demo list controller, чтобы primitives были показаны в реальном сценарии.
+- Подключить sort и pagination mapping в demo list controller, чтобы primitives были показаны в реальном сценарии.
 - Добавить unit-тесты на transport-validation, mapping и controller usage.
 
 ### Ожидаемый результат (Expected Result)
@@ -34,10 +34,10 @@ status: review
 
 ## 1. Concept and Goal (Концепция и Цель)
 ### Story (Job Story)
-> Когда я добавляю sortable list в web-приложение на базе skeleton, я хочу использовать готовые `SortRequestDto` и mapper, чтобы не копировать один и тот же transport contract и mapping вручную.
+> Когда я добавляю sortable paginated list в web-приложение на базе skeleton, я хочу использовать готовые pagination/sort request DTO и mappers, чтобы не копировать один и тот же transport contract и mapping вручную.
 
 ### Goal (Цель по SMART)
-Добавить cross-cutting presentation DTO/mapper для query-параметра `sort` и покрыть их unit-тестами в рамках одного PR.
+Добавить cross-cutting presentation DTO/mapper для query-параметра `sort`, подключить его вместе с pagination mapper в demo list controller и покрыть unit-тестами в рамках одного PR.
 
 ## 2. Context and Scope (Контекст и Границы)
 *   **Где делаем:** `apps/web/src/Component/Sort`, `apps/web/src/Module/User/Controller/UserProfile`, `src/Application`, `apps/web/tests/Unit/Component/Sort`, `tests/Unit/Application`.
@@ -51,6 +51,7 @@ status: review
 - [x] Добавить общий `SortDto` и `SortDirectionEnum` для Application boundary.
 - [x] Добавить mapper из Application sort DTO в repository order.
 - [x] Подключить sort mapper в `UserProfile` demo `ListController`.
+- [x] Подключить pagination mapper в `UserProfile` demo `ListController`.
 - [x] Сохранить nullable `sort` и `NotBlank(allowNull: true)` validation metadata.
 - [x] Покрыть DTO и mappers unit-тестами.
 
@@ -70,13 +71,13 @@ status: review
 3. [x] Добавить `SortRequestDto` с skeleton namespace.
 4. [x] Добавить Application `SortDto`/`SortDirectionEnum`.
 5. [x] Добавить mappers и unit-тесты для null/default/asc/desc/invalid/whitelist cases.
-6. [x] Подключить mapper в `UserProfile` demo `ListController` и обновить controller test.
+6. [x] Подключить sort и pagination mappers в `UserProfile` demo `ListController` и обновить controller test.
 7. [x] Запустить `make check`.
 
 ## 5. Definition of Done (Критерии приёмки)
 - [x] DTO и mapper добавлены в web component namespace.
 - [x] Application sort DTO и direction enum добавлены без business vocabulary.
-- [x] Demo controller использует sort request mapper при построении query.
+- [x] Demo controller использует pagination и sort request mappers при построении query.
 - [x] Новый код покрыт unit-тестами.
 - [x] `make check` проходит успешно.
 
@@ -104,3 +105,4 @@ make check
 | 2026-06-10 | Лид Арагорн (codex-cli) | Создан draft PR #20, задача переведена в review |
 | 2026-06-10 | Лид Арагорн (codex-cli) | Добавлен sort mapper и связанные Application primitives по уточнению scope |
 | 2026-06-10 | Лид Арагорн (codex-cli) | Sort mapper подключен в demo `UserProfile` list controller |
+| 2026-06-10 | Лид Арагорн (codex-cli) | Pagination mapper подключен в demo `UserProfile` list controller |

@@ -9,6 +9,8 @@ use Skeleton\Common\Application\Mapper\SortDtoToOrderMapper;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileDto;
 use Skeleton\Common\Module\User\Application\Dto\UserProfileListDto;
 use Skeleton\Common\Module\User\Application\UseCase\Query\UserProfile\ListUserProfiles\ListUserProfilesQuery;
+use Skeleton\Web\Component\Pagination\PaginationRequestDto;
+use Skeleton\Web\Component\Pagination\PaginationRequestToApplicationDtoMapper;
 use Skeleton\Web\Component\Sort\SortRequestDto;
 use Skeleton\Web\Component\Sort\SortRequestToApplicationDtoMapper;
 use Skeleton\Web\Module\User\Route\UserProfileRoute;
@@ -40,14 +42,18 @@ final readonly class ListController
     public function __construct(
         private QueryBusComponentInterface $queryBus,
         private Environment $twig,
+        private PaginationRequestToApplicationDtoMapper $paginationRequestToApplicationDtoMapper,
         private SortRequestToApplicationDtoMapper $sortRequestToApplicationDtoMapper,
         private SortDtoToOrderMapper $sortDtoToOrderMapper,
     ) {
     }
 
     public function __invoke(
+        #[MapQueryString(validationFailedStatusCode: Response::HTTP_BAD_REQUEST)] PaginationRequestDto $paginationRequestDto = new PaginationRequestDto(),
         #[MapQueryString(validationFailedStatusCode: Response::HTTP_BAD_REQUEST)] SortRequestDto $sortRequestDto = new SortRequestDto(),
     ): Response {
+        $pagination = $this->paginationRequestToApplicationDtoMapper->map($paginationRequestDto);
+
         $sort = $this->sortRequestToApplicationDtoMapper->map(
             sortRequest: $sortRequestDto,
             allowedSorts: self::ALLOWED_SORTS,
@@ -56,11 +62,13 @@ final readonly class ListController
         $order = $sort === null ? [] : $this->sortDtoToOrderMapper->map($sort);
 
         $userProfiles = $this->queryBus->query(new ListUserProfilesQuery(
-            pagination: null,
+            pagination: $pagination,
             sort: $order,
         ));
 
         return new Response($this->twig->render('@web.user/user_profile/list.html.twig', [
+            'pagination' => $paginationRequestDto,
+            'sort' => $sortRequestDto,
             'userProfiles' => $this->normalize($userProfiles),
         ]));
     }
